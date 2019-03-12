@@ -13,6 +13,10 @@ public class MazeBlueprint {
         this.mazeWidth = mazeWidth;
     }
 
+    /* =================================================
+                        Getter Setter
+    ================================================= */
+
     public int getMazeHeight() {
         return this.mazeHeight;
     }
@@ -29,6 +33,10 @@ public class MazeBlueprint {
         this.playAreaBlueprint = playAreaBlueprint;
     }
 
+    /* =================================================
+                        Debug Area
+    ================================================= */
+    
     public void printBlueprint(String filename) {
         System.IO.StreamWriter file = new System.IO.StreamWriter(filename);
         file.WriteLine("\n\n\n");

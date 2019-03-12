@@ -16,28 +16,16 @@ public class Maze {
         this.createPlayArea();
     }
 
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
+    /* =================================================
+                        Getter Setter
+    ================================================= */
+    
     public String getTile(int row, int col) {
         try {
             return this.playArea[row][col];
         } catch (Exception) {
             return null;
         }
-    }
-
-    public bool isTileEmpty(int row, int col) {
-        return this.getTile(row, col) != Maze.wallSymbol;
-    }
-
-    public bool isTileWall(int row, int col) {
-        return this.getTile(row, col) == Maze.wallSymbol;
     }
 
     public String getTileType(int row, int col) {
@@ -107,6 +95,18 @@ public class Maze {
         return "Empty";
     }
 
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public List<List<String>> getPlayArea(){
+        return this.playArea;
+    }
+
     public void setHeight(int height) {
         this.height = height;
     }
@@ -117,6 +117,18 @@ public class Maze {
 
     public void setPlayArea(List<List<String>> playArea) {
         this.playArea = playArea;
+    }
+
+    /* =================================================
+                        Member Method
+    ================================================= */
+
+    private bool isTileEmpty(int row, int col) {
+        return !(this.isTileWall(row, col));
+    }
+
+    private bool isTileWall(int row, int col) {
+        return this.getTile(row, col) == Maze.wallSymbol;
     }
 
     private void createPlayArea() {
@@ -131,11 +143,9 @@ public class Maze {
         }
     }
 
-    /*
-    ===============================================================
-                            Debug Area
-    ===============================================================    
-    */
+    /* =================================================
+                        Debug Area
+    ================================================= */
 
     public void printMaze(String filename) {
         System.IO.StreamWriter file = new System.IO.StreamWriter(filename);

@@ -14,41 +14,21 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     private TileMapDrawer TileMapDrawer = new TileMapDrawer();
     private MazeBlueprint mazeBlueprint = null;
+    private Tilemap tilemap = null;
 
-    private GameObject player;
-    private Tilemap tilemap;
-    private Transform transformData;
-
-    // Start is called before the first frame update
     void Start() {
 
-        // Pass tiles to tileMapDrawer
-        TileMapDrawer.setStaticTiles(ref tileMapDrawerConfig.drawableTiles);
+        TileMapDrawer.setDrawableTiles(ref tileMapDrawerConfig.drawableTiles);
 
-        this.findPlayer();
-        this.setTileMap();
-        this.setTransform();
+        this.tilemap = GetComponent<Tilemap>();
         this.mazeBlueprint = generateBlueprint();
 
-        StartCoroutine("drawMapAroundPlayer"); // draw little by little
-        // StartCoroutine("drawMap");   // draw all at once 
-    }
-
-    void Update() { }
-
-    private void findPlayer() {
-        player = GameObject.Find("Ellen");
-    }
-
-    private void setTileMap() {
-        tilemap = GetComponent<Tilemap>();
-    }
-
-    private void setTransform() {
-        transformData = GetComponent<Transform>();
+        StartCoroutine("drawMapAroundPlayer");
+        // StartCoroutine("drawWholeMapPartially");   
     }
 
     private MazeBlueprint generateBlueprint() {
+        /* Define your maze here ! */
 
         int mazeHeight = tileMapDrawerConfig.mapSize.y;
         int mazeWidth = tileMapDrawerConfig.mapSize.x;
@@ -56,36 +36,31 @@ public class RandomTileMapGenerator : MonoBehaviour {
         MazeBuilder mazeBuilder = new MazeBuilder();
         mazeBuilder.generateMaze(mazeHeight, mazeWidth);
 
-        mazeBuilder.addPathDigger(mazeDiggerConfig.nPathDigger);
         mazeBuilder.addHallDigger(mazeDiggerConfig.nHallDigger);
         mazeBuilder.addEdgeDigger(mazeDiggerConfig.nEdgeDigger);
+        mazeBuilder.addPathDigger(mazeDiggerConfig.nPathDigger);
 
-        mazeBuilder.runPathDigger(mazeDiggerConfig.pathPercent);
         mazeBuilder.runHallDigger(mazeDiggerConfig.hallPercent);
         mazeBuilder.runEdgeDigger(mazeDiggerConfig.edgePercent);
+        mazeBuilder.runPathDigger(mazeDiggerConfig.pathPercent);
 
         mazeBuilder.expandMaze(2);
         TileMapDrawer.setMapSize(tileMapDrawerConfig.mapSize * 2);
 
         mazeBuilder.generateBluePrint();
-
-        Maze maze = mazeBuilder.checkoutMaze();
         MazeBlueprint mazeBlueprint = mazeBuilder.checkoutBlueprint();
 
-        String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
-        maze.printMaze(debugPath + "result-Maze.txt");
-        maze.printStatistic(debugPath + "result-Stats.txt");
-        mazeBlueprint.printBlueprint(debugPath + "result-Blueprint.txt");
+        // Maze maze = mazeBuilder.checkoutMaze();
+        // String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
+        // maze.printMaze(debugPath + "result-Maze.txt");
+        // maze.printStatistic(debugPath + "result-Stats.txt");
+        // mazeBlueprint.printBlueprint(debugPath + "result-Blueprint.txt");
 
         return mazeBlueprint;
     }
 
-    private void drawMapSet() {
-        tilemap.SetTiles(TileMapDrawer.getTilePosition(), TileMapDrawer.getTileArray());
-    }
-
-    private IEnumerator drawMap() {
-        /* TODO: really ?  */
+    private IEnumerator drawWholeMapPartially() {
+        /* TODO: really needed ?  */
 
         int mapWidth = 40;
         int mapHeight = 40;
@@ -104,6 +79,13 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     private IEnumerator drawMapAroundPlayer() {
 
+        GameObject player = GameObject.Find("Ellen");
+        Transform transformData = GetComponent<Transform>();
+
+        if (player == null || transformData == null) {
+            yield return null;
+        }
+
         while (true) {
 
             Vector3 position = player.transform.position;
@@ -120,21 +102,10 @@ public class RandomTileMapGenerator : MonoBehaviour {
             yield return new WaitForSeconds(updateMapEvery);
         }
     }
-}
 
-[System.Serializable]
-public class MazeDiggerConfig {
-    public int nPathDigger;
-    public int nHallDigger;
-    public int nEdgeDigger;
-
-    public float pathPercent;
-    public float hallPercent;
-    public float edgePercent;
-}
-
-[System.Serializable]
-public class TileMapDrawerConfig {
-    public Vector2Int mapSize;
-    public DrawableTilesContainer drawableTiles;
+    private void drawMapSet() {
+        if (tilemap != null) {
+            tilemap.SetTiles(TileMapDrawer.getTilePosition(), TileMapDrawer.getTileArray());
+        }
+    }
 }

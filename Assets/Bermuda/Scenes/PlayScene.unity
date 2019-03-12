@@ -8734,7 +8734,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: d9227e9efa78d324ea615e9fb4defecd, type: 2}
       - {fileID: 11400000, guid: 81639de4a5e27f447a100df53040a89a, type: 2}
       - {fileID: 11400000, guid: b68027c6f68ebd143bf35931f1803b6c, type: 2}
-  areaOfView: 5
+  areaOfView: 8
   updateMapEvery: 0.5
 --- !u!1 &1714782823
 GameObject:

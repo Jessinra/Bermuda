@@ -84,7 +84,6 @@ public class MazeBuilder {
 
         // for each original row
         for (int i = 0; i < this.mazeHeight; i++) {
-
             List<String> newRow = new List<String>();
 
             // for each original column
@@ -96,11 +95,13 @@ public class MazeBuilder {
                     newRow.Add(tile);
                 }
             }
+
             // Add tile row(repeat n many times)
             for (int l = 0; l < expandMultiplier; l++) {
                 expandedPlayArea.Add(newRow);
             }
         }
+        
         this.maze.setPlayArea(expandedPlayArea);
         this.mazeHeight *= expandMultiplier;
         this.mazeWidth *= expandMultiplier;

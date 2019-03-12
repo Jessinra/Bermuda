@@ -13,57 +13,11 @@ public class MazeDigger {
     private int changeDirectionChance;
 
     public MazeDigger(Maze maze) {
-
         if (MazeDigger.maze == null) {
             MazeDigger.maze = maze;
         }
     }
-
-    public void setStartPosition(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-
-    public void setChangeDirectionChance(int chance) {
-        this.changeDirectionChance = chance;
-    }
-
-    protected void mark() {
-        MazeDigger.maze.playArea[this.row][this.col] = MazeDigger.visitedMark;
-    }
-
-    protected bool hasVisited(int row, int col) {
-        return MazeDigger.maze.playArea[row][col] == MazeDigger.visitedMark;
-    }
-
-    protected void moveLeft() {
-        if (this.col > 0) {
-            this.col--;
-            this.lastMove = this.moveLeft;
-        }
-    }
-
-    protected void moveRight() {
-        if (this.col < MazeDigger.maze.getWidth() - 1) {
-            this.col++;
-            this.lastMove = this.moveRight;
-        }
-    }
-
-    protected void moveUp() {
-        if (this.row > 0) {
-            this.row--;
-            this.lastMove = this.moveUp;
-        }
-    }
-
-    protected void moveDown() {
-        if (this.row < MazeDigger.maze.getHeight() - 1) {
-            this.row++;
-            this.lastMove = this.moveDown;
-        }
-    }
-
+    
     public void move() {
 
         if ((this.lastMove == null) || (this.allowedRandomMove())) {
@@ -75,11 +29,66 @@ public class MazeDigger {
         this.mark();
     }
 
-    public bool allowedRandomMove() {
+    /* =================================================
+                        Setter
+    ================================================= */
+
+    protected void setStartPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
+
+    protected void setChangeDirectionChance(int chance) {
+        this.changeDirectionChance = chance;
+    }
+
+    /* =================================================
+                        Member Method
+    ================================================= */
+
+    private void mark() {
+        List<List<String>> playArea = MazeDigger.maze.getPlayArea();
+        playArea[this.row][this.col] = MazeDigger.visitedMark;
+    }
+
+    private bool hasVisited(int row, int col) {
+        List<List<String>> playArea = MazeDigger.maze.getPlayArea();
+        return playArea[row][col] == MazeDigger.visitedMark;
+    }
+
+    private void moveLeft() {
+        if (ableToMoveLeft()) {
+            this.col--;
+            this.lastMove = this.moveLeft;
+        }
+    }
+
+    private void moveRight() {
+        if (ableToMoveRight()) {
+            this.col++;
+            this.lastMove = this.moveRight;
+        }
+    }
+
+    private void moveUp() {
+        if (ableToMoveUp()) {
+            this.row--;
+            this.lastMove = this.moveUp;
+        }
+    }
+
+    private void moveDown() {
+        if (ableToMoveDown()) {
+            this.row++;
+            this.lastMove = this.moveDown;
+        }
+    }
+
+    private bool allowedRandomMove() {
         return (MazeDigger.randomGenerator.Next(0, 100) < this.changeDirectionChance);
     }
 
-    public void randomMove() {
+    private void randomMove() {
 
         try {
             List<Action> movement = this.getPreferredDirection();
@@ -98,26 +107,26 @@ public class MazeDigger {
         List<Action> moveDirection = new List<Action>();
         List<Action> possibleDirection = new List<Action>();
 
-        if (this.col > 0) {
-            if (!(this.hasVisited(this.row, this.col - 1))) {
+        if (ableToMoveLeft()) {
+            if (hasNotVisitedLeft()) {
                 moveDirection.Add(this.moveLeft);
             }
             possibleDirection.Add(this.moveLeft);
         }
-        if (this.col < MazeDigger.maze.getWidth() - 1) {
-            if (!(this.hasVisited(this.row, this.col + 1))) {
+        if (ableToMoveRight()) {
+            if (hasNotVisitedRight()) {
                 moveDirection.Add(this.moveRight);
             }
             possibleDirection.Add(this.moveRight);
         }
-        if (this.row > 0) {
-            if (!(this.hasVisited(this.row - 1, this.col))) {
+        if (ableToMoveUp()) {
+            if (hasNotVisitedUp()) {
                 moveDirection.Add(this.moveUp);
             }
             possibleDirection.Add(this.moveUp);
         }
-        if (this.row < MazeDigger.maze.getHeight() - 1) {
-            if (!(this.hasVisited(this.row + 1, this.col))) {
+        if (ableToMoveDown()) {
+            if (hasNotVisitedDown()) {
                 moveDirection.Add(this.moveDown);
             }
             possibleDirection.Add(this.moveDown);
@@ -128,14 +137,50 @@ public class MazeDigger {
 
         return moveDirection;
     }
+
+    private bool ableToMoveLeft() {
+        return this.col > 0;
+    }
+
+    private bool ableToMoveRight() {
+        return this.col < MazeDigger.maze.getWidth() - 1;
+    }
+
+    private bool ableToMoveUp() {
+        return this.row > 0;
+    }
+
+    private bool ableToMoveDown() {
+        return this.row < MazeDigger.maze.getHeight() - 1;
+    }
+
+    private bool hasNotVisitedLeft() {
+        return !(this.hasVisited(this.row, this.col - 1));
+    }
+
+    private bool hasNotVisitedRight() {
+        return !(this.hasVisited(this.row, this.col + 1));
+    }
+
+    private bool hasNotVisitedUp() {
+        return !(this.hasVisited(this.row - 1, this.col));
+    }
+
+    private bool hasNotVisitedDown() {
+        return !(this.hasVisited(this.row + 1, this.col));
+    }
+
 }
+
+/* =================================================
+                    Child Classes
+================================================= */
 
 public class PathDigger : MazeDigger {
 
     private int changeDirectionChance = MazeDigger.randomGenerator.Next(40, 80);
 
     public PathDigger(Maze maze) : base(maze) {
-
         this.setInitPosition();
         setChangeDirectionChance(this.changeDirectionChance);
     }
@@ -156,7 +201,6 @@ public class HallDigger : MazeDigger {
     private int changeDirectionChance = MazeDigger.randomGenerator.Next(80, 130);
 
     public HallDigger(Maze maze) : base(maze) {
-
         this.setInitPosition();
         setChangeDirectionChance(this.changeDirectionChance);
     }
@@ -177,7 +221,6 @@ public class EdgeDigger : MazeDigger {
     private int changeDirectionChance = MazeDigger.randomGenerator.Next(80, 130);
 
     public EdgeDigger(Maze maze) : base(maze) {
-
         this.setInitPosition();
         setChangeDirectionChance(this.changeDirectionChance);
     }

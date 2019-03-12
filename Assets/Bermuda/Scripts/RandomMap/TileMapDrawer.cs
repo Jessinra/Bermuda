@@ -4,102 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[System.Serializable]
-public class DrawableTilesContainer {
-
-    public TileBase[] cornerTopLeft = null;
-    public TileBase[] cornerTopRight = null;
-    public TileBase[] cornerBottomLeft = null;
-    public TileBase[] cornerBottomRight = null;
-    public TileBase[] edgeTopLeft = null;
-    public TileBase[] edgeTopRight = null;
-    public TileBase[] edgeBottomLeft = null;
-    public TileBase[] edgeBottomRight = null;
-    public TileBase[] sideTop = null;
-    public TileBase[] sideBottom = null;
-    public TileBase[] sideLeft = null;
-    public TileBase[] sideRight = null;
-    public TileBase[] wallTile = null;
-
-    private System.Random randomGenerator = new System.Random();
-
-    public TileBase getTile(String tileType) {
-
-        if (tileType == "CornerTopLeft") {
-            return getRandomTile(cornerTopLeft);
-
-        } else if (tileType == "CornerTopRight") {
-            return getRandomTile(cornerTopRight);
-
-        } else if (tileType == "CornerBottomLeft") {
-            return getRandomTile(cornerBottomLeft);
-
-        } else if (tileType == "CornerBottomRight") {
-            return getRandomTile(cornerBottomRight);
-
-        } else if (tileType == "EdgeTopLeft") {
-            return getRandomTile(edgeTopLeft);
-
-        } else if (tileType == "EdgeTopRight") {
-            return getRandomTile(edgeTopRight);
-
-        } else if (tileType == "EdgeBottomLeft") {
-            return getRandomTile(edgeBottomLeft);
-
-        } else if (tileType == "EdgeBottomRight") {
-            return getRandomTile(edgeBottomRight);
-
-        } else if (tileType == "SideTop") {
-            return getRandomTile(sideTop);
-
-        } else if (tileType == "SideBottom") {
-            return getRandomTile(sideBottom);
-
-        } else if (tileType == "SideLeft") {
-            return getRandomTile(sideLeft);
-
-        } else if (tileType == "SideRight") {
-            return getRandomTile(sideRight);
-
-        } else if (tileType == "Wall") {
-            return getRandomTile(wallTile);
-        }
-        else{
-            Debug.Log("Returning unknown type of tile");
-            return null;
-        }
-    }
-
-    private TileBase getRandomTile(TileBase[] tilePool) {
-        int index = randomGenerator.Next(tilePool.Length);
-        return tilePool[index];
-    }
-}
-
 public class TileMapDrawer {
-    /* 
-    Part of RandomTileMapGenerator, function morely as data cointainer 
-    Separated from RandomTileMapGenerator to avoid inheriting MonoBehaviour
+    /* Design note: 
+    Part of RandomTileMapGenerator, function as data cointainer 
+    Separated from RandomTileMapGenerator to avoid inheriting MonoBehaviour (Segregation)
     */
 
-    // Static so it only create once, and all child use the same attribute
-    private static Vector2Int mapSize;
-    private static DrawableTilesContainer drawableTiles;
+    private Vector2Int mapSize;
+    private Vector3Int[] tilePosition;
+    private TileBase[] tileArray;
+    private bool[] tileDrawn;
 
-    private static Vector3Int[] tilePosition;
-    private static TileBase[] tileArray;
-    private static bool[] tileDrawn;
+    private DrawableTilesContainer drawableTiles;
 
-    /* ========== Getter Setter ========== */
+    /* =================================================
+                        Getter Setter
+    ================================================= */
+
     public void setMapSize(Vector2Int size) {
-        mapSize = size;
-        tilePosition = new Vector3Int[size.x * size.y];
-        tileArray = new TileBase[tilePosition.Length];
-        tileDrawn = new bool[tilePosition.Length];
+        this.mapSize = size;
+        this.tilePosition = new Vector3Int[size.x * size.y];
+        this.tileArray = new TileBase[tilePosition.Length];
+        this.tileDrawn = new bool[tilePosition.Length];
     }
 
-    public void setStaticTiles(ref DrawableTilesContainer drawableTiles) {
-        TileMapDrawer.drawableTiles = drawableTiles;
+    public void setDrawableTiles(ref DrawableTilesContainer drawableTiles) {
+        this.drawableTiles = drawableTiles;
     }
 
     public Vector3Int[] getTilePosition() {
@@ -110,7 +40,9 @@ public class TileMapDrawer {
         return tileArray;
     }
 
-    /* ========== Main method ========== */
+    /* =================================================
+                        Main Method
+    ================================================= */
 
     public void constructMaze(MazeBlueprint blueprint) {
         for (int i = 0; i < blueprint.getMazeHeight(); i++) {
@@ -142,6 +74,7 @@ public class TileMapDrawer {
         }
     }
 
+    /* DEPRECATED : use scale to resize map instead of using more tiles. */
     public void constructBigMaze(MazeBlueprint blueprint, int scale) {
         for (int i = 0; i < blueprint.getMazeHeight(); i++) {
             for (int j = 0; j < blueprint.getMazeWidth(); j++) {
@@ -169,20 +102,25 @@ public class TileMapDrawer {
         }
     }
 
-    /* ========== Drawing ========== */
-    private bool isTileDrawn(int x, int y) {
-        int index = (y * mapSize.x) + x;
-        return tileDrawn[index];
+    /* =================================================
+                        Drawing Method
+    ================================================= */
+
+    private void addTile(int x, int y, TileBase tile) {
+        int index = getLinearIndex(x, y);
+        tilePosition[index] = new Vector3Int(x, y, 0);
+        tileArray[index] = tile;
+        tileDrawn[index] = true;
     }
 
-    protected void addBlockTile(int xStart, int yStart, int xEnd, int yEnd, TileBase tile) {
+    private void addBlockTile(int xStart, int yStart, int xEnd, int yEnd, TileBase tile) {
 
         if (yStart > yEnd) {
-            swapTiles(ref yStart, ref yEnd);
+            swapInt(ref yStart, ref yEnd);
         }
 
         if (xStart > xEnd) {
-            swapTiles(ref xStart, ref xEnd);
+            swapInt(ref xStart, ref xEnd);
         }
 
         for (int i = yStart; i < yEnd; i++) {
@@ -190,32 +128,29 @@ public class TileMapDrawer {
         }
     }
 
-    protected void addHorizontalLine(int xStart, int xEnd, int y, TileBase tile) {
+    private void addHorizontalLine(int xStart, int xEnd, int y, TileBase tile) {
         for (int i = xStart; i < xEnd; i++) {
             addTile(i, y, tile);
         }
     }
 
-    protected void addVerticalLine(int x, int yStart, int yEnd, TileBase tile) {
+    private void addVerticalLine(int x, int yStart, int yEnd, TileBase tile) {
         for (int i = yStart; i < yEnd; i++) {
             addTile(x, i, tile);
         }
     }
 
-    protected void addTile(int x, int y, TileBase tile) {
-        int index = (y * mapSize.x) + x;
-        tilePosition[index] = new Vector3Int(x, y, 0);
-        tileArray[index] = tile;
-        tileDrawn[index] = true;
+    private bool isTileDrawn(int x, int y) {
+        return tileDrawn[getLinearIndex(x, y)];
     }
 
-    private void swapTiles(ref int a, ref int b) {
+    private int getLinearIndex(int x, int y) {
+        return (y * this.mapSize.x) + x;
+    }
+
+    private void swapInt(ref int a, ref int b) {
         int temp = a;
         a = b;
         b = temp;
     }
-
-    /* ========== Virtual Method ========== */
-    public virtual void generatePattern() { }
-
 }
