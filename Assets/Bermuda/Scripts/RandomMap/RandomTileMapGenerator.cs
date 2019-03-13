@@ -87,35 +87,41 @@ public class RandomTileMapGenerator : MonoBehaviour {
         }
 
         Vector3 tileMapScale = transformData.localScale;
-        
+
         int lastDrawXonBlueprint = 999;
         int lastDrawYonBlueprint = 999;
 
         while (true) {
 
             Vector3 position = player.transform.position;
-            
             int playerXonBlueprint = (int) (position.x / tileMapScale.x);
             int playerYonBlueprint = (int) (position.y / tileMapScale.y);
 
             int deltaXonBlueprint = Math.Abs(playerXonBlueprint - lastDrawXonBlueprint);
             int deltaYonBlueprint = Math.Abs(playerYonBlueprint - lastDrawYonBlueprint);
 
-            if (deltaXonBlueprint < areaOfView/2 && deltaYonBlueprint < areaOfView/2){
+            // If map still relevant
+            if (deltaXonBlueprint < areaOfView / 2 && deltaYonBlueprint < areaOfView / 2) {
                 yield return new WaitForSeconds(0.1F);
-            }
-            else{
-                lastDrawXonBlueprint = playerXonBlueprint;
-                lastDrawYonBlueprint = playerYonBlueprint;
+                continue;
             }
 
-            Debug.Log("drawing");
+            // Set update flag
+            lastDrawXonBlueprint = playerXonBlueprint;
+            lastDrawYonBlueprint = playerYonBlueprint;
+            
+            // Fetch data
             TileMapDrawer.constructPartialMaze(mazeBlueprint,
                 playerYonBlueprint - areaOfView, playerXonBlueprint - areaOfView,
                 playerYonBlueprint + areaOfView, playerXonBlueprint + areaOfView);
 
-            drawMapSet();
-            yield return new WaitForSeconds(updateMapEvery);
+            // Draw the tile
+            Vector3Int[] tilePosition = TileMapDrawer.getTilePosition();
+            TileBase[] tileArray = TileMapDrawer.getTileArray();
+            for (int i = 0; i < tilePosition.Length; i++) {
+                tilemap.SetTile(tilePosition[i], tileArray[i]);
+                yield return new WaitForSeconds(0.0F);
+            }
         }
     }
 

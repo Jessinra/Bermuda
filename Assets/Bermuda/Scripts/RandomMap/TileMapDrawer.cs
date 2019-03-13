@@ -11,8 +11,8 @@ public class TileMapDrawer {
     */
 
     private Vector2Int mapSize;
-    private Vector3Int[] tilePosition;
-    private TileBase[] tileArray;
+    private List<TileBase> tileList;
+    private List<Vector3Int> tilePosition;    
     private bool[] tileDrawn;
 
     private DrawableTilesContainer drawableTiles;
@@ -23,9 +23,15 @@ public class TileMapDrawer {
 
     public void setMapSize(Vector2Int size) {
         this.mapSize = size;
-        this.tilePosition = new Vector3Int[size.x * size.y];
-        this.tileArray = new TileBase[tilePosition.Length];
-        this.tileDrawn = new bool[tilePosition.Length];
+        this.tileDrawn = new bool[size.x * size.y];
+    }
+
+    public void initTileList() {
+        this.tileList = new List<TileBase>();
+    }
+
+    public void initTilePositionList() {
+        this.tilePosition = new List<Vector3Int>();
     }
 
     public void setDrawableTiles(ref DrawableTilesContainer drawableTiles) {
@@ -33,11 +39,11 @@ public class TileMapDrawer {
     }
 
     public Vector3Int[] getTilePosition() {
-        return tilePosition;
+        return tilePosition.ToArray();
     }
 
     public TileBase[] getTileArray() {
-        return tileArray;
+        return tileList.ToArray();
     }
 
     /* =================================================
@@ -45,6 +51,10 @@ public class TileMapDrawer {
     ================================================= */
 
     public void constructMaze(MazeBlueprint blueprint) {
+
+        this.initTileList();
+        this.initTilePositionList();
+
         for (int i = 0; i < blueprint.getMazeHeight(); i++) {
             for (int j = 0; j < blueprint.getMazeWidth(); j++) {
 
@@ -59,6 +69,9 @@ public class TileMapDrawer {
     public void constructPartialMaze(MazeBlueprint blueprint, int startRow, int startCol, int endRow, int endCol) {
 
         this.adjustBorder(ref blueprint, ref startRow, ref startCol, ref endRow, ref endCol);
+        this.initTileList();
+        this.initTilePositionList();        
+
         for (int i = startRow; i < endRow; i++) {
             for (int j = startCol; j < endCol; j++) {
 
@@ -76,6 +89,10 @@ public class TileMapDrawer {
 
     /* DEPRECATED : use scale to resize map instead of using more tiles. */
     public void constructBigMaze(MazeBlueprint blueprint, int scale) {
+
+        this.initTileList();
+        this.initTilePositionList();
+
         for (int i = 0; i < blueprint.getMazeHeight(); i++) {
             for (int j = 0; j < blueprint.getMazeWidth(); j++) {
 
@@ -107,10 +124,9 @@ public class TileMapDrawer {
     ================================================= */
 
     private void addTile(int x, int y, TileBase tile) {
-        int index = getLinearIndex(x, y);
-        tilePosition[index] = new Vector3Int(x, y, 0);
-        tileArray[index] = tile;
-        tileDrawn[index] = true;
+        tilePosition.Add(new Vector3Int(x, y, 0));
+        tileList.Add(tile);
+        tileDrawn[getLinearIndex(x, y)] = true;
     }
 
     private void addBlockTile(int xStart, int yStart, int xEnd, int yEnd, TileBase tile) {
