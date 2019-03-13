@@ -36,6 +36,6 @@ EditorBuildSettings:
     path: Assets/NewScene.unity
     guid: 1b54a42c6717e7c428059737764bb6be
   - enabled: 1
-    path: Assets/CopyWorkingScene.unity
+    path: Assets/Bermuda/Scenes/CopyWorkingScene.unity
     guid: 9ac42d4d83e78a64598a64c8ee647dcc
   m_configObjects: {}
