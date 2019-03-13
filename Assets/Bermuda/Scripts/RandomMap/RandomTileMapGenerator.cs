@@ -79,21 +79,37 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     private IEnumerator drawMapAroundPlayer() {
 
-        GameObject player = GameObject.Find("Ellen");
+        GameObject player = GameObject.Find("Submarine01");
         Transform transformData = GetComponent<Transform>();
 
         if (player == null || transformData == null) {
             yield return null;
         }
 
+        Vector3 tileMapScale = transformData.localScale;
+        
+        int lastDrawXonBlueprint = 999;
+        int lastDrawYonBlueprint = 999;
+
         while (true) {
 
             Vector3 position = player.transform.position;
-            Vector3 tileMapScale = transformData.localScale;
-
+            
             int playerXonBlueprint = (int) (position.x / tileMapScale.x);
             int playerYonBlueprint = (int) (position.y / tileMapScale.y);
 
+            int deltaXonBlueprint = Math.Abs(playerXonBlueprint - lastDrawXonBlueprint);
+            int deltaYonBlueprint = Math.Abs(playerYonBlueprint - lastDrawYonBlueprint);
+
+            if (deltaXonBlueprint < areaOfView/2 && deltaYonBlueprint < areaOfView/2){
+                yield return new WaitForSeconds(0.1F);
+            }
+            else{
+                lastDrawXonBlueprint = playerXonBlueprint;
+                lastDrawYonBlueprint = playerYonBlueprint;
+            }
+
+            Debug.Log("drawing");
             TileMapDrawer.constructPartialMaze(mazeBlueprint,
                 playerYonBlueprint - areaOfView, playerXonBlueprint - areaOfView,
                 playerYonBlueprint + areaOfView, playerXonBlueprint + areaOfView);
