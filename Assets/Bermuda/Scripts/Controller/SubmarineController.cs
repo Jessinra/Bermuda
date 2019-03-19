@@ -20,7 +20,7 @@ public class SubmarineController : MonoBehaviour
     public Transform shotSpawnLeft;
     public float fireRate;
     private float nextFire = 0.0f;
-
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +60,13 @@ public class SubmarineController : MonoBehaviour
         positionFaced = position;
         if (position == "right")
         {
-            spriteRenderer.flipX = false;
+            animator.SetBool("isFacingRight", true);
+            //spriteRenderer.flipX = false;
         }
         else
         {
-            spriteRenderer.flipX = true;
+            animator.SetBool("isFacingRight", false);
+            //spriteRenderer.flipX = true;
         }
         
     }
