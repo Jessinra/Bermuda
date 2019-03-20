@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Bolt01
+  - Bolt02
+  - Bolt
   layers:
   - Default
   - TransparentFX

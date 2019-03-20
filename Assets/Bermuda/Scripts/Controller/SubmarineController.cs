@@ -21,6 +21,9 @@ public class SubmarineController : MonoBehaviour
     public float fireRate;
     private float nextFire = 0.0f;
 
+    // Sound 
+    private AudioSource[] soundEffects;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,8 @@ public class SubmarineController : MonoBehaviour
 
         // Initialize variables
         positionFaced = "right";
+
+        soundEffects = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,11 +45,13 @@ public class SubmarineController : MonoBehaviour
             nextFire = Time.time + fireRate;
             if (positionFaced == "right")
             {
+                soundEffects[1].Play();
                 shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
                 shot.GetComponent<Mover>().setDirection("right");
             }
             else if (positionFaced == "left")
             {
+                soundEffects[1].Play();
                 shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
                 shot.GetComponent<Mover>().setDirection("left");
             }
@@ -55,7 +62,7 @@ public class SubmarineController : MonoBehaviour
     }
 
     // Switch submarine's sprited render side according to it's direction
-    public void switchSide(string position)
+    public void SwitchSide(string position)
     {
         positionFaced = position;
         if (position == "right")
@@ -67,5 +74,10 @@ public class SubmarineController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
         
+    }
+
+    public AudioSource GetEngineSound()
+    {
+        return soundEffects[0];
     }
 }

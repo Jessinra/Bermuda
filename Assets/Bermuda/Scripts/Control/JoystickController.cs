@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour {
-    public Transform player;
     public SubmarineController submarineController;
     public float speed;
     private bool touchStart = false;
@@ -36,7 +35,7 @@ public class JoystickController : MonoBehaviour {
         if (touchStart) {
             Vector2 offset = pointB - pointA;
             Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
-            moveCharacter(direction);
+            MoveCharacter(direction);
 
             transform.position = new Vector3(
                 outerCircle.position.x + direction.x,
@@ -51,12 +50,12 @@ public class JoystickController : MonoBehaviour {
         }
     }
 
-    void moveCharacter(Vector2 direction) {
-        player.transform.Translate(direction * speed * Time.deltaTime);
+    void MoveCharacter(Vector2 direction) {
+        submarineController.gameObject.transform.Translate(direction * speed * Time.deltaTime);
         if (direction.x > 0) {
-            submarineController.switchSide("right");
+            submarineController.SwitchSide("right");
         } else if (direction.x < 0) {
-            submarineController.switchSide("left");
+            submarineController.SwitchSide("left");
         }
     }
 
