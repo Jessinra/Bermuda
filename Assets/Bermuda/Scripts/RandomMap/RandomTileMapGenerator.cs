@@ -50,9 +50,9 @@ public class RandomTileMapGenerator : MonoBehaviour {
         mazeBuilder.generateBluePrint();
         MazeBlueprint mazeBlueprint = mazeBuilder.checkoutBlueprint();
 
-        // Maze maze = mazeBuilder.checkoutMaze();
-        // String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
-        // maze.printMaze(debugPath + "result-Maze.txt");
+        Maze maze = mazeBuilder.checkoutMaze();
+        String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
+        maze.printMaze(debugPath + "result-Maze.txt");
         // maze.printStatistic(debugPath + "result-Stats.txt");
         // mazeBlueprint.printBlueprint(debugPath + "result-Blueprint.txt");
 
@@ -101,10 +101,14 @@ public class RandomTileMapGenerator : MonoBehaviour {
             int deltaYonBlueprint = Math.Abs(playerYonBlueprint - lastDrawYonBlueprint);
 
             // If map still relevant
-            if (deltaXonBlueprint < areaOfView / 2 && deltaYonBlueprint < areaOfView / 2) {
-                yield return new WaitForSeconds(0.1F);
+            if (deltaXonBlueprint < (areaOfView / 2) && deltaYonBlueprint < (areaOfView / 2)) {
+                yield return new WaitForSeconds(0.25F);
                 continue;
             }
+
+            Debug.Log("=====================");
+            Debug.Log("drawing delta : " + deltaXonBlueprint + " : " + deltaYonBlueprint);
+            Debug.Log("drawing now : " + playerXonBlueprint + " : " + playerYonBlueprint);
 
             // Set update flag
             lastDrawXonBlueprint = playerXonBlueprint;
