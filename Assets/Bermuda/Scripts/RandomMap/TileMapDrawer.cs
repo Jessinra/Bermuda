@@ -12,7 +12,7 @@ public class TileMapDrawer {
 
     private Vector2Int mapSize;
     private List<TileBase> tileList;
-    private List<Vector3Int> tilePosition;    
+    private List<Vector3Int> tilePosition;
     private bool[] tileDrawn;
 
     private DrawableTilesContainer drawableTiles;
@@ -70,7 +70,7 @@ public class TileMapDrawer {
 
         this.adjustBorder(ref blueprint, ref startRow, ref startCol, ref endRow, ref endCol);
         this.initTileList();
-        this.initTilePositionList();        
+        this.initTilePositionList();
 
         for (int i = startRow; i < endRow; i++) {
             for (int j = startCol; j < endCol; j++) {
@@ -82,6 +82,56 @@ public class TileMapDrawer {
                 String tileType = blueprint.getTileType(i, j);
                 if (tileType != "Empty") {
                     addTile(j, i, drawableTiles.getTile(tileType));
+                }
+            }
+        }
+    }
+
+    public void constructPartialMazeCenter(MazeBlueprint blueprint, int startRow, int startCol, int endRow, int endCol) {
+
+        this.adjustBorder(ref blueprint, ref startRow, ref startCol, ref endRow, ref endCol);
+        this.initTileList();
+        this.initTilePositionList();
+
+        int width = (endCol - startCol);
+        int height = (endRow - startRow);
+
+        // center point
+        int pivotX = startCol + width / 2;
+        int pivotY = startRow + height / 2;
+
+        for (int i = 0; i < height / 2; i++) {
+            for (int j = 0; j < width / 2; j++) {
+
+                if (!(this.isTileDrawn(pivotX + j, pivotY + i))) {
+                    String tileType = blueprint.getTileType(pivotY + i, pivotX + j);
+                    if (tileType != "Empty") {
+                        addTile(pivotX + j, pivotY + i, drawableTiles.getTile(tileType));
+                    }
+                }
+
+                if (!(this.isTileDrawn(pivotX - j, pivotY + i))) {
+                    String tileType = blueprint.getTileType(pivotY + i, pivotX - j);
+                    if (tileType != "Empty") {
+                        addTile(pivotX - j, pivotY + i, drawableTiles.getTile(tileType));
+                    }
+                }
+
+            }
+            for (int j = 0; j < width / 2; j++) {
+
+                if (!(this.isTileDrawn(pivotX + j, pivotY - i))) {
+                    String tileType = blueprint.getTileType(pivotY - i, pivotX + j);
+                    if (tileType != "Empty") {
+                        addTile(pivotX + j, pivotY - i, drawableTiles.getTile(tileType));
+                    }
+                }
+
+                if (!(this.isTileDrawn(pivotX - j, pivotY - i))) {
+                    String tileType = blueprint.getTileType(pivotY - i, pivotX - j);
+                    if (tileType != "Empty") {
+                        addTile(pivotX - j, pivotY - i, drawableTiles.getTile(tileType));
+                    }
                 }
             }
         }

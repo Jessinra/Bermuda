@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+using System.Diagnostics;
+
 public class RandomTileMapGenerator : MonoBehaviour {
 
     [SerializeField] private MazeDiggerConfig mazeDiggerConfig;
     [SerializeField] private TileMapDrawerConfig tileMapDrawerConfig;
 
-    [SerializeField] private int areaOfView = 10;
+    [SerializeField] private Vector2Int areaOfView = new Vector2Int(10, 6);
     [SerializeField] private float updateMapEvery = 1.0F;
 
     private TileMapDrawer TileMapDrawer = new TileMapDrawer();
@@ -23,7 +25,8 @@ public class RandomTileMapGenerator : MonoBehaviour {
         this.tilemap = GetComponent<Tilemap>();
         this.mazeBlueprint = generateBlueprint();
 
-        StartCoroutine("drawMapAroundPlayer");
+        StartCoroutine(drawMapAroundPlayer());
+        // StartCoroutine(drawInitialSeeder());
         // StartCoroutine("drawWholeMapPartially");   
     }
 
@@ -65,11 +68,11 @@ public class RandomTileMapGenerator : MonoBehaviour {
         int mapWidth = 40;
         int mapHeight = 40;
 
-        for (int i = 0; i * areaOfView < mapHeight * 2; i++) {
-            for (int j = 0; j * areaOfView < mapWidth * 2; j++) {
+        for (int i = 0; i * areaOfView.y < mapHeight * 2; i++) {
+            for (int j = 0; j * areaOfView.x < mapWidth * 2; j++) {
                 TileMapDrawer.constructPartialMaze(mazeBlueprint,
-                    i * areaOfView, j * areaOfView,
-                    i * areaOfView + areaOfView, j * areaOfView + areaOfView);
+                    i * areaOfView.y, j * areaOfView.x,
+                    i * areaOfView.y + areaOfView.y, j * areaOfView.x + areaOfView.x);
 
                 drawMapSet();
                 yield return new WaitForSeconds(updateMapEvery);
@@ -78,6 +81,8 @@ public class RandomTileMapGenerator : MonoBehaviour {
     }
 
     private IEnumerator drawMapAroundPlayer() {
+
+        Stopwatch timer = new Stopwatch();
 
         GameObject player = GameObject.Find("Submarine01");
         Transform transformData = GetComponent<Transform>();
@@ -101,25 +106,20 @@ public class RandomTileMapGenerator : MonoBehaviour {
             int deltaYonBlueprint = Math.Abs(playerYonBlueprint - lastDrawYonBlueprint);
 
             // If map still relevant
-            if (deltaXonBlueprint < (areaOfView / 2) && deltaYonBlueprint < (areaOfView / 2)) {
+            if (deltaXonBlueprint < (areaOfView.x / 4) && deltaYonBlueprint < (areaOfView.y / 3)) {
                 yield return new WaitForSeconds(0.25F);
                 continue;
             }
-
-            Debug.Log("=====================");
-            Debug.Log("drawing delta : " + deltaXonBlueprint + " : " + deltaYonBlueprint);
-            Debug.Log("drawing now : " + playerXonBlueprint + " : " + playerYonBlueprint);
-
+            
             // Set update flag
             lastDrawXonBlueprint = playerXonBlueprint;
             lastDrawYonBlueprint = playerYonBlueprint;
-            
-            // Fetch data
-            TileMapDrawer.constructPartialMaze(mazeBlueprint,
-                playerYonBlueprint - areaOfView, playerXonBlueprint - areaOfView,
-                playerYonBlueprint + areaOfView, playerXonBlueprint + areaOfView);
 
-            // Draw the tile
+            // Fetch data
+            TileMapDrawer.constructPartialMazeCenter(mazeBlueprint,
+                playerYonBlueprint - areaOfView.y, playerXonBlueprint - areaOfView.x,
+                playerYonBlueprint + areaOfView.y, playerXonBlueprint + areaOfView.x);
+
             Vector3Int[] tilePosition = TileMapDrawer.getTilePosition();
             TileBase[] tileArray = TileMapDrawer.getTileArray();
             for (int i = 0; i < tilePosition.Length; i++) {
@@ -128,6 +128,37 @@ public class RandomTileMapGenerator : MonoBehaviour {
             }
         }
     }
+
+    private IEnumerator drawInitialSeeder() {
+
+        Transform transformData = GetComponent<Transform>();
+        Vector3 tileMapScale = transformData.localScale;
+
+        int mazeHeight = tileMapDrawerConfig.mapSize.y * 2;
+        int mazeWidth = tileMapDrawerConfig.mapSize.x * 2;
+
+        while (true) {
+
+            int drawPositionX = UnityEngine.Random.Range(0, mazeWidth);
+            int drawPositionY = UnityEngine.Random.Range(0, mazeHeight);
+
+            // Fetch data
+            TileMapDrawer.constructPartialMaze(mazeBlueprint,
+                drawPositionY - 5, drawPositionX - 5,
+                drawPositionY + 5, drawPositionX + 5);
+
+            // Draw the tile
+            Vector3Int[] tilePosition = TileMapDrawer.getTilePosition();
+            TileBase[] tileArray = TileMapDrawer.getTileArray();
+            for (int i = 0; i < tilePosition.Length; i++) {
+                tilemap.SetTile(tilePosition[i], tileArray[i]);
+                yield return new WaitForSeconds(0.0F);
+            }
+
+            yield return new WaitForSeconds(5.0F);
+        }
+    }
+
 
     private void drawMapSet() {
         if (tilemap != null) {
