@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-using System.Diagnostics;
+// using System.Diagnostics;
 
 public class RandomTileMapGenerator : MonoBehaviour {
 
@@ -51,15 +51,19 @@ public class RandomTileMapGenerator : MonoBehaviour {
         TileMapDrawer.setMapSize(tileMapDrawerConfig.mapSize * 2);
 
         mazeBuilder.generateBluePrint();
-        MazeBlueprint mazeBlueprint = mazeBuilder.checkoutBlueprint();
+        MazeBlueprint blueprint = mazeBuilder.checkoutBlueprint();
 
-        Maze maze = mazeBuilder.checkoutMaze();
-        String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
-        maze.printMaze(debugPath + "result-Maze.txt");
+        // Serialize blueprint and store locally (for other module) and on server
+        PlayerPrefs.SetString("mazeBlueprint", blueprint.serialize());
+        PlayerPrefs.SetInt("mazeBlueprintReady", 200);
+
+        // Maze maze = mazeBuilder.checkoutMaze();
+        // String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
+        // maze.printMaze(debugPath + "result-Maze.txt");
         // maze.printStatistic(debugPath + "result-Stats.txt");
         // mazeBlueprint.printBlueprint(debugPath + "result-Blueprint.txt");
 
-        return mazeBlueprint;
+        return blueprint;
     }
 
     private IEnumerator drawWholeMapPartially() {
@@ -81,8 +85,6 @@ public class RandomTileMapGenerator : MonoBehaviour {
     }
 
     private IEnumerator drawMapAroundPlayer() {
-
-        Stopwatch timer = new Stopwatch();
 
         GameObject player = GameObject.Find("Submarine01");
         Transform transformData = GetComponent<Transform>();

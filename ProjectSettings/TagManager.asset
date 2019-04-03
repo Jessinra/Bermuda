@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Tilemap
+  - Bolt
+  - FullMap
+  - Clue
   layers:
   - Default
   - TransparentFX
@@ -35,7 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - FullMap
   - Minimap
   - PlayerDrop
   - Platform
