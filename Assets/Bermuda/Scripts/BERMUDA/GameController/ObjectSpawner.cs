@@ -19,7 +19,6 @@ public class ObjectSpawner : MonoBehaviour {
     IEnumerator loadMazeBlueprint() {
 
         int bluePrintAvailable = 0;
-
         while (bluePrintAvailable != 200) {
             yield return new WaitForSeconds(0.2F);
             bluePrintAvailable = (int) PlayerPrefs.GetInt("mazeBlueprintReady");
@@ -29,6 +28,6 @@ public class ObjectSpawner : MonoBehaviour {
         this.mazeBlueprint.deserialize(data);
 
         this.mazeBlueprintReady = true;
-        yield return null;
+        yield break;
     }
 }

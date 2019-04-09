@@ -8,6 +8,7 @@ public class FuelSpawner : ObjectSpawner {
     [SerializeField] private GameObject fuelBottom;
 
     [SerializeField] private int fuelCount = 100;
+    private FuelLocationData fuelLocationData = new FuelLocationData();  // Data container
 
     void Start() {
         base.Initialize();
@@ -16,64 +17,63 @@ public class FuelSpawner : ObjectSpawner {
 
     IEnumerator runFuelSpawner() {
 
-        while (true) {
-
-            if (!mazeBlueprintReady) {
-                yield return new WaitForSeconds(5.0F);
-                continue;
-            }
-
-            if (this.fuelCount < 0) {
-                break;
-            }
-
-            spawnFuel();
-            yield return new WaitForSeconds(0.2F);
+        while (!mazeBlueprintReady) {
+            yield return new WaitForSeconds(3.0F);
         }
+
+        while (this.fuelCount > 0) {
+
+            Debug.Log(fuelCount);
+
+            generateFuelTopSpawnPositions();
+            generateFuelBottomSpawnPositions();
+            yield return new WaitForSeconds(0.02F);
+        }
+
+        // After finish generating position, spawn it
+        StartCoroutine(spawnFuels());
     }
 
-    private void spawnFuel() {
-
-        Vector2Int topSpawnPosition = getFuelTopSpawnPosition();
-        Vector2Int bottomSpawnPosition = getFuelBottomSpawnPosition();
-
-        Instantiate(fuelTop,
-            new Vector3(topSpawnPosition.x, topSpawnPosition.y),
-            Quaternion.identity);
-
-        Instantiate(fuelBottom,
-            new Vector3(bottomSpawnPosition.x, bottomSpawnPosition.y),
-            Quaternion.identity);
-
-        Debug.Log("FuelSpawner : spawned");
-        fuelCount -= 2;
+    private void generateFuelTopSpawnPositions() {
+        Vector2 topSpawnPosition = getFuelTopSpawnPosition();
+        fuelLocationData.typeTop.Add(new Tuple<float, float>(topSpawnPosition.x, topSpawnPosition.y));
+        fuelCount--;
     }
 
-    private Vector2Int getFuelTopSpawnPosition() {
-
-        List<String> allowedTileTypes = new List<String>() {
-            "SideTop",
-            "EdgeTopLeft",
-            "EdgeTopRight",
-            "CornerTopLeft",
-            "CornerTopRight",
-        };
-
-        Vector2Int availablePosition = mazeBlueprint.getRandomTile(allowedTileTypes);
-        return (availablePosition * tileScale) + new Vector2Int(tileCenterOffset, tileCenterOffset);
+    private void generateFuelBottomSpawnPositions() {
+        Vector2 bottomSpawnPosition = getFuelBottomSpawnPosition();
+        fuelLocationData.typeBottom.Add(new Tuple<float, float>(bottomSpawnPosition.x, bottomSpawnPosition.y));
+        fuelCount--;
     }
 
-    private Vector2Int getFuelBottomSpawnPosition() {
+    IEnumerator spawnFuels() {
 
-        List<String> allowedTileTypes = new List<String>() {
-            "SideBottom",
-            "EdgeBottomLeft",
-            "EdgeBottomRight",
-            "CornerBottomLeft",
-            "CornerBottomRight",
-        };
+        foreach (Tuple<float, float> position in fuelLocationData.typeTop) {
+            Instantiate(fuelTop, new Vector3(position.Item1, position.Item2), Quaternion.identity);
+            yield return new WaitForSeconds(0.1F);
+        }
 
-        Vector2Int availablePosition = mazeBlueprint.getRandomTile(allowedTileTypes);
-        return (availablePosition * tileScale) + new Vector2Int(tileCenterOffset, tileCenterOffset);
+        foreach (Tuple<float, float> position in fuelLocationData.typeBottom) {
+            Instantiate(fuelBottom, new Vector3(position.Item1, position.Item2), Quaternion.identity);
+            yield return new WaitForSeconds(0.1F);
+        }
+        yield break;
     }
+
+    private Vector2 getFuelTopSpawnPosition() {
+        Vector2 availablePosition = mazeBlueprint.getRandomTile("SideBottom");
+        float randomYOffset = UnityEngine.Random.Range(0.2F, 1.2F) * tileCenterOffset;
+        return (availablePosition * tileScale) + new Vector2(tileCenterOffset, randomYOffset);
+    }
+
+    private Vector2 getFuelBottomSpawnPosition() {
+        Vector2 availablePosition = mazeBlueprint.getRandomTile("SideTop");
+        float randomYOffset = UnityEngine.Random.Range(0.8F, 1.8F) * tileCenterOffset;
+        return (availablePosition * tileScale) + new Vector2(tileCenterOffset, randomYOffset);
+    }
+}
+
+public class FuelLocationData{
+    public List<Tuple<float, float>> typeTop = new List<Tuple<float, float>>();
+    public List<Tuple<float, float>> typeBottom = new List<Tuple<float, float>>();
 }
