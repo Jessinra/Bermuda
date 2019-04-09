@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class TreasureClueSpawner : ObjectSpawner {
     [SerializeField] private GameObject treasureClue;
-    [SerializeField] private int maxClueSpawnedTogether = 0;
+
+    [SerializeField] private int maxClueSpawnedTogether = 5;
+    [SerializeField] private int totalClue = 50;
     private static int clueSpawned = 0;
+    private int clueIdxToSpawn = 0;
+    private ClueLocationData clueLocations = new ClueLocationData();
+
+    // Data container
 
     void Start() {
         base.Initialize();
@@ -15,36 +21,61 @@ public class TreasureClueSpawner : ObjectSpawner {
 
     IEnumerator runClueSpawner() {
 
-        while (true) {
+        while (!mazeBlueprintReady) {
+            yield return new WaitForSeconds(3.0F);
+        }
 
-            if (!mazeBlueprintReady || !(TreasureClueSpawner.clueSpawned < this.maxClueSpawnedTogether)) {
-                yield return new WaitForSeconds(5.0F);
+        for (int i = 0; i < totalClue; i++) {
+            generateClueLocation();
+        }
+
+        StartCoroutine(runSpawnClues());
+    }
+
+    private void generateClueLocation() {
+        Vector2 spawnPosition = getClueSpawnPosition();
+        clueLocations.location.Add(new Tuple<float, float>(spawnPosition.x, spawnPosition.y));
+    }
+
+    IEnumerator runSpawnClues() {
+        while (true) {
+            if (!(shouldSpawnClue())) {
+                yield return new WaitForSeconds(10.0F);
                 continue;
             }
-            
+
             spawnClue();
-            yield return new WaitForSeconds(0.5F);
         }
     }
 
+    private bool shouldSpawnClue() {
+        return mazeBlueprintReady && TreasureClueSpawner.clueSpawned < this.maxClueSpawnedTogether;
+    }
+
     private void spawnClue() {
-
-        Vector2Int spawnPosition = getClueSpawnPosition();
-
+        Tuple<float, float> spawnPosition = clueLocations.get(this.clueIdxToSpawn);
         Instantiate(treasureClue,
-            new Vector3(spawnPosition.x, spawnPosition.y),
+            new Vector3(spawnPosition.Item1, spawnPosition.Item2),
             Quaternion.identity);
 
-        Debug.Log("TreasureClueSpawner : spawned");
+        this.clueIdxToSpawn++;
         TreasureClueSpawner.clueSpawned++;
     }
 
-    private Vector2Int getClueSpawnPosition() {
-        Vector2Int availablePosition = mazeBlueprint.getRandomTile("Empty");
-        return (availablePosition * tileScale) + new Vector2Int(tileCenterOffset, tileCenterOffset);
+    private Vector2 getClueSpawnPosition() {
+        Vector2 availablePosition = mazeBlueprint.getRandomTile("Empty");
+        return (availablePosition * tileScale) + new Vector2(tileCenterOffset, tileCenterOffset);
     }
 
     public static void notifyClueCollected() {
         TreasureClueSpawner.clueSpawned--;
+    }
+}
+
+public class ClueLocationData {
+    public List<Tuple<float, float>> location = new List<Tuple<float, float>>();
+
+    public Tuple<float, float> get(int idx) {
+        return location[idx];
     }
 }

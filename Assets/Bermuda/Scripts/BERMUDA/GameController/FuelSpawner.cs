@@ -8,7 +8,7 @@ public class FuelSpawner : ObjectSpawner {
     [SerializeField] private GameObject fuelBottom;
 
     [SerializeField] private int fuelCount = 100;
-    private FuelLocationData fuelLocationData = new FuelLocationData();  // Data container
+    private FuelLocationData fuelLocations = new FuelLocationData();  // Data container
 
     void Start() {
         base.Initialize();
@@ -21,10 +21,7 @@ public class FuelSpawner : ObjectSpawner {
             yield return new WaitForSeconds(3.0F);
         }
 
-        while (this.fuelCount > 0) {
-
-            Debug.Log(fuelCount);
-
+        for(int i=0; i < this.fuelCount; i++) {
             generateFuelTopSpawnPositions();
             generateFuelBottomSpawnPositions();
             yield return new WaitForSeconds(0.02F);
@@ -36,24 +33,24 @@ public class FuelSpawner : ObjectSpawner {
 
     private void generateFuelTopSpawnPositions() {
         Vector2 topSpawnPosition = getFuelTopSpawnPosition();
-        fuelLocationData.typeTop.Add(new Tuple<float, float>(topSpawnPosition.x, topSpawnPosition.y));
+        fuelLocations.typeTop.Add(new Tuple<float, float>(topSpawnPosition.x, topSpawnPosition.y));
         fuelCount--;
     }
 
     private void generateFuelBottomSpawnPositions() {
         Vector2 bottomSpawnPosition = getFuelBottomSpawnPosition();
-        fuelLocationData.typeBottom.Add(new Tuple<float, float>(bottomSpawnPosition.x, bottomSpawnPosition.y));
+        fuelLocations.typeBottom.Add(new Tuple<float, float>(bottomSpawnPosition.x, bottomSpawnPosition.y));
         fuelCount--;
     }
 
     IEnumerator spawnFuels() {
 
-        foreach (Tuple<float, float> position in fuelLocationData.typeTop) {
+        foreach (Tuple<float, float> position in fuelLocations.typeTop) {
             Instantiate(fuelTop, new Vector3(position.Item1, position.Item2), Quaternion.identity);
             yield return new WaitForSeconds(0.1F);
         }
 
-        foreach (Tuple<float, float> position in fuelLocationData.typeBottom) {
+        foreach (Tuple<float, float> position in fuelLocations.typeBottom) {
             Instantiate(fuelBottom, new Vector3(position.Item1, position.Item2), Quaternion.identity);
             yield return new WaitForSeconds(0.1F);
         }
