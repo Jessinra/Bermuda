@@ -9,6 +9,7 @@ TagManager:
   - Bolt
   - FullMap
   - Clue
+  - Fuel
   layers:
   - Default
   - TransparentFX

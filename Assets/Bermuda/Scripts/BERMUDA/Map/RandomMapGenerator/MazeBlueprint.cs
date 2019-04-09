@@ -58,6 +58,20 @@ public class MazeBlueprint {
         }
     }
 
+    public Vector2Int getRandomTile(List<String> types){
+        int spawnX;
+        int spawnY;
+
+        while (true) {
+            spawnX = UnityEngine.Random.Range(0, this.getMazeWidth());
+            spawnY = UnityEngine.Random.Range(0, this.getMazeHeight());
+            
+            if (types.Contains(this.getTileType(spawnY, spawnX))) {
+                return new Vector2Int(spawnX, spawnY);
+            }
+        }
+    }
+
     public void setPlayAreaBlueprint(List<List<String>> playAreaBlueprint) {
         this.playAreaBlueprint = playAreaBlueprint;
     }
