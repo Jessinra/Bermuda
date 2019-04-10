@@ -627,7 +627,7 @@ MonoBehaviour:
   - {fileID: 707411320893487264, guid: 062011d284a6df1418a223ef0dacd4ea, type: 3}
   - {fileID: 7413067346742503084, guid: 7497639c800dd0e41bb73bba02ca2f79, type: 3}
   - {fileID: 2289053878391628115, guid: 5215db6ea2d8c1a4eb6586a0a46751a6, type: 3}
-  totalPlayerCount: 20
+  totalPlayerCount: 50
 --- !u!1 &715690944
 GameObject:
   m_ObjectHideFlags: 0
