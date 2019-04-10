@@ -11,6 +11,7 @@ public class RandomTileMapGenerator : MonoBehaviour {
     [SerializeField] private MazeDiggerConfig mazeDiggerConfig;
     [SerializeField] private TileMapDrawerConfig tileMapDrawerConfig;
 
+    [SerializeField] private String activePlayerReference = null;
     [SerializeField] private Vector2Int areaOfView = new Vector2Int(10, 6);
     [SerializeField] private float updateMapEvery = 1.0F;
 
@@ -86,7 +87,7 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     private IEnumerator drawMapAroundPlayer() {
 
-        GameObject player = GameObject.Find("Submarine01");
+        GameObject player = GameObject.Find(activePlayerReference);
         Transform transformData = GetComponent<Transform>();
 
         if (player == null || transformData == null) {

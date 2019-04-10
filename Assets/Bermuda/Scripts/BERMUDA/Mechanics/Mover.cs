@@ -2,40 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
-{
-    private Rigidbody2D rb;
-    public float speed;
-    private string direction;
+public class Mover : MonoBehaviour {
+    public float speed = 1;
+
+    private string direction = "null";
+    protected Rigidbody2D rigidBody = null;
+    protected SpriteRenderer spriteRenderer = null;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-
-        rb.velocity = transform.forward * speed;
+    protected void Start() {
+        rigidBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody.velocity = transform.forward * speed;
     }
 
-    private void FixedUpdate()
-    {
-        if(direction == "left")
-        {
-            rb.transform.Translate(new Vector2(speed * -1, 0.0f));
+    protected void FixedUpdate() {
+        if (direction == "null"){
+            return;
         }
-        else if(direction == "right")
-        {
-            rb.transform.Translate(new Vector2(speed, 0.0f));
+
+        if (direction == "left") {
+            rigidBody.transform.Translate(new Vector2(-speed, 0.0f));
+        } else if (direction == "right") {
+            rigidBody.transform.Translate(new Vector2(speed, 0.0f));
+        } else if (direction == "up") {
+            rigidBody.transform.Translate(new Vector2(0.0f, speed));
+        } else if (direction == "down") {
+            rigidBody.transform.Translate(new Vector2(0.0f, -speed));
         }
-        
     }
 
-    public void setDirection(string dir)
-    {
+    public void setDirection(string dir) {
         direction = dir;
     }
 
-    public string getDirection()
-    {
+    public string getDirection() {
         return direction;
     }
 }

@@ -14,8 +14,8 @@ public class Submarine : MonoBehaviour {
     private string positionFaced;
 
     // Buttons
-    public Button shootButton;
-    public Button actionButton;
+    public Button shootButton = null;
+    public Button actionButton = null;
 
     // Shots
     public GameObject shotPrefab;
@@ -48,6 +48,11 @@ public class Submarine : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        if(!shootButton){
+            return;
+        }
+
         if (shootButton.getClickedState() == true) {
             nextFire = Time.time + fireRate;
             if (positionFaced == "right") {
