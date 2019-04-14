@@ -8,7 +8,7 @@ public class Bolt : MonoBehaviour
     private int damage;
 
     void Start()
-    {
+    { 
         damage = type * 10;
     }
 
@@ -16,8 +16,7 @@ public class Bolt : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Submarine submarine = other.GetComponent<Submarine>();
-            submarine.DecreaseHP(damage);
+            
         }
     }
 

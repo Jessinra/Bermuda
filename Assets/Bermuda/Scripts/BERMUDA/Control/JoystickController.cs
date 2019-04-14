@@ -52,6 +52,7 @@ public class JoystickController : MonoBehaviour {
 
     void MoveCharacter(Vector2 direction) {
         submarine.gameObject.transform.Translate(direction * speed * Time.deltaTime);
+        submarine.UpdatePosition(submarine.gameObject.transform.position.x, submarine.gameObject.transform.position.y);
         if (direction.x > 0) {
             submarine.SwitchSide("right");
         } else if (direction.x < 0) {

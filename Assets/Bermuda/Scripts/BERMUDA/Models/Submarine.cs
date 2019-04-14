@@ -5,10 +5,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Submarine : MonoBehaviour {
-    // Attributes
-    private int health;
-    private int sub_type;
     
+    // Include class List of Bolt
+    List<Bolt> boltFired;
+
+    // Attributes
+    private int type;
+    private float position_x;
+    private float position_y;
+
+
     // Sprites
     private SpriteRenderer spriteRenderer;
     private string positionFaced;
@@ -39,10 +45,12 @@ public class Submarine : MonoBehaviour {
 
         // Initialize variables
         positionFaced = "right";
-        health = 100;
-        sub_type = 1;
+        type = 3;
         nextFire = 0.0f;
+        position_x = transform.position.x;
+        position_y = transform.position.y;
 
+        boltFired = new List<Bolt>();
         soundEffects = GetComponents<AudioSource>();
     }
 
@@ -90,13 +98,29 @@ public class Submarine : MonoBehaviour {
         return soundEffects[0];
     }
 
-    public void increaseHP(int delta)
+    public void SetType(int value)
     {
-        health += delta;
+        type = value;
     }
 
-    public void DecreaseHP(int delta)
+    public int GetSubmarineType()
     {
-        health -= delta;
+        return type;
+    }
+
+    public void UpdatePosition(float new_pos_x, float new_pos_y)
+    {
+        position_x = new_pos_x;
+        position_y = new_pos_y;
+    }
+
+    public float GetPositionX()
+    {
+        return position_x;
+    }
+
+    public float GetPositionY()
+    {
+        return position_y;
     }
 }
