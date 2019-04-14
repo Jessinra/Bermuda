@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour {
-    public Submarine submarine;
+    public Diver diver;
+
     public float speed;
     private bool touchStart = false;
     private Vector3 pointA;
@@ -51,11 +52,11 @@ public class JoystickController : MonoBehaviour {
     }
 
     void MoveCharacter(Vector2 direction) {
-        submarine.gameObject.transform.Translate(direction * speed * Time.deltaTime);
+        diver.gameObject.transform.Translate(direction * speed * Time.deltaTime);
         if (direction.x > 0) {
-            submarine.SwitchSide("right");
+            diver.SwitchSide("right");
         } else if (direction.x < 0) {
-            submarine.SwitchSide("left");
+            diver.SwitchSide("left");
         }
     }
 
