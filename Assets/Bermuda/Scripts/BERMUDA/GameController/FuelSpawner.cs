@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FuelSpawner : ObjectSpawner {
-    [SerializeField] private GameObject fuelTop;
-    [SerializeField] private GameObject fuelBottom;
+    [SerializeField] private GameObject fuelTop = null;
+    [SerializeField] private GameObject fuelBottom = null;
 
     [SerializeField] private int fuelCount = 100;
     private FuelLocationData fuelLocations = new FuelLocationData();  // Data container

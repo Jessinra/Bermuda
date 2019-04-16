@@ -86,7 +86,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &407106205346329492
 Transform:
   m_ObjectHideFlags: 0
@@ -9832,9 +9832,9 @@ MonoBehaviour:
     type: 3}
   shotSpawnRight: {fileID: 7413067346707292982}
   shotSpawnLeft: {fileID: 7413067347218150587}
+  fireRate: 1
   bubbleParticleLeft: {fileID: 2638155636003003999}
   bubbleParticleRight: {fileID: 969160591393036823}
-  fireRate: 1
 --- !u!114 &7413067346742503073
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class Bolt : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Submarine submarine = other.GetComponent<Submarine>();
-            submarine.DecreaseHP(damage);
+            submarine.decreaseHP(damage);
         }
     }
 

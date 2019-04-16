@@ -8,8 +8,8 @@ using UnityEngine.Tilemaps;
 
 public class RandomTileMapGenerator : MonoBehaviour {
 
-    [SerializeField] private MazeDiggerConfig mazeDiggerConfig;
-    [SerializeField] private TileMapDrawerConfig tileMapDrawerConfig;
+    [SerializeField] private MazeDiggerConfig mazeDiggerConfig = null; 
+    [SerializeField] private TileMapDrawerConfig tileMapDrawerConfig = null;
 
     [SerializeField] private String activePlayerReference = null;
     [SerializeField] private Vector2Int areaOfView = new Vector2Int(10, 6);

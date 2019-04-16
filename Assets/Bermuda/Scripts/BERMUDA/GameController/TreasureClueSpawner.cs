@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TreasureClueSpawner : ObjectSpawner {
-    [SerializeField] private GameObject treasureClue;
+    [SerializeField] private GameObject treasureClue = null;
 
     [SerializeField] private int maxClueSpawnedTogether = 5;
     [SerializeField] private int totalClue = 50;
