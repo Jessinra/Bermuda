@@ -112,7 +112,7 @@ public class Player : MonoBehaviour {
         return position_y;
     }
 
-    public int GetType()
+    public int GetPlayerType()
     {
         return type;
     }

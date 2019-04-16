@@ -8,16 +8,16 @@ public class Glow : MonoBehaviour
     [SerializeField] private Vector2 glowCycleDuration = new Vector2(0.05F, 0.05F);
     [SerializeField] private float intensityChangePerCycle = 0.02F;
 
-    private Light light;
+    private Light movingLight;
     private float defaultIntensity;
     private float lastIntensity;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.light = GetComponent<Light>();
+        this.movingLight = GetComponent<Light>();
 
-        this.defaultIntensity = this.light.intensity;
+        this.defaultIntensity = this.movingLight.intensity;
         this.lastIntensity = 1;
 
         StartCoroutine(glow());
@@ -31,7 +31,7 @@ public class Glow : MonoBehaviour
             }
 
             this.lastIntensity += this.intensityChangePerCycle;
-            this.light.intensity = this.lastIntensity * defaultIntensity; 
+            this.movingLight.intensity = this.lastIntensity * defaultIntensity; 
 
             float randomDelay = UnityEngine.Random.Range(glowCycleDuration.x, glowCycleDuration.y);
             yield return new WaitForSeconds(randomDelay);

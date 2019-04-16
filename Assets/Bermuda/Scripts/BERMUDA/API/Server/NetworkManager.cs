@@ -7,7 +7,7 @@ public class NetworkManager : MonoBehaviour
 {
     private string URL_SEND = "http://localhost:3333/data";
 
-    [SerializeField] private Submarine PlayerSubmarine;
+    [SerializeField] private Submarine player;
     [SerializeField] private List<Bolt> bolts;
 
     // Start is called before the first frame update
@@ -28,12 +28,12 @@ public class NetworkManager : MonoBehaviour
     private void SendPlayerInformation()
     {
         WWWForm form = new WWWForm();
-        form.AddField("position_x", PlayerSubmarine.GetPositionX().ToString());
-        form.AddField("position_y", PlayerSubmarine.GetPositionY().ToString());
-        if (PlayerSubmarine != null)
+        form.AddField("position_x", player.GetPositionX().ToString());
+        form.AddField("position_y", player.GetPositionY().ToString());
+        if (player != null)
         {
             form.AddField("player_type", "submarine");
-            form.AddField("sub_type", PlayerSubmarine.GetSubmarineType().ToString());
+            form.AddField("sub_type", player.GetPlayerType().ToString());
         }
 
         UnityWebRequest www = UnityWebRequest.Post(URL_SEND, form);
