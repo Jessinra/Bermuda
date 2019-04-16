@@ -5,18 +5,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour {
-    public Submarine submarine;
+    public Player player;
+
     public float speed;
     private bool touchStart = false;
     private Vector3 pointA;
     private Vector3 pointB;
     public Camera playerCamera;
     public Transform outerCircle;
-
-    // Update is called once per frame
-    void Update() {
-
-    }
 
     private void OnMouseDown() {
         pointA = new Vector3(Input.mousePosition.x, Input.mousePosition.y, outerCircle.transform.position.z);
@@ -35,7 +31,7 @@ public class JoystickController : MonoBehaviour {
         if (touchStart) {
             Vector2 offset = pointB - pointA;
             Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
-            MoveCharacter(direction);
+            MovePlayer(direction);
 
             transform.position = new Vector3(
                 outerCircle.position.x + direction.x,
@@ -50,13 +46,13 @@ public class JoystickController : MonoBehaviour {
         }
     }
 
-    void MoveCharacter(Vector2 direction) {
-        submarine.gameObject.transform.Translate(direction * speed * Time.deltaTime);
+    void MovePlayer(Vector2 direction) {
+        player.gameObject.transform.Translate(direction * speed * Time.deltaTime);
+        player.UpdatePosition(player.gameObject.transform.position.x, player.gameObject.transform.position.y);
         if (direction.x > 0) {
-            submarine.SwitchSide("right");
+            player.SwitchSide("right");
         } else if (direction.x < 0) {
-            submarine.SwitchSide("left");
+            player.SwitchSide("left");
         }
     }
-
 }

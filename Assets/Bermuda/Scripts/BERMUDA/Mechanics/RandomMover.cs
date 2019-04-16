@@ -7,11 +7,8 @@ public class RandomMover : Mover {
     [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 6F);
 
     // Start is called before the first frame update
-    void Start() {
+    new void Start() {
         base.Start();
-        rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rigidBody.velocity = transform.forward * speed;
         StartCoroutine(randomMove());
     }
 
@@ -33,7 +30,7 @@ public class RandomMover : Mover {
         return directions[UnityEngine.Random.Range(0,4)];
     }
 
-    void FixedUpdate() {
+    new void FixedUpdate() {
         base.FixedUpdate();
     }
 }
