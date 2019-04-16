@@ -8,7 +8,7 @@ public class Bolt : MonoBehaviour
     private int damage;
 
     void Start()
-    {
+    { 
         damage = type * 10;
     }
 
@@ -20,5 +20,4 @@ public class Bolt : MonoBehaviour
             submarine.decreaseHP(damage);
         }
     }
-
 }

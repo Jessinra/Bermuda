@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class Submarine : Player {
 
-    private int sub_type;
-    
     [SerializeField] private GameObject bubbleParticleLeft = null;
     [SerializeField] private GameObject bubbleParticleRight = null;
+    
+    List<Bolt> boltFired = new List<Bolt>();
 
     // Start is called before the first frame update
     new void Start() {
@@ -17,7 +17,7 @@ public class Submarine : Player {
 
         positionFaced = "right";
         health = 100;
-        sub_type = 1;
+        type = 3;
     }
 
     // Switch submarine's sprited render side according to it's direction
@@ -32,7 +32,6 @@ public class Submarine : Player {
             this.bubbleParticleLeft.SetActive(false);
             this.bubbleParticleRight.SetActive(true);
         }
-
     }
 
     public AudioSource GetEngineSound() {
