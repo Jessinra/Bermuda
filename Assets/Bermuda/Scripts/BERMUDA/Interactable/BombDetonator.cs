@@ -5,6 +5,7 @@ using UnityEngine;
 public class BombDetonator : MonoBehaviour
 {
     [SerializeField] float blinkDelay = 0.1F;
+    [SerializeField] GameObject explosion = null;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -29,6 +30,9 @@ public class BombDetonator : MonoBehaviour
             yield return new WaitForSeconds(blinkDelay);
         }
 
+        Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
+        Destroy(this.transform.parent.gameObject);
+        
         Debug.Log("EKUSUPUROSIONNNNNNN");
         yield break;
     }

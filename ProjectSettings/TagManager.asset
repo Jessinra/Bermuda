@@ -47,12 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Water
-    uniqueID: 2116099231
-    locked: 0
-  - name: Level
-    uniqueID: 2344118779
-    locked: 0
-  - name: Front
+  - name: UI
     uniqueID: 3405993979
     locked: 0

@@ -30,7 +30,7 @@ public class JoystickController : MonoBehaviour {
     private void FixedUpdate() {
         if (touchStart) {
             Vector2 offset = pointB - pointA;
-            Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+            Vector2 direction = Vector2.ClampMagnitude(offset, 0.15f);
             MovePlayer(direction);
 
             transform.position = new Vector3(

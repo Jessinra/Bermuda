@@ -311,3 +311,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkDelay: 0.1
+  explosion: {fileID: 1954064310, guid: 505d2c1291e68684bb33e8c96ddf1fd0, type: 3}
