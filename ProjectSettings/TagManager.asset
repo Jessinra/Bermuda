@@ -9,9 +9,10 @@ TagManager:
   - Bolt
   - FullMap
   - Clue
-  - Fuel
   - Clue 02
   - Clue 03
+  - Fuel Top
+  - Fuel Bottom
   layers:
   - Default
   - TransparentFX
