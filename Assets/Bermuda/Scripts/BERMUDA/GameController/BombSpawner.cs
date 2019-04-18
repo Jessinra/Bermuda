@@ -8,7 +8,7 @@ public class BombSpawner : ObjectSpawner {
     [SerializeField] private GameObject BombBottom = null;
 
     [SerializeField] private int BombCount = 100;
-    private BombLocationData BombLocations = new BombLocationData();  // Data container
+    private BombLocationData BombLocations = new BombLocationData(); // Data container
 
     void Start() {
         base.Initialize();
@@ -21,7 +21,7 @@ public class BombSpawner : ObjectSpawner {
             yield return new WaitForSeconds(3.0F);
         }
 
-        for(int i=0; i < this.BombCount; i++) {
+        for (int i = 0; i < this.BombCount; i += 2) {
             generateBombTopSpawnPositions();
             generateBombBottomSpawnPositions();
             yield return new WaitForSeconds(0.02F);
@@ -34,13 +34,11 @@ public class BombSpawner : ObjectSpawner {
     private void generateBombTopSpawnPositions() {
         Vector2 topSpawnPosition = getBombTopSpawnPosition();
         BombLocations.typeTop.Add(new Tuple<float, float>(topSpawnPosition.x, topSpawnPosition.y));
-        BombCount--;
     }
 
     private void generateBombBottomSpawnPositions() {
         Vector2 bottomSpawnPosition = getBombBottomSpawnPosition();
         BombLocations.typeBottom.Add(new Tuple<float, float>(bottomSpawnPosition.x, bottomSpawnPosition.y));
-        BombCount--;
     }
 
     IEnumerator spawnBombs() {
@@ -70,7 +68,7 @@ public class BombSpawner : ObjectSpawner {
     }
 }
 
-public class BombLocationData{
+public class BombLocationData {
     public List<Tuple<float, float>> typeTop = new List<Tuple<float, float>>();
     public List<Tuple<float, float>> typeBottom = new List<Tuple<float, float>>();
 }

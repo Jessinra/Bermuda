@@ -10,6 +10,8 @@ TagManager:
   - FullMap
   - Clue
   - Fuel
+  - Clue 02
+  - Clue 03
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - Destructable
   - EnemyWeapon
   - BossWeakPoint
-  - 
+  - Chest
   - Bolt
   - 
   - 

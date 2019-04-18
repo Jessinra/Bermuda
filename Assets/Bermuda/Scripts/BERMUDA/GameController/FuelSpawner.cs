@@ -8,7 +8,7 @@ public class FuelSpawner : ObjectSpawner {
     [SerializeField] private GameObject fuelBottom = null;
 
     [SerializeField] private int fuelCount = 100;
-    private FuelLocationData fuelLocations = new FuelLocationData();  // Data container
+    private FuelLocationData fuelLocations = new FuelLocationData(); // Data container
 
     void Start() {
         base.Initialize();
@@ -21,7 +21,7 @@ public class FuelSpawner : ObjectSpawner {
             yield return new WaitForSeconds(3.0F);
         }
 
-        for(int i=0; i < this.fuelCount; i++) {
+        for (int i = 0; i < this.fuelCount; i += 2) {
             generateFuelTopSpawnPositions();
             generateFuelBottomSpawnPositions();
             yield return new WaitForSeconds(0.02F);
@@ -34,13 +34,11 @@ public class FuelSpawner : ObjectSpawner {
     private void generateFuelTopSpawnPositions() {
         Vector2 topSpawnPosition = getFuelTopSpawnPosition();
         fuelLocations.typeTop.Add(new Tuple<float, float>(topSpawnPosition.x, topSpawnPosition.y));
-        fuelCount--;
     }
 
     private void generateFuelBottomSpawnPositions() {
         Vector2 bottomSpawnPosition = getFuelBottomSpawnPosition();
         fuelLocations.typeBottom.Add(new Tuple<float, float>(bottomSpawnPosition.x, bottomSpawnPosition.y));
-        fuelCount--;
     }
 
     IEnumerator spawnFuels() {
@@ -70,7 +68,7 @@ public class FuelSpawner : ObjectSpawner {
     }
 }
 
-public class FuelLocationData{
+public class FuelLocationData {
     public List<Tuple<float, float>> typeTop = new List<Tuple<float, float>>();
     public List<Tuple<float, float>> typeBottom = new List<Tuple<float, float>>();
 }
