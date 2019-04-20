@@ -33,6 +33,9 @@ public class Player : MonoBehaviour {
     // Sound 
     protected AudioSource[] soundEffects;
 
+    // Explosion
+    [SerializeField] protected GameObject explosion = null;
+
     // Start is called before the first frame update
     protected void Start() {
         // Load Renderer
@@ -46,31 +49,44 @@ public class Player : MonoBehaviour {
         nextFire = 0.0f;
 
         soundEffects = this.GetComponents<AudioSource>();
+
+        StartCoroutine(CheckForDeath());
+        StartCoroutine(CheckForShot());
     }
 
-    // Update is called once per frame
-    protected void Update() {
+    IEnumerator CheckForShot() {
 
-        if (!shootButton) {
-            return;
-        }
+        while (shootButton) {
+            if (shootButton.IsClicked()) {
 
-        if (shootButton.getClickedState() == true) {
-            nextFire = Time.time + fireRate;
-            if (positionFaced == "right") {
+                if (positionFaced == "right") {
+                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
+                    shot.GetComponent<Mover>().setDirection("right");
+                } else if (positionFaced == "left") {
+                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
+                    shot.GetComponent<Mover>().setDirection("left");
+                }
+                nextFire = Time.time + fireRate;
                 soundEffects[1].Play();
-                shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
-                shot.GetComponent<Mover>().setDirection("right");
-
-            } else if (positionFaced == "left") {
-                soundEffects[1].Play();
-                shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
-                shot.GetComponent<Mover>().setDirection("left");
+                shootButton.setClickedState(false);
             }
 
-            shootButton.setClickedState(false);
+            yield return new WaitForSeconds(0.02F);
         }
 
+        yield break;
+    }
+
+    IEnumerator CheckForDeath() {
+        while (!(this.IsDead())) {
+            yield return new WaitForSeconds(0.5F);
+        }
+
+        Instantiate(explosion,
+            this.gameObject.transform.position,
+            Quaternion.identity);
+
+        Destroy(this.gameObject);
     }
 
     // Switch submarine's sprited render side according to it's direction
@@ -83,6 +99,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public bool IsDead() {
+        return health <= 0;
+    }
+
     public void increaseHP(int delta) {
         health += delta;
     }
@@ -91,29 +111,29 @@ public class Player : MonoBehaviour {
         health -= delta;
     }
 
-    public void SetType(int value)
-    {
+    public void SetType(int value) {
         type = value;
     }
 
-    public void UpdatePosition(float new_pos_x, float new_pos_y)
-    {
+    public void UpdatePosition(float new_pos_x, float new_pos_y) {
         position_x = new_pos_x;
         position_y = new_pos_y;
     }
 
-    public float GetPositionX()
-    {
+    public float GetPositionX() {
         return position_x;
     }
 
-    public float GetPositionY()
-    {
+    public float GetPositionY() {
         return position_y;
     }
 
-    public int GetPlayerType()
-    {
+    public int GetPlayerType() {
         return type;
+    }
+
+    public void TestCollider(int damage) {
+        decreaseHP(damage);
+        Debug.Log(health);
     }
 }

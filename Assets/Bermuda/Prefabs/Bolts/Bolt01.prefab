@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8455496927133369561}
   - component: {fileID: 7397870217421569282}
   - component: {fileID: 8704574978633848385}
-  - component: {fileID: 8630197940177595533}
   - component: {fileID: 1557076397916989308}
+  - component: {fileID: 3248787129551043362}
   m_Layer: 20
   m_Name: Bolt01
   m_TagString: Bolt
@@ -100,18 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
---- !u!114 &8630197940177595533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7298945214696333400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81510a14df6fe8041b6af1d8cd42b19c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1557076397916989308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +113,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
+--- !u!114 &3248787129551043362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7298945214696333400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22fc71c09e7059499623cf47e716884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7298945215340174462
 GameObject:
   m_ObjectHideFlags: 0

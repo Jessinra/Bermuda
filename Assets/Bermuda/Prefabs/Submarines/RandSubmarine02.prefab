@@ -178,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e69e7f0d2a81fd4a996650f7f3548d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cb8249d5e15e604fb2d4b2da720714f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -437,6 +437,8 @@ MonoBehaviour:
   shotSpawnRight: {fileID: 7413067346707292982}
   shotSpawnLeft: {fileID: 7413067347218150587}
   fireRate: 0.25
+  explosion: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
+    type: 3}
   bubbleParticleLeft: {fileID: 6260217968457136768}
   bubbleParticleRight: {fileID: 6260217969169914099}
 --- !u!114 &7413067346742503073

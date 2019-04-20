@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9193374257111141328}
   - component: {fileID: 7811523576380469771}
   - component: {fileID: 8218581520472660296}
-  - component: {fileID: 9008896656199017348}
   - component: {fileID: 2258907270095644789}
+  - component: {fileID: 5304672622654564855}
   m_Layer: 20
   m_Name: DiverBolt01
   m_TagString: Bolt
@@ -100,18 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
---- !u!114 &9008896656199017348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8037105136346509137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81510a14df6fe8041b6af1d8cd42b19c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2258907270095644789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +113,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
+--- !u!114 &5304672622654564855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037105136346509137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22fc71c09e7059499623cf47e716884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8037105137044870007
 GameObject:
   m_ObjectHideFlags: 0

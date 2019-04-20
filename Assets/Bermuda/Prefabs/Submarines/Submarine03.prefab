@@ -367,6 +367,8 @@ MonoBehaviour:
   shotSpawnRight: {fileID: 1196453501969284117}
   shotSpawnLeft: {fileID: 1196453501468912536}
   fireRate: 0.25
+  explosion: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
+    type: 3}
   bubbleParticleLeft: {fileID: 8179587763237064806}
   bubbleParticleRight: {fileID: 8179587762752809878}
 --- !u!1 &1196453501969284118

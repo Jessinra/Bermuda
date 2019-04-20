@@ -397,9 +397,11 @@ MonoBehaviour:
     type: 3}
   shotSpawnRight: {fileID: 707411320858311994}
   shotSpawnLeft: {fileID: 707411320284932791}
+  fireRate: 0.25
+  explosion: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
+    type: 3}
   bubbleParticleLeft: {fileID: 5453057820246605907}
   bubbleParticleRight: {fileID: 7080395066582909979}
-  fireRate: 0.25
 --- !u!114 &707411320893487277
 MonoBehaviour:
   m_ObjectHideFlags: 0
