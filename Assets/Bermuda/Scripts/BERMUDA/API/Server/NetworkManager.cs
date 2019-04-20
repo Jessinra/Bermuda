@@ -5,37 +5,68 @@ using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
 {
-    private string URL_SEND = "http://localhost:3333/data";
+    private string URL_SEND = "http://192.168.101.130:5000/api/match/update";
 
-    [SerializeField] private Submarine player;
+    private string room_id;
+
+    [SerializeField] private Player player;
     [SerializeField] private List<Bolt> bolts;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SendData());
+        SetRoomId("F6MW2");
+        InvokeRepeating("SendInformation", 0.05f, 0.05f);
     }
 
-    // Send data to server
-    IEnumerator SendData()
+    public void SetRoomId(string id)
     {
-        // Send Player Information starting in 0.5 seconds, then continue every 0.5 seconds
-        InvokeRepeating("SendPlayerInformation", 0.5f, 0.5f);
-
-        yield return null;
+        room_id = id;
     }
 
-    private void SendPlayerInformation()
+    public string GetRoomId()
     {
-        WWWForm form = new WWWForm();
+        return room_id;
+    }
+
+    private string CreateJSONState()
+    {
+        string jsonstr = "{ \"roomId\" :" + " \"" + room_id + "\",";
+        jsonstr += "\"instances\" : [ ";
+        jsonstr += JsonUtility.ToJson(player);
+        
+        for(int i = 0; i < bolts.Count; i++)
+        {
+            jsonstr += ", ";
+            jsonstr += JsonUtility.ToJson(bolts[i]);
+        }
+
+        jsonstr += " ] }";
+        // Debug.Log(jsonstr);
+
+        return jsonstr;
+    }
+
+    private WWW SendInformation()
+    {
+        
+        Hashtable postHeader = new Hashtable();
+        postHeader.Add("Content-Type", "application/json");
+        var formData = System.Text.Encoding.UTF8.GetBytes(CreateJSONState());
+        
+        WWW www = new WWW(URL_SEND, formData, postHeader);
+
+        return www;
+        /*
+        form.AddField("id", player.GetId());
         form.AddField("position_x", player.GetPositionX().ToString());
         form.AddField("position_y", player.GetPositionY().ToString());
         if (player != null)
         {
-            form.AddField("player_type", "submarine");
+            form.AddField("type", "submarine");
             form.AddField("sub_type", player.GetPlayerType().ToString());
         }
-
+        
         UnityWebRequest www = UnityWebRequest.Post(URL_SEND, form);
         www.SendWebRequest();
 
@@ -47,6 +78,6 @@ public class NetworkManager : MonoBehaviour
         {
             Debug.Log("Form upload complete!");
         }
-
+        */
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Submarine : Player {
 
-    [SerializeField] private GameObject bubbleParticleLeft = null;
-    [SerializeField] private GameObject bubbleParticleRight = null;
+    [NonSerialized] public GameObject bubbleParticleLeft = null;
+    [NonSerialized] public GameObject bubbleParticleRight = null;
     
     List<Bolt> boltFired = new List<Bolt>();
 
@@ -17,7 +17,6 @@ public class Submarine : Player {
 
         positionFaced = "right";
         health = 100;
-        type = 3;
     }
 
     // Switch submarine's sprited render side according to it's direction

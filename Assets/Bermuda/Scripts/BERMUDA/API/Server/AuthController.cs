@@ -14,38 +14,56 @@ using System.Collections;
 public class AuthController : MonoBehaviour
 {
     // CONST
+    private static string URL_TEST = "http://localhost:3333/data";
     private static string URL_REGISTER = "http://192.168.43.27:5000/api/auth/register";
-    private static string URL_LOGIN = "http://192.168.43.27:5000/api/auth/login";
-    private static string URL_MATCH_CREATE = "http://192.168.43.27:5000/api/match/create";
+    private static string URL_LOGIN = "http://192.168.101.130:5000/api/auth/login";
+    private static string URL_MATCH_CREATE = "http://192.168.101.130:5000/api/match/create";
+    public static string sign_in_result;
+    public static string room_id;
 
+    // VARIABLES
     private static string roomid;
 
     // Start is called before the first frame update
     void Start()
     {
-        CreateMatch("dummy3");
+        sign_in_result = "";
+        room_id = "";
+
+        CreateMatch("dummy");
     }
 
 
-    public static async Task Login(string username, string password)
+    public void Login(string username, string password)
     {
-        var httpWebRequest = (HttpWebRequest)WebRequest.Create(URL_LOGIN);
-        httpWebRequest.ContentType = "application/json";
-        httpWebRequest.Method = "POST";
-
-        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        Thread loginThread = new Thread(() =>
         {
-            string json = "{ \"username\": \"" + username + "\", " +
-                          "\"password\": \"" + password + "\" }";
-            streamWriter.Write(json);
-        }
+            Debug.Log("LoginThread activated");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(URL_LOGIN);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
 
-        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        {
-            var result = streamReader.ReadToEnd();
-        }
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{ \"username\": \"" + username + "\", " +
+                              "\"password\": \"" + password + "\" }";
+                streamWriter.Write(json);
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                sign_in_result = streamReader.ReadToEnd();
+            }
+
+            Debug.Log("Result LoginThread: " + sign_in_result);
+        });
+
+        Debug.Log("Result Main Thread: " + sign_in_result);
+        loginThread.Start();
     }
+
+
     
     public static async Task Register(string username, string password)
     {
@@ -67,25 +85,33 @@ public class AuthController : MonoBehaviour
         }
     }
 
-    public static async Task CreateMatch(string username)
+    public void CreateMatch(string username)
     {
-        var httpWebRequest = (HttpWebRequest)WebRequest.Create(URL_MATCH_CREATE);
-        httpWebRequest.ContentType = "application/json";
-        httpWebRequest.Method = "POST";
-
-        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        Thread createMatchThread = new Thread(() =>
         {
-            string json = "{ \"username\": \"" + username + "\" }";
-            streamWriter.Write(json);
-        }
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(URL_MATCH_CREATE);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
 
-        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        {
-            var result = streamReader.ReadToEnd();
-            roomid = result.ToString();
-            UnityEngine.Debug.Log(result);
-        }
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{ \"username\": \"" + username + "\" }";
+                streamWriter.Write(json);
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                room_id = streamReader.ReadToEnd();
+            }
+            Debug.Log("Room ID (Child Thread) : " + room_id);
+        });
+
+        createMatchThread.Start();
     }
 
+    public string GetRoomId()
+    {
+        return roomid;
+    }
 }

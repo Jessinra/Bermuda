@@ -5,29 +5,32 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour {
-    // Attributes
-    protected int health;
 
-    protected int type;
-    protected float position_x;
-    protected float position_y;
+    // Attributes
+    [SerializeField] [HideInInspector] protected string id;
+    [SerializeField] [HideInInspector] protected string username;
+    [SerializeField] [HideInInspector] protected string status;
+    [SerializeField] [HideInInspector] protected float position_x;
+    [SerializeField] [HideInInspector] protected float position_y;
+    [SerializeField] [HideInInspector] protected string type;
+    protected int health;
 
     // Sprites
     protected SpriteRenderer spriteRenderer;
     protected string positionFaced;
 
     // Buttons
-    [SerializeField] protected Button shootButton = null;
-    [SerializeField] protected Button actionButton = null;
+    public Button shootButton = null;
+    public Button actionButton = null;
 
     // Shots
-    [SerializeField] protected GameObject shotPrefab;
+    public GameObject shotPrefab;
     protected GameObject shot;
 
-    [SerializeField] protected Transform shotSpawnRight;
-    [SerializeField] protected Transform shotSpawnLeft;
+    public Transform shotSpawnRight;
+    public Transform shotSpawnLeft;
 
-    [SerializeField] protected float fireRate;
+    public float fireRate;
     protected float nextFire;
 
     // Sound 
@@ -38,13 +41,24 @@ public class Player : MonoBehaviour {
         // Load Renderer
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
+        // Load Buttons
+        //shootButton = GameObject.Find("ShootButton").GetComponent<Button>();
+
+        // Load Shot Spawn
+        //shotSpawnRight = GameObject.Find("ShotSpawnRight").GetComponent<Transform>();
+        //shotSpawnLeft = GameObject.Find("ShotSpawnLeft").GetComponent<Transform>();
+        
         // Initialize variables
         position_x = transform.position.x;
         position_y = transform.position.y;
-        positionFaced = "left";
+        positionFaced = "Right";
         health = 100;
         nextFire = 0.0f;
-
+        status = "alive";
+        type = "submarine";
+        id = "dummy";
+        username = "dummy";
+        fireRate = 0.25f;
         soundEffects = this.GetComponents<AudioSource>();
     }
 
@@ -60,12 +74,20 @@ public class Player : MonoBehaviour {
             if (positionFaced == "right") {
                 soundEffects[1].Play();
                 shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
+                shot.GetComponent<Bolt>().SetUsername(username);
+                shot.GetComponent<Bolt>().SetType(1);
+                shot.GetComponent<Bolt>().SetId();
                 shot.GetComponent<Mover>().setDirection("right");
+                shot.GetComponent<Mover>().setSpeed(0.5f);
 
             } else if (positionFaced == "left") {
                 soundEffects[1].Play();
                 shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
+                shot.GetComponent<Bolt>().SetUsername(username);
+                shot.GetComponent<Bolt>().SetType(1);
+                shot.GetComponent<Bolt>().SetId();
                 shot.GetComponent<Mover>().setDirection("left");
+                shot.GetComponent<Mover>().setSpeed(0.5f);
             }
 
             shootButton.setClickedState(false);
@@ -91,7 +113,7 @@ public class Player : MonoBehaviour {
         health -= delta;
     }
 
-    public void SetType(int value)
+    public void SetType(string value)
     {
         type = value;
     }
@@ -112,8 +134,28 @@ public class Player : MonoBehaviour {
         return position_y;
     }
 
-    public int GetPlayerType()
+    public string GetPlayerType()
     {
         return type;
+    }
+
+    public string GetId()
+    {
+        return id;
+    }
+
+    public void SetId(string id)
+    {
+        this.id = id;
+    }
+
+    public string GetUsername()
+    {
+        return username;
+    }
+
+    public void SetUsername(string username)
+    {
+        this.username = username;
     }
 }
