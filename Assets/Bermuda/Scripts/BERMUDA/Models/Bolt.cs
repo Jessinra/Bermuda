@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bolt : MonoBehaviour
 {
     private static readonly List<string> idUsed = new List<string>();
+    private Player player;
     [SerializeField] [HideInInspector] private string id;
     [SerializeField] [HideInInspector] private string username;
     [SerializeField] [HideInInspector] private int type;
@@ -13,7 +14,7 @@ public class Bolt : MonoBehaviour
 
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void SetUsername(string username)
@@ -61,6 +62,7 @@ public class Bolt : MonoBehaviour
             Player player = other.GetComponent<Player>();
             player.decreaseHP(damage);
         }
+        player.GetBoltsFired().Remove(this);
         idUsed.Remove(id);
         Destroy(gameObject);
     }

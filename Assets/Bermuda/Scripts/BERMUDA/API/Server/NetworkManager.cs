@@ -10,7 +10,6 @@ public class NetworkManager : MonoBehaviour
     private string room_id;
 
     [SerializeField] private Player player;
-    [SerializeField] private List<Bolt> bolts;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +34,14 @@ public class NetworkManager : MonoBehaviour
         jsonstr += "\"instances\" : [ ";
         jsonstr += JsonUtility.ToJson(player);
         
-        for(int i = 0; i < bolts.Count; i++)
+        for(int i = 0; i < player.GetBoltsFired().Count; i++)
         {
             jsonstr += ", ";
-            jsonstr += JsonUtility.ToJson(bolts[i]);
+            jsonstr += JsonUtility.ToJson(player.GetBoltsFired()[i]);
         }
 
         jsonstr += " ] }";
-        // Debug.Log(jsonstr);
+        Debug.Log(jsonstr);
 
         return jsonstr;
     }

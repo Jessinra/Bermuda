@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
     // Shots
     public GameObject shotPrefab;
     protected GameObject shot;
+    private List<Bolt> boltsFired;
 
     public Transform shotSpawnRight;
     public Transform shotSpawnLeft;
@@ -57,6 +58,9 @@ public class Player : MonoBehaviour {
         fireRate = 0.25f;
         soundEffects = this.GetComponents<AudioSource>();
 
+        // Initialize list of bolts fired
+        boltsFired = new List<Bolt>();
+
         StartCoroutine(CheckForDeath());
         StartCoroutine(CheckForShot());
     }
@@ -75,6 +79,7 @@ public class Player : MonoBehaviour {
                     shot.GetComponent<Bolt>().SetId();
                     shot.GetComponent<Mover>().setDirection("right");
                     shot.GetComponent<Mover>().setSpeed(0.5f);
+                    boltsFired.Add(shot.GetComponent<Bolt>());
                 }
                 else if(positionFaced == "left")
                 {
@@ -85,6 +90,7 @@ public class Player : MonoBehaviour {
                     shot.GetComponent<Bolt>().SetId();
                     shot.GetComponent<Mover>().setDirection("left");
                     shot.GetComponent<Mover>().setSpeed(0.5f);
+                    boltsFired.Add(shot.GetComponent<Bolt>());
                 }
 
                 shootButton.setClickedState(false);
@@ -171,6 +177,11 @@ public class Player : MonoBehaviour {
     public void SetUsername(string username)
     {
         this.username = username;
+    }
+
+    public List<Bolt> GetBoltsFired()
+    {
+        return boltsFired;
     }
 
     public void TestCollider(int damage) {
