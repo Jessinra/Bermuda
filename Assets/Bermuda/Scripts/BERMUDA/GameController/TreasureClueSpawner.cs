@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TreasureClueSpawner : ObjectSpawner {
-    [SerializeField] private GameObject treasureClue = null;
+    [SerializeField] private List<GameObject> treasureClue = new List<GameObject>();
 
     [SerializeField] private int maxClueSpawnedTogether = 5;
     [SerializeField] private int totalClue = 50;
+
+    private static Queue<int> clueTypeToSpawn = new Queue<int>();
     private static int clueSpawned = 0;
     private int clueIdxToSpawn = 0;
     private ClueLocationData clueLocations = new ClueLocationData();
@@ -29,6 +31,10 @@ public class TreasureClueSpawner : ObjectSpawner {
             generateClueLocation();
         }
 
+        for (int i = 0; i < maxClueSpawnedTogether; i++) {
+            TreasureClueSpawner.addClueTypeToSpawn(0);
+        }
+
         StartCoroutine(runSpawnClues());
     }
 
@@ -37,13 +43,20 @@ public class TreasureClueSpawner : ObjectSpawner {
         clueLocations.location.Add(new Tuple<float, float>(spawnPosition.x, spawnPosition.y));
     }
 
+    private static void addClueTypeToSpawn(int clueType) {
+        if (clueType < 0 || clueType >= 3) {
+            clueType = 0;
+            Debug.Log("clueType outside range");
+        }
+        TreasureClueSpawner.clueTypeToSpawn.Enqueue(clueType);
+    }
+
     IEnumerator runSpawnClues() {
         while (true) {
             if (!(shouldSpawnClue())) {
                 yield return new WaitForSeconds(10.0F);
                 continue;
             }
-
             spawnClue();
         }
     }
@@ -54,7 +67,9 @@ public class TreasureClueSpawner : ObjectSpawner {
 
     private void spawnClue() {
         Tuple<float, float> spawnPosition = clueLocations.get(this.clueIdxToSpawn);
-        Instantiate(treasureClue,
+        int clueType = TreasureClueSpawner.clueTypeToSpawn.Dequeue();
+        Instantiate(
+            treasureClue[clueType],
             new Vector3(spawnPosition.Item1, spawnPosition.Item2),
             Quaternion.identity);
 
@@ -67,8 +82,9 @@ public class TreasureClueSpawner : ObjectSpawner {
         return (availablePosition * tileScale) + new Vector2(tileCenterOffset, tileCenterOffset);
     }
 
-    public static void notifyClueCollected() {
+    public static void notifyClueCollected(int clueType) {
         TreasureClueSpawner.clueSpawned--;
+        TreasureClueSpawner.addClueTypeToSpawn(clueType);
     }
 }
 

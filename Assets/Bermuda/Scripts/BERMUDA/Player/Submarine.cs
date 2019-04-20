@@ -6,10 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Submarine : Player {
 
-    [NonSerialized] public GameObject bubbleParticleLeft = null;
-    [NonSerialized] public GameObject bubbleParticleRight = null;
+    public GameObject bubbleParticleLeft = null;
+    public GameObject bubbleParticleRight = null;
     
-    List<Bolt> boltFired = new List<Bolt>();
 
     // Start is called before the first frame update
     new void Start() {
@@ -26,7 +25,8 @@ public class Submarine : Player {
             spriteRenderer.flipX = false;
             this.bubbleParticleLeft.SetActive(true);
             this.bubbleParticleRight.SetActive(false);
-        } else {
+        } else if(position == "left") {
+            Debug.Log("Position: " + position);
             spriteRenderer.flipX = true;
             this.bubbleParticleLeft.SetActive(false);
             this.bubbleParticleRight.SetActive(true);

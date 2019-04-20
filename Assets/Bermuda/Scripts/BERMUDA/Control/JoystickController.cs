@@ -16,11 +16,13 @@ public class JoystickController : MonoBehaviour {
 
     private void OnMouseDown() {
         pointA = new Vector3(Input.mousePosition.x, Input.mousePosition.y, outerCircle.transform.position.z);
+        // Debug.Log("PointA : " + pointA.x.ToString() + ", " + pointA.y.ToString());
     }
 
     private void OnMouseDrag() {
         touchStart = true;
         pointB = new Vector3(Input.mousePosition.x, Input.mousePosition.y, outerCircle.transform.position.z);
+        // Debug.Log("PointB : " + pointB.x.ToString() + ", " + pointB.y.ToString());
     }
 
     private void OnMouseUp() {
@@ -32,12 +34,7 @@ public class JoystickController : MonoBehaviour {
             Vector2 offset = pointB - pointA;
             Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
             MovePlayer(direction);
-
-            transform.position = new Vector3(
-                outerCircle.position.x + direction.x,
-                outerCircle.position.y + direction.y,
-                outerCircle.transform.position.z);
-
+            
         } else {
             transform.position = new Vector3(
                 outerCircle.position.x,
@@ -47,6 +44,11 @@ public class JoystickController : MonoBehaviour {
     }
 
     void MovePlayer(Vector2 direction) {
+        transform.position = new Vector3(
+                outerCircle.position.x + direction.x,
+                outerCircle.position.y + direction.y,
+                outerCircle.transform.position.z);
+
         player.gameObject.transform.Translate(direction * speed * Time.deltaTime);
         player.UpdatePosition(player.gameObject.transform.position.x, player.gameObject.transform.position.y);
         if (direction.x > 0) {

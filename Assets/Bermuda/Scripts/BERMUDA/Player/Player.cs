@@ -36,17 +36,13 @@ public class Player : MonoBehaviour {
     // Sound 
     protected AudioSource[] soundEffects;
 
+    // Explosion
+    [SerializeField] protected GameObject explosion = null;
+
     // Start is called before the first frame update
     protected void Start() {
         // Load Renderer
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-
-        // Load Buttons
-        //shootButton = GameObject.Find("ShootButton").GetComponent<Button>();
-
-        // Load Shot Spawn
-        //shotSpawnRight = GameObject.Find("ShotSpawnRight").GetComponent<Transform>();
-        //shotSpawnLeft = GameObject.Find("ShotSpawnLeft").GetComponent<Transform>();
         
         // Initialize variables
         position_x = transform.position.x;
@@ -60,39 +56,56 @@ public class Player : MonoBehaviour {
         username = "dummy";
         fireRate = 0.25f;
         soundEffects = this.GetComponents<AudioSource>();
+
+        StartCoroutine(CheckForDeath());
+        StartCoroutine(CheckForShot());
     }
 
-    // Update is called once per frame
-    protected void Update() {
+    IEnumerator CheckForShot() {
 
-        if (!shootButton) {
-            return;
-        }
+        while (shootButton) {
+            if (shootButton.IsClicked()) {
 
-        if (shootButton.getClickedState() == true) {
-            nextFire = Time.time + fireRate;
-            if (positionFaced == "right") {
-                soundEffects[1].Play();
-                shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
-                shot.GetComponent<Bolt>().SetUsername(username);
-                shot.GetComponent<Bolt>().SetType(1);
-                shot.GetComponent<Bolt>().SetId();
-                shot.GetComponent<Mover>().setDirection("right");
-                shot.GetComponent<Mover>().setSpeed(0.5f);
+                if(positionFaced == "right")
+                {
+                    soundEffects[1].Play();
+                    shot = (GameObject)Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
+                    shot.GetComponent<Bolt>().SetUsername(username);
+                    shot.GetComponent<Bolt>().SetType(1);
+                    shot.GetComponent<Bolt>().SetId();
+                    shot.GetComponent<Mover>().setDirection("right");
+                    shot.GetComponent<Mover>().setSpeed(0.5f);
+                }
+                else if(positionFaced == "left")
+                {
+                    soundEffects[1].Play();
+                    shot = (GameObject)Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
+                    shot.GetComponent<Bolt>().SetUsername(username);
+                    shot.GetComponent<Bolt>().SetType(1);
+                    shot.GetComponent<Bolt>().SetId();
+                    shot.GetComponent<Mover>().setDirection("left");
+                    shot.GetComponent<Mover>().setSpeed(0.5f);
+                }
 
-            } else if (positionFaced == "left") {
-                soundEffects[1].Play();
-                shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
-                shot.GetComponent<Bolt>().SetUsername(username);
-                shot.GetComponent<Bolt>().SetType(1);
-                shot.GetComponent<Bolt>().SetId();
-                shot.GetComponent<Mover>().setDirection("left");
-                shot.GetComponent<Mover>().setSpeed(0.5f);
+                shootButton.setClickedState(false);
             }
 
-            shootButton.setClickedState(false);
+            yield return new WaitForSeconds(0.02F);
         }
 
+        yield break;
+    }
+
+    IEnumerator CheckForDeath() {
+        while (!(this.IsDead())) {
+            yield return new WaitForSeconds(0.5F);
+        }
+
+        Instantiate(explosion,
+            this.gameObject.transform.position,
+            Quaternion.identity);
+
+        Destroy(this.gameObject);
     }
 
     // Switch submarine's sprited render side according to it's direction
@@ -103,6 +116,10 @@ public class Player : MonoBehaviour {
         } else {
             spriteRenderer.flipX = true;
         }
+    }
+
+    public bool IsDead() {
+        return health <= 0;
     }
 
     public void increaseHP(int delta) {
@@ -118,19 +135,16 @@ public class Player : MonoBehaviour {
         type = value;
     }
 
-    public void UpdatePosition(float new_pos_x, float new_pos_y)
-    {
+    public void UpdatePosition(float new_pos_x, float new_pos_y) {
         position_x = new_pos_x;
         position_y = new_pos_y;
     }
 
-    public float GetPositionX()
-    {
+    public float GetPositionX() {
         return position_x;
     }
 
-    public float GetPositionY()
-    {
+    public float GetPositionY() {
         return position_y;
     }
 
@@ -157,5 +171,10 @@ public class Player : MonoBehaviour {
     public void SetUsername(string username)
     {
         this.username = username;
+    }
+
+    public void TestCollider(int damage) {
+        decreaseHP(damage);
+        Debug.Log(health);
     }
 }

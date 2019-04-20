@@ -6,22 +6,22 @@ using UnityEngine.EventSystems;
 
 public class Button : MonoBehaviour
 {
-    private bool isClicked = false;
+    private bool Clicked = false;
 
     // Detect if click occurs
     private void OnMouseDown()
     {
-        isClicked = true;
+        Clicked = true;
     }
 
-    public bool getClickedState()
+    public bool IsClicked()
     {
-        return isClicked;
+        return Clicked;
     }
 
     public void setClickedState(bool state)
     {
-        isClicked = state;
+        Clicked = state;
     }
 
 }
