@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 601129b1db4b9b043b4c0ba0fef5dddf
+guid: 296ad8c2edc089043a522f027dca6391
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - room: {fileID: 7220298212768965337, guid: 84a94a189a2ef504e95b4fe7b21721d4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

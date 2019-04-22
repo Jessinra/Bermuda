@@ -4,7 +4,13 @@
 public class RoomData
 {
     public int roomID;
-    public string roomName = "Jax's quest";
+    public string roomName;
     public List<PlayerData> players; // List of player in the room
-    public bool isFull = false;
+    public bool isFull;
+
+    public RoomData(int id, string name) {
+    	roomID = id;
+    	roomName = name;
+    	isFull = false;
+    }
 }
