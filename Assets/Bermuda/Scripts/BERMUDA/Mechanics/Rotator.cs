@@ -15,16 +15,13 @@ public class Rotator : MonoBehaviour {
         StartCoroutine(constantRotation());
     }
 
-    protected void FixedUpdate() {
-        this.transform.Rotate(0, 0, currentDegrees, Space.Self);
-    }
-
     IEnumerator constantRotation() {
         while (true) {
             currentDegrees += degreeChangePerCycle;
             if (currentDegrees > 180) {
                 currentDegrees -= 360;
             }
+            this.transform.Rotate(0, 0, currentDegrees, Space.Self);
             yield return new WaitForSeconds(rotateCycleDuration);
         }
     }

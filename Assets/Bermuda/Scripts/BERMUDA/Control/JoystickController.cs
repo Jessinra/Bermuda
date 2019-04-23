@@ -49,12 +49,6 @@ public class JoystickController : MonoBehaviour {
                 outerCircle.position.y + direction.y,
                 outerCircle.transform.position.z);
 
-        player.gameObject.transform.Translate(direction * speed * Time.deltaTime);
-        player.UpdatePosition(player.gameObject.transform.position.x, player.gameObject.transform.position.y);
-        if (direction.x > 0) {
-            player.SwitchSide("right");
-        } else if (direction.x < 0) {
-            player.SwitchSide("left");
-        }
+        player.Move(direction);
     }
 }
