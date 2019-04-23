@@ -26,7 +26,6 @@ public class Submarine : Player {
             this.bubbleParticleLeft.SetActive(true);
             this.bubbleParticleRight.SetActive(false);
         } else if(position == "left") {
-            Debug.Log("Position: " + position);
             spriteRenderer.flipX = true;
             this.bubbleParticleLeft.SetActive(false);
             this.bubbleParticleRight.SetActive(true);
