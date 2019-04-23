@@ -1479,7 +1479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '     '
 --- !u!222 &856370276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2987,7 +2987,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '      '
 --- !u!222 &1962904542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3146,7 +3146,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2071577759}
   - component: {fileID: 2071577758}
-  - component: {fileID: 2071577760}
   m_Layer: 0
   m_Name: RoomController
   m_TagString: Untagged
@@ -3183,21 +3182,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2071577760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071577757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2962499b90b5e468ea5d2f3a788fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: {fileID: 1951252363}
-  playerName: {fileID: 1019864712}
-  types: {fileID: 669259410}
 --- !u!1 &2109970656
 GameObject:
   m_ObjectHideFlags: 0

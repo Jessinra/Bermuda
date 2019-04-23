@@ -46,5 +46,6 @@ public class PlayerListController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 }
