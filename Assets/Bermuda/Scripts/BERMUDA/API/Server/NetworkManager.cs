@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
 {
+    public static string BaseUrl = "http://167.205.34.54:5000";
+    public static string BaseSocket = "tcp://167.205.34.54:12345";
     private string URL_SEND = "http://192.168.101.130:5000/api/match/update";
 
     private string room_id;
