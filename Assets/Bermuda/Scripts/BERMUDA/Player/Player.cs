@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     // Shots
     public GameObject shotPrefab;
     protected GameObject shot;
-    private List<Bolt> boltsFired;
+    private List<Bolt> boltsFired = new List<Bolt>();
 
     public Transform shotSpawnRight;
     public Transform shotSpawnLeft;
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour {
     // Special skill
     [SerializeField] private GameObject specialShotPrefab = null;
     protected GameObject specialShot;
-    private List<Bolt> specialShotFired;
+    private List<Bolt> specialShotFired = new List<Bolt>();
 
     // Sound 
     protected AudioSource[] soundEffects;
@@ -75,9 +75,6 @@ public class Player : MonoBehaviour {
         fireRate = 0.25f;
         soundEffects = this.GetComponents<AudioSource>();
 
-        // Initialize list of bolts fired
-        boltsFired = new List<Bolt>();
-
         StartCoroutine(CheckForDeath());
         StartCoroutine(CheckForShot());
         StartCoroutine(CheckForBoost());
@@ -95,7 +92,6 @@ public class Player : MonoBehaviour {
                     shot.GetComponent<Mover>().setDirection("right");
 
                 } else if (positionFaced == "left") {
-                    soundEffects[1].Play();
                     shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
                     shot.GetComponent<Mover>().setDirection("left");
                 }
