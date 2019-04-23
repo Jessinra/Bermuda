@@ -8,6 +8,8 @@ public class FullMapController : MonoBehaviour
     public GameObject fullMapBg;
     public GameObject fullMap;
 
+    public Button mapButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +19,13 @@ public class FullMapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if (mapButton.IsClicked()){
             Debug.Log("space pressed");
 
             isMapShown = !isMapShown;
             this.fullMap.SetActive(isMapShown);
             this.fullMapBg.SetActive(isMapShown);
+            mapButton.setClickedState(false);
         }
     }
 }
