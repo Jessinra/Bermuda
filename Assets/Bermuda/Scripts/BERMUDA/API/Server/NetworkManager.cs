@@ -110,15 +110,12 @@ public class NetworkManager : MonoBehaviour
                 foreach (var playerData in players)
                 {
                     bool found = false;
-                    for(int i = 0; i < submarines.Count; ++i){
+                    for(int i = 0; i < submarines.Count && !found; ++i){
                         if(submarines[i].GetId() == playerData.id){
                             submarines[i].SetPositionX(playerData.pos_x);
                             submarines[i].SetPositionY(playerData.pos_y);
                             found = true;
-                            break;
                         }
-                        if (found)
-                            break;
                     }
                     for (int i = 0; i < divers.Count && !found; ++i)
                     {
@@ -127,10 +124,7 @@ public class NetworkManager : MonoBehaviour
                             divers[i].SetPositionX(playerData.pos_x);
                             divers[i].SetPositionY(playerData.pos_y);
                             found = true;
-                            break;
                         }
-                        if (found)
-                            break;
                     }
                 }
             }
