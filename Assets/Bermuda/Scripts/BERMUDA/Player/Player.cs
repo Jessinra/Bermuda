@@ -230,8 +230,18 @@ public class Player : MonoBehaviour {
         return position_x;
     }
 
+    public void SetPositionX(float pos_x)
+    {
+        position_x = pos_x;
+    }
+
     public float GetPositionY() {
         return position_y;
+    }
+
+    public void SetPositionY(float pos_y)
+    {
+        position_y = pos_y;
     }
 
     public string GetPlayerType() {
