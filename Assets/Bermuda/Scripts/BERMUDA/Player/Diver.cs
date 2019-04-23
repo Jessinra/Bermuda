@@ -11,7 +11,6 @@ public class Diver : Player {
         base.Start();
 
         health = 100;
-        type = 1;
     }
 
     // Switch submarine's sprited render side according to it's direction

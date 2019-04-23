@@ -32,6 +32,11 @@ public class Mover : MonoBehaviour {
         }
     }
 
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     public void setDirection(string dir) {
         direction = dir;
     }
