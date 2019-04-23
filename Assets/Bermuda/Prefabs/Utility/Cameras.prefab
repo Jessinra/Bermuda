@@ -419,7 +419,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 4062b17d005065746bb3df4e141080ee, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0.8
   priority: 0
 --- !u!1001 &5350650099699736522
 PrefabInstance:
@@ -490,14 +490,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 850783847152154427, guid: 35a342716b7bf124a8b1a403a46ada32,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 850783847152154427, guid: 35a342716b7bf124a8b1a403a46ada32,
+        type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 4724210640499044461}
+    - target: {fileID: 850783847152154427, guid: 35a342716b7bf124a8b1a403a46ada32,
+        type: 3}
+      propertyPath: outerCircle
+      value: 
+      objectReference: {fileID: 4724210641079836033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a342716b7bf124a8b1a403a46ada32, type: 3}
 --- !u!4 &4724210640049120231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 850783847086652461, guid: 35a342716b7bf124a8b1a403a46ada32,
+    type: 3}
+  m_PrefabInstance: {fileID: 5350650099699736522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4724210641079836033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 850783848251638347, guid: 35a342716b7bf124a8b1a403a46ada32,
     type: 3}
   m_PrefabInstance: {fileID: 5350650099699736522}
   m_PrefabAsset: {fileID: 0}

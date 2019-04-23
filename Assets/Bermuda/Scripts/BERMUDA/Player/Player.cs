@@ -41,6 +41,16 @@ public class Player : MonoBehaviour {
     [SerializeField] private float boostMultiplier = 2F;
     [SerializeField] private float boostDuration = 3F;
 
+    // Shield
+    private bool shieldActive = false;
+    [SerializeField] private float shieldDuration = 3F;
+    [SerializeField] private GameObject shield = null;
+
+    // Special skill
+    [SerializeField] private GameObject specialShotPrefab = null;
+    protected GameObject specialShot;
+    private List<Bolt> specialShotFired;
+
     // Sound 
     protected AudioSource[] soundEffects;
 
@@ -71,6 +81,8 @@ public class Player : MonoBehaviour {
         StartCoroutine(CheckForDeath());
         StartCoroutine(CheckForShot());
         StartCoroutine(CheckForBoost());
+        StartCoroutine(checkForShield());
+        StartCoroutine(checkForSkill());
     }
 
     IEnumerator CheckForShot() {
@@ -79,24 +91,21 @@ public class Player : MonoBehaviour {
             if (shootButton.IsClicked()) {
 
                 if (positionFaced == "right") {
-                    soundEffects[1].Play();
                     shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
-                    shot.GetComponent<Bolt>().SetUsername(username);
-                    shot.GetComponent<Bolt>().SetType(1);
-                    shot.GetComponent<Bolt>().SetId();
                     shot.GetComponent<Mover>().setDirection("right");
-                    shot.GetComponent<Mover>().setSpeed(0.5f);
-                    boltsFired.Add(shot.GetComponent<Bolt>());
+
                 } else if (positionFaced == "left") {
                     soundEffects[1].Play();
                     shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
-                    shot.GetComponent<Bolt>().SetUsername(username);
-                    shot.GetComponent<Bolt>().SetType(1);
-                    shot.GetComponent<Bolt>().SetId();
                     shot.GetComponent<Mover>().setDirection("left");
-                    shot.GetComponent<Mover>().setSpeed(0.5f);
-                    boltsFired.Add(shot.GetComponent<Bolt>());
                 }
+
+                soundEffects[1].Play();
+                shot.GetComponent<Bolt>().SetUsername(username);
+                shot.GetComponent<Bolt>().SetType(1);
+                shot.GetComponent<Bolt>().SetId();
+                shot.GetComponent<Mover>().setSpeed(0.5f);
+                boltsFired.Add(shot.GetComponent<Bolt>());
 
                 shootButton.setClickedState(false);
             }
@@ -117,6 +126,49 @@ public class Player : MonoBehaviour {
 
                 this.speed /= boostMultiplier;
                 boostButton.setClickedState(false);
+            }
+            yield return new WaitForSeconds(0.01F);
+        }
+    }
+
+    IEnumerator checkForShield() {
+
+        while (shieldButton) {
+            if (shieldButton.IsClicked()) {
+                shieldActive = true;
+                this.shield.SetActive(true);
+                yield return new WaitForSeconds(shieldDuration);
+
+                shieldActive = false;
+                this.shield.SetActive(false);
+                shieldButton.setClickedState(false);
+            }
+            yield return new WaitForSeconds(0.01F);
+        }
+    }
+
+    IEnumerator checkForSkill() {
+
+        while (skillButton) {
+            if (skillButton.IsClicked()) {
+
+                if (positionFaced == "right") {
+                    specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
+                    specialShot.GetComponent<Mover>().setDirection("right");
+
+                } else if (positionFaced == "left") {
+                    specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
+                    specialShot.GetComponent<Mover>().setDirection("left");
+                }
+
+                soundEffects[1].Play();
+                specialShot.GetComponent<Bolt>().SetUsername(username);
+                specialShot.GetComponent<Bolt>().SetType(1);
+                specialShot.GetComponent<Bolt>().SetId();
+                specialShot.GetComponent<Mover>().setSpeed(0.5f);
+                specialShotFired.Add(specialShot.GetComponent<Bolt>());
+
+                skillButton.setClickedState(false);
             }
             yield return new WaitForSeconds(0.01F);
         }
@@ -153,7 +205,9 @@ public class Player : MonoBehaviour {
     }
 
     public void decreaseHP(int delta) {
-        health -= delta;
+        if (!shieldActive) {
+            health -= delta;
+        }
     }
 
     public void SetType(string value) {
