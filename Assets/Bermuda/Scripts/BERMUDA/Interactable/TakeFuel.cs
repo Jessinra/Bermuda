@@ -8,7 +8,9 @@ public class TakeFuel : MonoBehaviour {
 
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite = null;
-    
+
+    private Submarine submarine = null;
+
     [SerializeField] private Vector2Int respawnTime = new Vector2Int(6, 9);
     private bool fuelReady = true;
 
@@ -40,7 +42,9 @@ public class TakeFuel : MonoBehaviour {
                 spriteRenderer.sprite = fuelBottomEmpty;
             }
 
-            Debug.Log("TODO: Increase fuel");
+            // Debug.Log("TODO: Increase fuel");
+            submarine = other.gameObject.GetComponent<Submarine>();
+            submarine.IncreaseFuel();
             this.fuelReady = false;
             StartCoroutine(respawnFuel());
         }
