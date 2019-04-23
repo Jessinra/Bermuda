@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullMapBg: {fileID: 1461180727535187597}
   fullMap: {fileID: 1461180727451712721}
+  mapButton: {fileID: 0}
 --- !u!1 &1461180727386535747
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3, y: 0}
-  m_SizeDelta: {x: 1300, y: 1000}
+  m_SizeDelta: {x: 1250, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1461180727451712718
 CanvasRenderer:
