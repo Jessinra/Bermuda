@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea89de7d598f654f9edcdfc1430b3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelTop: {fileID: 8308373003757687217, guid: 0d0c75e5bf1d5c346ba2e9abb77c9751, type: 3}
-  fuelBottom: {fileID: 4069498302972935171, guid: 94557643200710943bbf19d5f4c2911d,
+  fuelTop: {fileID: 8308373003757687217, guid: 8dedc59dde215f9458ee1cfe5b679de1, type: 3}
+  fuelBottom: {fileID: 4069498302972935171, guid: fd8b0cd72c8061e49a4843373f20e276,
     type: 3}
   fuelCount: 50

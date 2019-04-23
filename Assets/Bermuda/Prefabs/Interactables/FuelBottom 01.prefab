@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelTopEmpty: {fileID: 21300000, guid: fa27338dc77bc144c9a50b142c8fc513, type: 3}
   fuelBottomEmpty: {fileID: 21300000, guid: a3eae8e4a378cb54282884e0d0a91520, type: 3}
+  respawnTime: {x: 60, y: 90}
 --- !u!1 &4069498302972935171
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +74,7 @@ GameObject:
   - component: {fileID: 5868472442565269426}
   - component: {fileID: 6699500113154241521}
   - component: {fileID: 84514646977505880}
+  - component: {fileID: 2604292725894906020}
   m_Layer: 11
   m_Name: FuelBottom 01
   m_TagString: Fuel Bottom
@@ -166,6 +168,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &2604292725894906020
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069498302972935171}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14, y: -0.7}
+  m_Size: {x: 5.47, y: 7.410074}
+  m_Direction: 0
 --- !u!1 &4103755393949720416
 GameObject:
   m_ObjectHideFlags: 0

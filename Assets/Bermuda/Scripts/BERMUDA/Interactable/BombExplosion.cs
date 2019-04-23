@@ -10,13 +10,8 @@ public class BombExplosion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
-
-            if (!damagedPlayerScript) {
-                // Finding the player script
-                damagedPlayerScript = other.gameObject.GetComponent<Player>();
-            }
-
-            // If the script is available, decrease the health
+            
+            damagedPlayerScript = other.gameObject.GetComponent<Player>();
             if (damagedPlayerScript) {
 
                 int damage = UnityEngine.Random.Range(damageRange.x, damageRange.y);

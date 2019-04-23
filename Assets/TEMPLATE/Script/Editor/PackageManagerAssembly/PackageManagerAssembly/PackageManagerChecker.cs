@@ -20,7 +20,7 @@ public class PackageChecker
 
     private static List<PackageEntry> packageToAdd;
 
-    [InitializeOnLoadMethod]
+    //[InitializeOnLoadMethod]
     static void CheckPackage()
     {
         string filePath = Application.dataPath + "/../Library/PackageChecked";

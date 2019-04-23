@@ -105,7 +105,7 @@ public class NetworkManager : MonoBehaviour
                 var messageTopicReceived = subSocket.ReceiveFrameString();
                 var messageReceived = subSocket.ReceiveFrameString();
                 //Debug.Log(messageReceived);
-                PlayerData[] players = JsonHelper.FromJson<PlayerData>(messageReceived);
+                PlayerJson[] players = JsonHelper.FromJson<PlayerJson>(messageReceived);
 
                 foreach (var playerData in players)
                 {

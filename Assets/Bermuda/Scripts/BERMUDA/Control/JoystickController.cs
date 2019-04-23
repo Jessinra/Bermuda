@@ -32,7 +32,7 @@ public class JoystickController : MonoBehaviour {
     private void FixedUpdate() {
         if (touchStart) {
             Vector2 offset = pointB - pointA;
-            Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+            Vector2 direction = Vector2.ClampMagnitude(offset, 0.15f);
             MovePlayer(direction);
             
         } else {
@@ -49,12 +49,6 @@ public class JoystickController : MonoBehaviour {
                 outerCircle.position.y + direction.y,
                 outerCircle.transform.position.z);
 
-        player.gameObject.transform.Translate(direction * speed * Time.deltaTime);
-        player.UpdatePosition(player.gameObject.transform.position.x, player.gameObject.transform.position.y);
-        if (direction.x > 0) {
-            player.SwitchSide("right");
-        } else if (direction.x < 0) {
-            player.SwitchSide("left");
-        }
+        player.Move(direction);
     }
 }

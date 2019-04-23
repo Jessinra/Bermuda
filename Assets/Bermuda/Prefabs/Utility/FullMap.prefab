@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullMapBg: {fileID: 1461180727535187597}
   fullMap: {fileID: 1461180727451712721}
+  mapButton: {fileID: 0}
 --- !u!1 &1461180727386535747
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3, y: 0}
-  m_SizeDelta: {x: 1300, y: 1000}
+  m_SizeDelta: {x: 1250, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1461180727451712718
 CanvasRenderer:
@@ -327,15 +328,15 @@ MonoBehaviour:
   m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 647a0048b9987a74a91d57c6940d8855, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 3cb3644da5482ba4aa5642ff1e7f8eb2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

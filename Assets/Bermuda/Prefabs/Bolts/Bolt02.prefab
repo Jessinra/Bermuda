@@ -176,7 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1e37e1b455044419d6e1bccb5aec12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
+  username: 
   type: 2
+  damage: 0
+  util: {fileID: 6441848743912328478, guid: 77a6d48a008d2524ba0be8a71c124b8f, type: 3}
 --- !u!114 &3969813489841283786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +206,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22fc71c09e7059499623cf47e716884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageRange: {x: 15, y: 25}
