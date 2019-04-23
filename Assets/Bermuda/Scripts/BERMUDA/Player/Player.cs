@@ -96,7 +96,7 @@ public class Player : MonoBehaviour {
                 shootButton.setClickedState(false);
             }
 
-            yield return new WaitForSeconds(0.02F);
+            yield return new WaitForSeconds(0.01F);
         }
 
         yield break;

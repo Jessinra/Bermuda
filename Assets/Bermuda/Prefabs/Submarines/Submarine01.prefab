@@ -360,9 +360,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49eaf3bc471ee1346aded1e6acfcfc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
+  username: 
+  status: 
+  position_x: 0
+  position_y: 0
+  type: 
   shootButton: {fileID: 0}
   actionButton: {fileID: 0}
-  shotPrefab: {fileID: 7298945214696333400, guid: e141d43e28a6bbe44ade4bc4f8ff9cd4,
+  shotPrefab: {fileID: 7298945214696333400, guid: e4967b9c9e8a0fd418d28d0726d9a3c7,
     type: 3}
   shotSpawnRight: {fileID: 1210764234}
   shotSpawnLeft: {fileID: 1717558343}
