@@ -7,13 +7,14 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour {
 
     // Attributes
-    [SerializeField] [HideInInspector] protected string id;
-    [SerializeField] [HideInInspector] protected string username;
-    [SerializeField] [HideInInspector] protected string status;
-    [SerializeField] [HideInInspector] protected float position_x;
-    [SerializeField] [HideInInspector] protected float position_y;
-    [SerializeField] [HideInInspector] protected string type;
+    [SerializeField][HideInInspector] protected string id;
+    [SerializeField][HideInInspector] protected string username;
+    [SerializeField][HideInInspector] protected string status;
+    [SerializeField][HideInInspector] protected float position_x;
+    [SerializeField][HideInInspector] protected float position_y;
+    [SerializeField][HideInInspector] protected string type;
     protected int health;
+    protected float speed = 70;
 
     // Sprites
     protected SpriteRenderer spriteRenderer;
@@ -21,7 +22,9 @@ public class Player : MonoBehaviour {
 
     // Buttons
     public Button shootButton = null;
-    public Button actionButton = null;
+    public Button skillButton = null;
+    public Button shieldButton = null;
+    public Button boostButton = null;
 
     // Shots
     public GameObject shotPrefab;
@@ -34,6 +37,10 @@ public class Player : MonoBehaviour {
     public float fireRate;
     protected float nextFire;
 
+    // Boosting
+    [SerializeField] private float boostMultiplier = 2F;
+    [SerializeField] private float boostDuration = 3F;
+
     // Sound 
     protected AudioSource[] soundEffects;
 
@@ -44,7 +51,7 @@ public class Player : MonoBehaviour {
     protected void Start() {
         // Load Renderer
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        
+
         // Initialize variables
         position_x = transform.position.x;
         position_y = transform.position.y;
@@ -63,6 +70,7 @@ public class Player : MonoBehaviour {
 
         StartCoroutine(CheckForDeath());
         StartCoroutine(CheckForShot());
+        StartCoroutine(CheckForBoost());
     }
 
     IEnumerator CheckForShot() {
@@ -70,21 +78,18 @@ public class Player : MonoBehaviour {
         while (shootButton) {
             if (shootButton.IsClicked()) {
 
-                if(positionFaced == "right")
-                {
+                if (positionFaced == "right") {
                     soundEffects[1].Play();
-                    shot = (GameObject)Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
+                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
                     shot.GetComponent<Bolt>().SetUsername(username);
                     shot.GetComponent<Bolt>().SetType(1);
                     shot.GetComponent<Bolt>().SetId();
                     shot.GetComponent<Mover>().setDirection("right");
                     shot.GetComponent<Mover>().setSpeed(0.5f);
                     boltsFired.Add(shot.GetComponent<Bolt>());
-                }
-                else if(positionFaced == "left")
-                {
+                } else if (positionFaced == "left") {
                     soundEffects[1].Play();
-                    shot = (GameObject)Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
+                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
                     shot.GetComponent<Bolt>().SetUsername(username);
                     shot.GetComponent<Bolt>().SetType(1);
                     shot.GetComponent<Bolt>().SetId();
@@ -100,6 +105,21 @@ public class Player : MonoBehaviour {
         }
 
         yield break;
+    }
+
+    IEnumerator CheckForBoost() {
+
+        while (boostButton) {
+            if (boostButton.IsClicked()) {
+
+                this.speed *= boostMultiplier;
+                yield return new WaitForSeconds(boostDuration);
+
+                this.speed /= boostMultiplier;
+                boostButton.setClickedState(false);
+            }
+            yield return new WaitForSeconds(0.01F);
+        }
     }
 
     IEnumerator CheckForDeath() {
@@ -136,9 +156,19 @@ public class Player : MonoBehaviour {
         health -= delta;
     }
 
-    public void SetType(string value)
-    {
+    public void SetType(string value) {
         type = value;
+    }
+
+    public void Move(Vector2 direction) {
+        this.gameObject.transform.Translate(direction * this.speed * Time.deltaTime);
+        this.UpdatePosition(gameObject.transform.position.x, gameObject.transform.position.y);
+
+        if (direction.x > 0) {
+            this.SwitchSide("right");
+        } else if (direction.x < 0) {
+            this.SwitchSide("left");
+        }
     }
 
     public void UpdatePosition(float new_pos_x, float new_pos_y) {
@@ -154,33 +184,27 @@ public class Player : MonoBehaviour {
         return position_y;
     }
 
-    public string GetPlayerType()
-    {
+    public string GetPlayerType() {
         return type;
     }
 
-    public string GetId()
-    {
+    public string GetId() {
         return id;
     }
 
-    public void SetId(string id)
-    {
+    public void SetId(string id) {
         this.id = id;
     }
 
-    public string GetUsername()
-    {
+    public string GetUsername() {
         return username;
     }
 
-    public void SetUsername(string username)
-    {
+    public void SetUsername(string username) {
         this.username = username;
     }
 
-    public List<Bolt> GetBoltsFired()
-    {
+    public List<Bolt> GetBoltsFired() {
         return boltsFired;
     }
 

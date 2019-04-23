@@ -498,6 +498,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1084807431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7232682357401450030, guid: 60f9d4dc064a3cf41a25a9eecef4aadc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1722488406561216908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4452a1abb268946bb484e7e89b3600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1361869532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471947646760494964, guid: 60f9d4dc064a3cf41a25a9eecef4aadc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1722488406561216908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4452a1abb268946bb484e7e89b3600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1417953837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -638,6 +662,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1538331396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8845758277834157425, guid: 60f9d4dc064a3cf41a25a9eecef4aadc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1722488406561216908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4452a1abb268946bb484e7e89b3600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1612936983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1196453501931790113, guid: 369d687a68f77db42ac7f784da58d0be,
@@ -8824,7 +8860,7 @@ PrefabInstance:
     - target: {fileID: 4724210640929507494, guid: 60f9d4dc064a3cf41a25a9eecef4aadc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4724210640929507494, guid: 60f9d4dc064a3cf41a25a9eecef4aadc,
         type: 3}
@@ -9307,6 +9343,21 @@ PrefabInstance:
       propertyPath: shootButton
       value: 
       objectReference: {fileID: 1625549194}
+    - target: {fileID: 1196453501934107022, guid: 369d687a68f77db42ac7f784da58d0be,
+        type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 1084807431}
+    - target: {fileID: 1196453501934107022, guid: 369d687a68f77db42ac7f784da58d0be,
+        type: 3}
+      propertyPath: shieldButton
+      value: 
+      objectReference: {fileID: 1361869532}
+    - target: {fileID: 1196453501934107022, guid: 369d687a68f77db42ac7f784da58d0be,
+        type: 3}
+      propertyPath: boostButton
+      value: 
+      objectReference: {fileID: 1538331396}
     - target: {fileID: 1196453501934107019, guid: 369d687a68f77db42ac7f784da58d0be,
         type: 3}
       propertyPath: m_FlipX
