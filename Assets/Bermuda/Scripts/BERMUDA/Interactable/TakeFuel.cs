@@ -6,23 +6,43 @@ public class TakeFuel : MonoBehaviour {
     [SerializeField] private Sprite fuelTopEmpty = null;
     [SerializeField] private Sprite fuelBottomEmpty = null;
 
+    private SpriteRenderer spriteRenderer;
+    private Sprite originalSprite = null;
+    
+    [SerializeField] private Vector2Int respawnTime = new Vector2Int(6, 9);
+    private bool fuelReady = true;
+
+    IEnumerator respawnFuel() {
+        int delay = UnityEngine.Random.Range(respawnTime.x, respawnTime.y);
+        yield return new WaitForSeconds(delay);
+
+        this.fuelReady = true;
+        spriteRenderer.sprite = originalSprite;
+
+        yield break;
+    }
+
+    void Start(){
+        spriteRenderer = this.transform.parent.gameObject.GetComponent<SpriteRenderer>();
+        originalSprite = spriteRenderer.sprite;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
 
         Debug.Log("TODO : Fuel action");
 
-        if (other.CompareTag("Player")) {
-
-            SpriteRenderer renderer = this.transform.parent.gameObject.GetComponent<SpriteRenderer>();
+        if (this.fuelReady && other.CompareTag("Player")) {
 
             if (this.gameObject.CompareTag("Fuel Top")) {
-                renderer.sprite = fuelTopEmpty;
+                spriteRenderer.sprite = fuelTopEmpty;
 
             } else if (this.gameObject.CompareTag("Fuel Bottom")) {
-                renderer.sprite = fuelBottomEmpty;
+                spriteRenderer.sprite = fuelBottomEmpty;
             }
 
             Debug.Log("TODO: Increase fuel");
-            // Destroy(this.transform.parent.gameObject);
+            this.fuelReady = false;
+            StartCoroutine(respawnFuel());
         }
     }
 }
