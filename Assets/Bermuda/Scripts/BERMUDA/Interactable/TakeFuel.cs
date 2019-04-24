@@ -31,8 +31,6 @@ public class TakeFuel : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
 
-        Debug.Log("TODO : Fuel action");
-
         if (this.fuelReady && other.CompareTag("Player")) {
 
             if (this.gameObject.CompareTag("Fuel Top")) {

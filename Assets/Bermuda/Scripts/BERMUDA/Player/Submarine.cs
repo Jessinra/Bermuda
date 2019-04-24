@@ -68,7 +68,7 @@ public class Submarine : Player {
             fuel = FUEL_MIN_VALUE;
         }
 
-        Debug.Log("Fuel: " + fuel);
+        // Debug.Log("Fuel: " + fuel);
     }
     
 }

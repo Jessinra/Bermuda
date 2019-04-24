@@ -5,9 +5,8 @@ using UnityEngine;
 public class ClueCollisionManager : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("collide");
-        if (other.CompareTag("Player")) {
 
+        if (other.CompareTag("Player")) {
             if (this.gameObject.CompareTag("Clue")) {
                 TreasureClueSpawner.notifyClueCollected(1);
 

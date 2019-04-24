@@ -109,7 +109,7 @@ public class MazeBuilder {
         this.maze.setWidth(this.mazeWidth);
     }
 
-    public void generateBluePrint() {
+    public void GenerateBluePrint() {
 
         mazeBlueprint = new MazeBlueprint(this.maze.getHeight(), this.maze.getWidth());
         List<List<String>> playAreaBlueprint = new List<List<String>>();

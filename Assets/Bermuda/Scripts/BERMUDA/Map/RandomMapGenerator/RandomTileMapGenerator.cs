@@ -23,50 +23,36 @@ public class RandomTileMapGenerator : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("mazeBlueprintReady", -1);
+
         TileMapDrawer.setDrawableTiles(ref tileMapDrawerConfig.drawableTiles);
-
         this.tilemap = GetComponent<Tilemap>();
-        Task.Run(() => LoadBluePrint(() =>
-        {
-            StartLoadMap();
-            return "";
-        }, () =>
-        {
-            Generate();
-            return "";
-        }));
 
+        try{
+            this.mazeBlueprint = FetchBluePrint();
+        }
+        catch(Exception){
+            this.mazeBlueprint = GenerateBlueprint();
+        }
 
-        // StartCoroutine(drawInitialSeeder());
-        // StartCoroutine("drawWholeMapPartially");   
+        StartCoroutine(drawMapAroundPlayer());
     }
 
-    private void Generate()
-    {
-        this.mazeBlueprint = generateBlueprint();
-    }
 
-    private void LoadBluePrint(Func<string> onSuccess, Func<string> onFailure)
+    private MazeBlueprint FetchBluePrint()
     {
         try
         {
             var map = JsonUtility.FromJson<Map>(Util.Get(NetworkManager.BaseUrl + "/api/map"));
-            var blueprint = new MazeBlueprint(map.height, map.width);
-            mazeBlueprint = blueprint;
-            onSuccess();
+            return new MazeBlueprint(map.height, map.width);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            onFailure();
+            throw e;
         }
     }
 
-    private void StartLoadMap()
-    {
-        StartCoroutine(drawMapAroundPlayer());
-    }
-
-    private MazeBlueprint generateBlueprint()
+    private MazeBlueprint GenerateBlueprint()
     {
         /* Define your maze here ! */
 
@@ -87,7 +73,7 @@ public class RandomTileMapGenerator : MonoBehaviour
         mazeBuilder.expandMaze(2);
         TileMapDrawer.setMapSize(tileMapDrawerConfig.mapSize * 2);
 
-        mazeBuilder.generateBluePrint();
+        mazeBuilder.GenerateBluePrint();
         var blueprint = mazeBuilder.checkoutBlueprint();
 
         // Serialize blueprint and store locally (for other module) and on server
@@ -103,26 +89,6 @@ public class RandomTileMapGenerator : MonoBehaviour
         return blueprint;
     }
 
-    private IEnumerator drawWholeMapPartially()
-    {
-        /* TODO: really needed ?  */
-
-        const int mapWidth = 40;
-        const int mapHeight = 40;
-
-        for (var i = 0; i * areaOfView.y < mapHeight * 2; i++)
-        {
-            for (var j = 0; j * areaOfView.x < mapWidth * 2; j++)
-            {
-                TileMapDrawer.constructPartialMaze(mazeBlueprint,
-                    i * areaOfView.y, j * areaOfView.x,
-                    i * areaOfView.y + areaOfView.y, j * areaOfView.x + areaOfView.x);
-
-                drawMapSet();
-                yield return new WaitForSeconds(updateMapEvery);
-            }
-        }
-    }
 
     private IEnumerator drawMapAroundPlayer()
     {
@@ -139,7 +105,7 @@ public class RandomTileMapGenerator : MonoBehaviour
         var lastDrawXonBlueprint = 999;
         var lastDrawYonBlueprint = 999;
 
-        while (true)
+        while (player != null)
         {
             var position = player.transform.position;
             var playerXonBlueprint = (int) (position.x / tileMapScale.x);
@@ -173,38 +139,6 @@ public class RandomTileMapGenerator : MonoBehaviour
             }
         }
     }
-
-    private IEnumerator drawInitialSeeder()
-    {
-        var transformData = GetComponent<Transform>();
-        var tileMapScale = transformData.localScale;
-
-        var mazeHeight = tileMapDrawerConfig.mapSize.y * 2;
-        var mazeWidth = tileMapDrawerConfig.mapSize.x * 2;
-
-        while (true)
-        {
-            var drawPositionX = UnityEngine.Random.Range(0, mazeWidth);
-            var drawPositionY = UnityEngine.Random.Range(0, mazeHeight);
-
-            // Fetch data
-            TileMapDrawer.constructPartialMaze(mazeBlueprint,
-                drawPositionY - 5, drawPositionX - 5,
-                drawPositionY + 5, drawPositionX + 5);
-
-            // Draw the tile
-            var tilePosition = TileMapDrawer.getTilePosition();
-            var tileArray = TileMapDrawer.getTileArray();
-            for (var i = 0; i < tilePosition.Length; i++)
-            {
-                tilemap.SetTile(tilePosition[i], tileArray[i]);
-                yield return new WaitForSeconds(0.0F);
-            }
-
-            yield return new WaitForSeconds(5.0F);
-        }
-    }
-
 
     private void drawMapSet()
     {

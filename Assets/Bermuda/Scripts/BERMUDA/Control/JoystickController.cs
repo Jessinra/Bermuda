@@ -30,24 +30,24 @@ public class JoystickController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (touchStart) {
+
+        if (player != null && touchStart) {
             Vector2 offset = pointB - pointA;
             Vector2 direction = Vector2.ClampMagnitude(offset, 0.15f);
             MovePlayer(direction);
-            
-        } else {
-            transform.position = new Vector3(
-                outerCircle.position.x,
-                outerCircle.position.y,
-                outerCircle.transform.position.z);
         }
+
+        transform.position = new Vector3(
+            outerCircle.position.x,
+            outerCircle.position.y,
+            outerCircle.transform.position.z);
     }
 
     void MovePlayer(Vector2 direction) {
         transform.position = new Vector3(
-                outerCircle.position.x + direction.x,
-                outerCircle.position.y + direction.y,
-                outerCircle.transform.position.z);
+            outerCircle.position.x + direction.x,
+            outerCircle.position.y + direction.y,
+            outerCircle.transform.position.z);
 
         player.Move(direction);
     }

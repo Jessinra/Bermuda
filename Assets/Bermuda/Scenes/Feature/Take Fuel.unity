@@ -8427,6 +8427,7 @@ MonoBehaviour:
   activePlayerReference: Submarine03
   areaOfView: {x: 6, y: 4}
   updateMapEvery: 0.2
+  generate: 0
 --- !u!1 &1920540076
 GameObject:
   m_ObjectHideFlags: 0
