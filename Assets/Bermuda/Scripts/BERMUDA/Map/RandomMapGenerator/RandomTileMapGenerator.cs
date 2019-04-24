@@ -45,11 +45,18 @@ public class RandomTileMapGenerator : MonoBehaviour
     {
         try
         {
-            var map = JsonUtility.FromJson<Map>(Util.Get(NetworkManager.BaseUrl + "/api/map/1"));
-            return new MazeBlueprint(map.height, map.width);
+            var text = Util.Get(NetworkManager.BaseUrl + "/api/map?matchId=24");
+
+            Debug.Log(text);
+
+            var map = JsonUtility.FromJson<Map>(text);
+            var blueprint = new MazeBlueprint(map.height, map.width);
+            blueprint.deserialize(map.data);
+            return blueprint;
         }
         catch (Exception e)
         {
+            Debug.Log(e);
             throw e;
         }
     }

@@ -38,25 +38,25 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Bermuda/Scenes/UI/CopyWorkingScene.unity
     guid: 9ac42d4d83e78a64598a64c8ee647dcc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/TitleScreen.unity
     guid: 447081f91da99d0428e459fab8e176d1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/SelectRoom.unity
     guid: 988cd684c3f43f4458e623eb4e3a6a73
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/JoinScreen.unity
     guid: d8fc0199a9f3c974a9794450ac55bca7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/CharacterSelectJoin.unity
     guid: 1f66073002379fe458ff99d6e6e83b73
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/CharacterSelectCreate.unity
     guid: d68212a1cfd83b5499377e97d66bb4fa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/LoadingScene.unity
     guid: ae39a50d7eba4b54da46c26a49758682
-  - enabled: 0
+  - enabled: 1
     path: Assets/Bermuda/Scenes/UI/PlayScene.unity
     guid: b79eb9b452cd2054abf5f4e0ff2a19c7
   - enabled: 0

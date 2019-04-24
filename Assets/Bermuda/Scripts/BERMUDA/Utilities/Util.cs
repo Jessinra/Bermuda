@@ -27,7 +27,7 @@ public class Util : MonoBehaviour
             
         }
 
-        if (www.error == null)
+        if (www.error != null)
         {
             throw new Exception();
         }
@@ -43,7 +43,7 @@ public class Util : MonoBehaviour
             
         }
 
-        if (www.error == null)
+        if (www.error != null)
         {
             throw new Exception();
         }
