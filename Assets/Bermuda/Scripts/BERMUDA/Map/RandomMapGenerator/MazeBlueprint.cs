@@ -19,7 +19,7 @@ public class MazeBlueprint {
 
     public String serialize() {
         serializePlayAreaBlueprint();
-        return JsonUtility.ToJson(this, true);
+        return JsonUtility.ToJson(this, false);
     }
 
     public void deserialize(String data) {
@@ -92,6 +92,8 @@ public class MazeBlueprint {
     }
 
     private void serializePlayAreaBlueprint(){
+
+        this.playAreaBlueprintSerialized = new List<String>();
         foreach(List<String> row in this.playAreaBlueprint){
             this.playAreaBlueprintSerialized.AddRange(row);
         }

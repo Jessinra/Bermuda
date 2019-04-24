@@ -7,62 +7,53 @@ using UnityEngine.Tilemaps;
 
 // using System.Diagnostics;
 
-public class RandomTileMapGenerator : MonoBehaviour
-{
+public class RandomTileMapGenerator : MonoBehaviour {
     [SerializeField] private MazeDiggerConfig mazeDiggerConfig = null;
     [SerializeField] private TileMapDrawerConfig tileMapDrawerConfig = null;
 
     [SerializeField] private String activePlayerReference = null;
     [SerializeField] private Vector2Int areaOfView = new Vector2Int(10, 6);
     [SerializeField] private float updateMapEvery = 1.0F;
-    public bool generate;
 
     private TileMapDrawer TileMapDrawer = new TileMapDrawer();
     private MazeBlueprint mazeBlueprint = null;
     private Tilemap tilemap = null;
 
-    void Start()
-    {
-        PlayerPrefs.SetInt("mazeBlueprintReady", -1);
+    void Start() {
 
-        TileMapDrawer.setDrawableTiles(ref tileMapDrawerConfig.drawableTiles);
-        this.tilemap = GetComponent<Tilemap>();
+        UnsetBlueprintFromPlayerPref();
 
-        try{
-            this.mazeBlueprint = FetchBluePrint();
-            Debug.Log("success fetch");
-        }
-        catch(Exception){
-            this.mazeBlueprint = GenerateBlueprint();
-            Debug.Log("failed to fetch");
-        }
-
+        SetupMapDrawer();
+        SetupTileMap();
+        SetupBlueprint();
+        
+        SetBlueprintToPlayerPref();
+        
         StartCoroutine(drawMapAroundPlayer());
     }
 
-
-    private MazeBlueprint FetchBluePrint()
-    {
-        try
-        {
-            var text = Util.Get(NetworkManager.BaseUrl + "/api/map?matchId=24");
-
-            Debug.Log(text);
-
-            var map = JsonUtility.FromJson<Map>(text);
-            var blueprint = new MazeBlueprint(map.height, map.width);
-            blueprint.deserialize(map.data);
-            return blueprint;
+    private void SetupBlueprint() {
+        try {
+            this.mazeBlueprint = FetchBluePrint();
+        } catch (Exception e) {
+            this.mazeBlueprint = GenerateBlueprint();
         }
-        catch (Exception e)
-        {
-            Debug.Log(e);
+
+    }
+
+    private MazeBlueprint FetchBluePrint() {
+        try {
+            var serializedBlueprint = Util.Get(NetworkManager.BaseUrl + "/api/map?matchId=33");
+            MazeBlueprint blueprint = new MazeBlueprint(-1, -1);
+            blueprint.deserialize(serializedBlueprint);
+            return blueprint;
+
+        } catch (Exception e) {
             throw e;
         }
     }
 
-    private MazeBlueprint GenerateBlueprint()
-    {
+    private MazeBlueprint GenerateBlueprint() {
         /* Define your maze here ! */
 
         var mazeHeight = tileMapDrawerConfig.mapSize.y;
@@ -80,42 +71,41 @@ public class RandomTileMapGenerator : MonoBehaviour
         mazeBuilder.runPathDigger(mazeDiggerConfig.pathPercent);
 
         mazeBuilder.expandMaze(2);
-        TileMapDrawer.setMapSize(tileMapDrawerConfig.mapSize * 2);
-
         mazeBuilder.GenerateBluePrint();
         var blueprint = mazeBuilder.checkoutBlueprint();
-
-        // Serialize blueprint and store locally (for other module) and on server
-        PlayerPrefs.SetString("mazeBlueprint", blueprint.serialize());
-        PlayerPrefs.SetInt("mazeBlueprintReady", 200);
-
-        // Maze maze = mazeBuilder.checkoutMaze();
-        // String debugPath = "C:\\Code\\Unity\\Bermuda\\Assets\\Bermuda\\Debug\\TileMap\\";
-        // maze.printMaze(debugPath + "result-Maze.txt");
-        // maze.printStatistic(debugPath + "result-Stats.txt");
-        // mazeBlueprint.printBlueprint(debugPath + "result-Blueprint.txt");
-
         return blueprint;
     }
 
+    private void UnsetBlueprintFromPlayerPref() {
+        PlayerPrefs.SetString("mazeBlueprint", "");
+        PlayerPrefs.SetInt("mazeBlueprintReady", -1);
+    }
 
-    private IEnumerator drawMapAroundPlayer()
-    {
+    private void SetBlueprintToPlayerPref() {
+        PlayerPrefs.SetString("mazeBlueprint", this.mazeBlueprint.serialize());
+        PlayerPrefs.SetInt("mazeBlueprintReady", 200);
+    }
+
+    private IEnumerator drawMapAroundPlayer() {
         var player = GameObject.Find(activePlayerReference);
         var transformData = GetComponent<Transform>();
 
-        if (player == null || transformData == null)
-        {
+        if (player == null || transformData == null) {
             yield return null;
         }
 
         var tileMapScale = transformData.localScale;
-
         var lastDrawXonBlueprint = 999;
         var lastDrawYonBlueprint = 999;
 
-        while (player != null)
-        {
+        int bluePrintAvailable = 0;
+        while (bluePrintAvailable != 200) {
+            yield return new WaitForSeconds(0.2F);
+            bluePrintAvailable = (int) PlayerPrefs.GetInt("mazeBlueprintReady");
+            Debug.Log("blueprint unv");
+        }
+
+        while (player != null) {
             var position = player.transform.position;
             var playerXonBlueprint = (int) (position.x / tileMapScale.x);
             var playerYonBlueprint = (int) (position.y / tileMapScale.y);
@@ -124,8 +114,7 @@ public class RandomTileMapGenerator : MonoBehaviour
             var deltaYonBlueprint = Math.Abs(playerYonBlueprint - lastDrawYonBlueprint);
 
             // If map still relevant
-            if (deltaXonBlueprint < (areaOfView.x / 4) && deltaYonBlueprint < (areaOfView.y / 3))
-            {
+            if (deltaXonBlueprint < (areaOfView.x / 4) && deltaYonBlueprint < (areaOfView.y / 3)) {
                 yield return new WaitForSeconds(0.25F);
                 continue;
             }
@@ -141,19 +130,25 @@ public class RandomTileMapGenerator : MonoBehaviour
 
             var tilePosition = TileMapDrawer.getTilePosition();
             var tileArray = TileMapDrawer.getTileArray();
-            for (var i = 0; i < tilePosition.Length; i++)
-            {
+            for (var i = 0; i < tilePosition.Length; i++) {
                 tilemap.SetTile(tilePosition[i], tileArray[i]);
                 yield return new WaitForSeconds(0.0F);
             }
         }
     }
 
-    private void drawMapSet()
-    {
-        if (tilemap != null)
-        {
+    private void drawMapSet() {
+        if (tilemap != null) {
             tilemap.SetTiles(TileMapDrawer.getTilePosition(), TileMapDrawer.getTileArray());
         }
+    }
+
+    private void SetupMapDrawer() {
+        TileMapDrawer.setDrawableTiles(ref this.tileMapDrawerConfig.drawableTiles);
+        TileMapDrawer.setMapSize(this.tileMapDrawerConfig.mapSize);
+    }
+
+    private void SetupTileMap() {
+        this.tilemap = GetComponent<Tilemap>();
     }
 }
