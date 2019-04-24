@@ -30,9 +30,11 @@ public class RandomTileMapGenerator : MonoBehaviour
 
         try{
             this.mazeBlueprint = FetchBluePrint();
+            Debug.Log("success fetch");
         }
         catch(Exception){
             this.mazeBlueprint = GenerateBlueprint();
+            Debug.Log("failed to fetch");
         }
 
         StartCoroutine(drawMapAroundPlayer());
@@ -43,7 +45,7 @@ public class RandomTileMapGenerator : MonoBehaviour
     {
         try
         {
-            var map = JsonUtility.FromJson<Map>(Util.Get(NetworkManager.BaseUrl + "/api/map"));
+            var map = JsonUtility.FromJson<Map>(Util.Get(NetworkManager.BaseUrl + "/api/map/1"));
             return new MazeBlueprint(map.height, map.width);
         }
         catch (Exception e)

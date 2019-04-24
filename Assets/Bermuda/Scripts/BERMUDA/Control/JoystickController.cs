@@ -37,10 +37,12 @@ public class JoystickController : MonoBehaviour {
             MovePlayer(direction);
         }
 
-        transform.position = new Vector3(
-            outerCircle.position.x,
-            outerCircle.position.y,
-            outerCircle.transform.position.z);
+        if (!touchStart) {
+            transform.position = new Vector3(
+                outerCircle.position.x,
+                outerCircle.position.y,
+                outerCircle.transform.position.z);
+        }
     }
 
     void MovePlayer(Vector2 direction) {
