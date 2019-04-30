@@ -6,24 +6,17 @@ using UnityEngine.EventSystems;
 
 public class Submarine : Player {
 
-    private int FUEL_MAX_VALUE = 100;
-    private int FUEL_MIN_VALUE = 0;
-    private int FUEL_INCREASE_VALUE = 10;
-    private int FUEL_DECREASE_VALUE = 2;
+    private float MAX_FUEL = 100.0F;
+    [SerializeField] private float fuelConsumtionPerSecond = 0.2F;
 
     public GameObject bubbleParticleLeft = null;
     public GameObject bubbleParticleRight = null;
 
-    private int fuel;
+    private float fuel = 100;
 
-    // Start is called before the first frame update
     new void Start() {
         base.Start();
-
-        positionFaced = "right";
-        health = 100;
-        fuel = 100;
-        InvokeRepeating("DecreaseFuel", 0.1f, 10.0f);
+        StartCoroutine(ConsumeFuel());
     }
 
     // Switch submarine's sprited render side according to it's direction
@@ -33,7 +26,7 @@ public class Submarine : Player {
             spriteRenderer.flipX = false;
             this.bubbleParticleLeft.SetActive(true);
             this.bubbleParticleRight.SetActive(false);
-        } else if(position == "left") {
+        } else if (position == "left") {
             spriteRenderer.flipX = true;
             this.bubbleParticleLeft.SetActive(false);
             this.bubbleParticleRight.SetActive(true);
@@ -44,31 +37,25 @@ public class Submarine : Player {
         return soundEffects[0];
     }
 
-    public void IncreaseFuel()
-    {
-        if(fuel < FUEL_MAX_VALUE && (fuel+FUEL_INCREASE_VALUE) <= FUEL_MAX_VALUE)
-        {
-            fuel += FUEL_INCREASE_VALUE;
+    public void IncreaseFuel(float delta) {
+        this.fuel += delta;
+        if (this.fuel > this.MAX_FUEL) {
+            this.fuel = this.MAX_FUEL;
         }
-        else if((fuel+FUEL_INCREASE_VALUE) > FUEL_MAX_VALUE)
-        {
-            fuel = FUEL_MAX_VALUE;
-        }
-        
     }
 
-    public void DecreaseFuel()
-    {
-        if(fuel > FUEL_MIN_VALUE && (fuel-FUEL_DECREASE_VALUE) >= FUEL_MIN_VALUE)
-        {
-            fuel -= FUEL_DECREASE_VALUE;
+    IEnumerator ConsumeFuel() {
+        while (true) {
+            this.DecreaseFuel(fuelConsumtionPerSecond);
+            yield return new WaitForSeconds(1.0F);
         }
-        else if((fuel-FUEL_DECREASE_VALUE) < 0)
-        {
-            fuel = FUEL_MIN_VALUE;
-        }
-
-        // Debug.Log("Fuel: " + fuel);
     }
-    
+
+    public void DecreaseFuel(float delta) {
+        this.fuel -= delta;
+    }
+
+    public override float GetFuel() {
+        return this.fuel;
+    }
 }

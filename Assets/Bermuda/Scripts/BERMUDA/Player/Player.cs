@@ -12,30 +12,31 @@ public class Player : MonoBehaviour {
     [SerializeField][HideInInspector] protected string status;
     [SerializeField][HideInInspector] protected float position_x;
     [SerializeField][HideInInspector] protected float position_y;
-    [SerializeField][HideInInspector] protected string type;
-    protected int health;
+    [SerializeField][HideInInspector] protected int type; // 1 2 3 for submarine, 4 5 6 for diver
+
+    protected int health = 100;
+    protected int MAX_HP = 100;
     protected float speed = 70;
 
     // Sprites
     protected SpriteRenderer spriteRenderer;
-    protected string positionFaced;
+    protected string positionFaced = "right";
 
     // Buttons
-    public Button shootButton = null;
-    public Button skillButton = null;
-    public Button shieldButton = null;
-    public Button boostButton = null;
+    [SerializeField] private Button shootButton = null;
+    [SerializeField] private Button skillButton = null;
+    [SerializeField] private Button shieldButton = null;
+    [SerializeField] private Button boostButton = null;
 
     // Shots
-    public GameObject shotPrefab;
-    protected GameObject shot;
+    [SerializeField] private GameObject shotPrefab = null;
     private List<Bolt> boltsFired = new List<Bolt>();
 
-    public Transform shotSpawnRight;
-    public Transform shotSpawnLeft;
+    [SerializeField] private Transform shotSpawnRight = null;
+    [SerializeField] private Transform shotSpawnLeft = null;
 
-    public float fireRate;
-    protected float nextFire;
+    [SerializeField] private float fireRate = 0.25F;
+    protected float nextFire = 0.0F;
 
     // Boosting
     [SerializeField] private float boostMultiplier = 2F;
@@ -46,9 +47,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private float shieldDuration = 3F;
     [SerializeField] private GameObject shield = null;
 
-    // Special skill
+    // Special shot
     [SerializeField] private GameObject specialShotPrefab = null;
-    protected GameObject specialShot;
     private List<Bolt> specialShotFired = new List<Bolt>();
 
     // Sound 
@@ -57,22 +57,18 @@ public class Player : MonoBehaviour {
     // Explosion
     [SerializeField] protected GameObject explosion = null;
 
-    // Start is called before the first frame update
     protected void Start() {
-        // Load Renderer
-        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
-        // Initialize variables
-        position_x = transform.position.x;
-        position_y = transform.position.y;
-        positionFaced = "Right";
-        health = 100;
-        nextFire = 0.0f;
-        status = "alive";
-        type = "submarine";
+        // Dummy userdata, TODO: replace with data received from server
         id = "dummy";
         username = "dummy";
-        fireRate = 0.25f;
+        status = "alive";
+        position_x = transform.position.x;
+        position_y = transform.position.y;
+        type = 1;
+
+        // Load Renderer
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         soundEffects = this.GetComponents<AudioSource>();
 
         StartCoroutine(CheckForDeath());
@@ -83,30 +79,40 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator CheckForShot() {
+        GameObject shot;
+        Transform shotSpawn;
 
         while (shootButton) {
             if (shootButton.IsClicked()) {
 
                 if (positionFaced == "right") {
-                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
-                    shot.GetComponent<Mover>().setDirection("right");
+                    shotSpawn = shotSpawnRight;
 
                 } else if (positionFaced == "left") {
-                    shot = (GameObject) Instantiate(shotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
-                    shot.GetComponent<Mover>().setDirection("left");
+                    shotSpawn = shotSpawnLeft;
+
+                } else {
+                    throw new Exception("positionFaced not defined");
                 }
 
-                soundEffects[1].Play();
+                shot = (GameObject) Instantiate(shotPrefab, shotSpawn.position, shotSpawn.rotation);
+                shot.GetComponent<Mover>().setDirection(positionFaced);
                 shot.GetComponent<Bolt>().SetUsername(username);
                 shot.GetComponent<Bolt>().SetType(1);
                 shot.GetComponent<Bolt>().SetId();
                 shot.GetComponent<Mover>().setSpeed(0.5f);
+
                 boltsFired.Add(shot.GetComponent<Bolt>());
 
                 shootButton.setClickedState(false);
-            }
+                soundEffects[1].Play();
+                
+                // Cooldown
+                yield return new WaitForSeconds(fireRate);
 
-            yield return new WaitForSeconds(0.01F);
+            } else {
+                yield return new WaitForSeconds(0.01F);
+            }
         }
 
         yield break;
@@ -144,27 +150,34 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator checkForSkill() {
+        GameObject specialShot;
+        Transform shotSpawn;
 
         while (skillButton) {
             if (skillButton.IsClicked()) {
 
                 if (positionFaced == "right") {
-                    specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawnRight.position, shotSpawnRight.rotation);
-                    specialShot.GetComponent<Mover>().setDirection("right");
+                    shotSpawn = shotSpawnRight;
 
                 } else if (positionFaced == "left") {
-                    specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawnLeft.position, shotSpawnLeft.rotation);
-                    specialShot.GetComponent<Mover>().setDirection("left");
+                    shotSpawn = shotSpawnLeft;
+
+                } else {
+                    throw new Exception("positionFaced not defined");
                 }
 
-                soundEffects[1].Play();
+                specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawn.position, shotSpawn.rotation);
+                specialShot.GetComponent<Mover>().setDirection(positionFaced);
                 specialShot.GetComponent<Bolt>().SetUsername(username);
                 specialShot.GetComponent<Bolt>().SetType(1);
                 specialShot.GetComponent<Bolt>().SetId();
                 specialShot.GetComponent<Mover>().setSpeed(0.5f);
+
                 specialShotFired.Add(specialShot.GetComponent<Bolt>());
 
                 skillButton.setClickedState(false);
+                soundEffects[1].Play();
+
             }
             yield return new WaitForSeconds(0.01F);
         }
@@ -193,21 +206,29 @@ public class Player : MonoBehaviour {
     }
 
     public bool IsDead() {
-        return health <= 0;
+        return this.GetHP() <= 0 || this.GetOxygen() <= 0 || this.GetFuel() <= 0;
     }
 
     public void increaseHP(int delta) {
-        health += delta;
+        this.health += delta;
+
+        if (this.health > this.MAX_HP){
+            this.health = this.MAX_HP;
+        }
     }
 
     public void decreaseHP(int delta) {
         if (!shieldActive) {
-            health -= delta;
+            this.health -= delta;
         }
     }
 
-    public void SetType(string value) {
-        type = value;
+    public int GetHP() {
+        return this.health;
+    }
+
+    public void SetType(int type) {
+        this.type = type;
     }
 
     public void Move(Vector2 direction) {
@@ -230,8 +251,7 @@ public class Player : MonoBehaviour {
         return position_x;
     }
 
-    public void SetPositionX(float pos_x)
-    {
+    public void SetPositionX(float pos_x) {
         position_x = pos_x;
     }
 
@@ -239,12 +259,11 @@ public class Player : MonoBehaviour {
         return position_y;
     }
 
-    public void SetPositionY(float pos_y)
-    {
+    public void SetPositionY(float pos_y) {
         position_y = pos_y;
     }
 
-    public string GetPlayerType() {
+    public int GetPlayerType() {
         return type;
     }
 
@@ -268,8 +287,10 @@ public class Player : MonoBehaviour {
         return boltsFired;
     }
 
-    public void TestCollider(int damage) {
-        decreaseHP(damage);
-        Debug.Log(health);
+    public virtual float GetFuel() {
+        return 99999;
+    }
+    public virtual float GetOxygen() {
+        return 99999;
     }
 }
