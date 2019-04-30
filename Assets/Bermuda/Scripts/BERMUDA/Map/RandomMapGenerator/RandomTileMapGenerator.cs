@@ -13,7 +13,6 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     [SerializeField] private String activePlayerReference = null;
     [SerializeField] private Vector2Int areaOfView = new Vector2Int(10, 6);
-    [SerializeField] private float updateMapEvery = 1.0F;
 
     private TileMapDrawer TileMapDrawer = new TileMapDrawer();
     private MazeBlueprint mazeBlueprint = null;
@@ -23,12 +22,12 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
         UnsetBlueprintFromPlayerPref();
 
-        SetupMapDrawer();
-        SetupTileMap();
         SetupBlueprint();
-        
+        SetupTileMap();
+        SetupMapDrawer();
+
         SetBlueprintToPlayerPref();
-        
+
         StartCoroutine(drawMapAroundPlayer());
     }
 
@@ -37,8 +36,8 @@ public class RandomTileMapGenerator : MonoBehaviour {
             this.mazeBlueprint = FetchBluePrint();
         } catch (Exception e) {
             this.mazeBlueprint = GenerateBlueprint();
+            Debug.Log(e);
         }
-
     }
 
     private MazeBlueprint FetchBluePrint() {
@@ -71,9 +70,10 @@ public class RandomTileMapGenerator : MonoBehaviour {
         mazeBuilder.runPathDigger(mazeDiggerConfig.pathPercent);
 
         mazeBuilder.expandMaze(2);
+        this.tileMapDrawerConfig.mapSize *= 2;
+
         mazeBuilder.GenerateBluePrint();
-        var blueprint = mazeBuilder.checkoutBlueprint();
-        return blueprint;
+        return mazeBuilder.checkoutBlueprint();
     }
 
     private void UnsetBlueprintFromPlayerPref() {
