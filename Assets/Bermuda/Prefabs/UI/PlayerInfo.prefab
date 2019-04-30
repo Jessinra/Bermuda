@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 2743115979167991702}
   - component: {fileID: 2743115979167991703}
   m_Layer: 5
-  m_Name: user
+  m_Name: UserDetail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,8 +545,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2743115979795129696}
+  - component: {fileID: 1003987171244219950}
   m_Layer: 0
-  m_Name: charinfo
+  m_Name: PlayerInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,10 +567,29 @@ Transform:
   - {fileID: 2743115979365428813}
   - {fileID: 2743115979200856037}
   - {fileID: 2743115979167991700}
-  - {fileID: 2743115980394626137}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1003987171244219950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743115979795129697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343342207b8b47a4e86274023840f72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderHP: {fileID: 2743115980794522090}
+  sliderFuel: {fileID: 2743115979640714733}
+  characterThumbnail:
+  - {fileID: 21300000, guid: 331616526650b764995df5519fddb68a, type: 3}
+  - {fileID: 21300000, guid: 0a8d294cc8bdadd4abfde994eedd1c88, type: 3}
+  - {fileID: 21300000, guid: 34563c7474b7f124ea8d8fee4e9b2a24, type: 3}
+  uiPlayerName: {fileID: 2743115980265099555}
+  uiPlayerThumbnail: {fileID: 2743115980200605652}
 --- !u!1 &2743115979859437579
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,57 +963,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2743115980394626142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2743115980394626137}
-  - component: {fileID: 2743115980394626136}
-  m_Layer: 0
-  m_Name: Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2743115980394626137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743115980394626142}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 335.25, y: 223, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2743115979795129696}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2743115980394626136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743115980394626142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343342207b8b47a4e86274023840f72d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2743115979167991701}
-  HP: {fileID: 2743115980794522090}
-  Fuel: {fileID: 2743115979640714733}
-  char1: {fileID: 21300000, guid: 331616526650b764995df5519fddb68a, type: 3}
-  char2: {fileID: 21300000, guid: 0a8d294cc8bdadd4abfde994eedd1c88, type: 3}
-  char3: {fileID: 21300000, guid: 34563c7474b7f124ea8d8fee4e9b2a24, type: 3}
-  playerName: {fileID: 2743115980265099555}
-  character: {fileID: 2743115980200605652}
 --- !u!1 &2743115980696325026
 GameObject:
   m_ObjectHideFlags: 0
