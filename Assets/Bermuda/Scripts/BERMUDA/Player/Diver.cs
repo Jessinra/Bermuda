@@ -9,16 +9,14 @@ public class Diver : Player {
     // Start is called before the first frame update
     new void Start() {
         base.Start();
-
-        health = 100;
     }
 
     // Switch submarine's sprited render side according to it's direction
-    public override void SwitchSide(string position) {
-        positionFaced = position;
-        if (position == "left") {
+    protected override void SwitchSide(string direction) {
+        faceDirection = direction;
+        if (faceDirection == "left") {
             spriteRenderer.flipX = false;
-        } else {
+        } else if (faceDirection == "right"){
             spriteRenderer.flipX = true;
         }
     }

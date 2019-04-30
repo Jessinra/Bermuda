@@ -18,44 +18,22 @@ public class Player : MonoBehaviour {
     protected int MAX_HP = 100;
     protected float speed = 70;
 
+    [SerializeField] protected PlayerPrefabConfig prefab = null;
+
     // Sprites
     protected SpriteRenderer spriteRenderer;
-    protected string positionFaced = "right";
-
-    // Buttons
-    [SerializeField] private Button shootButton = null;
-    [SerializeField] private Button skillButton = null;
-    [SerializeField] private Button shieldButton = null;
-    [SerializeField] private Button boostButton = null;
+    protected string faceDirection = "right";
 
     // Shots
-    [SerializeField] private GameObject shotPrefab = null;
     private List<Bolt> boltsFired = new List<Bolt>();
-
-    [SerializeField] private Transform shotSpawnRight = null;
-    [SerializeField] private Transform shotSpawnLeft = null;
-
-    [SerializeField] private float fireRate = 0.25F;
-    protected float nextFire = 0.0F;
-
-    // Boosting
-    [SerializeField] private float boostMultiplier = 2F;
-    [SerializeField] private float boostDuration = 3F;
+    [SerializeField] private ShotSpawner shotSpawner = null;
 
     // Shield
     private bool shieldActive = false;
-    [SerializeField] private float shieldDuration = 3F;
-    [SerializeField] private GameObject shield = null;
-
-    // Special shot
-    [SerializeField] private GameObject specialShotPrefab = null;
     private List<Bolt> specialShotFired = new List<Bolt>();
 
     // Sound 
     protected AudioSource[] soundEffects;
-
-    // Explosion
-    [SerializeField] protected GameObject explosion = null;
 
     protected void Start() {
 
@@ -72,164 +50,11 @@ public class Player : MonoBehaviour {
         soundEffects = this.GetComponents<AudioSource>();
 
         StartCoroutine(CheckForDeath());
-        StartCoroutine(CheckForShot());
-        StartCoroutine(CheckForBoost());
-        StartCoroutine(checkForShield());
-        StartCoroutine(checkForSkill());
     }
 
-    IEnumerator CheckForShot() {
-        GameObject shot;
-        Transform shotSpawn;
-
-        while (shootButton) {
-            if (shootButton.IsClicked()) {
-
-                if (positionFaced == "right") {
-                    shotSpawn = shotSpawnRight;
-
-                } else if (positionFaced == "left") {
-                    shotSpawn = shotSpawnLeft;
-
-                } else {
-                    throw new Exception("positionFaced not defined");
-                }
-
-                shot = (GameObject) Instantiate(shotPrefab, shotSpawn.position, shotSpawn.rotation);
-                shot.GetComponent<Mover>().setDirection(positionFaced);
-                shot.GetComponent<Bolt>().SetUsername(username);
-                shot.GetComponent<Bolt>().SetType(1);
-                shot.GetComponent<Bolt>().SetId();
-                shot.GetComponent<Mover>().setSpeed(0.5f);
-
-                boltsFired.Add(shot.GetComponent<Bolt>());
-
-                shootButton.setClickedState(false);
-                soundEffects[1].Play();
-                
-                // Cooldown
-                yield return new WaitForSeconds(fireRate);
-
-            } else {
-                yield return new WaitForSeconds(0.01F);
-            }
-        }
-
-        yield break;
-    }
-
-    IEnumerator CheckForBoost() {
-
-        while (boostButton) {
-            if (boostButton.IsClicked()) {
-
-                this.speed *= boostMultiplier;
-                yield return new WaitForSeconds(boostDuration);
-
-                this.speed /= boostMultiplier;
-                boostButton.setClickedState(false);
-            }
-            yield return new WaitForSeconds(0.01F);
-        }
-    }
-
-    IEnumerator checkForShield() {
-
-        while (shieldButton) {
-            if (shieldButton.IsClicked()) {
-                shieldActive = true;
-                this.shield.SetActive(true);
-                yield return new WaitForSeconds(shieldDuration);
-
-                shieldActive = false;
-                this.shield.SetActive(false);
-                shieldButton.setClickedState(false);
-            }
-            yield return new WaitForSeconds(0.01F);
-        }
-    }
-
-    IEnumerator checkForSkill() {
-        GameObject specialShot;
-        Transform shotSpawn;
-
-        while (skillButton) {
-            if (skillButton.IsClicked()) {
-
-                if (positionFaced == "right") {
-                    shotSpawn = shotSpawnRight;
-
-                } else if (positionFaced == "left") {
-                    shotSpawn = shotSpawnLeft;
-
-                } else {
-                    throw new Exception("positionFaced not defined");
-                }
-
-                specialShot = (GameObject) Instantiate(specialShotPrefab, shotSpawn.position, shotSpawn.rotation);
-                specialShot.GetComponent<Mover>().setDirection(positionFaced);
-                specialShot.GetComponent<Bolt>().SetUsername(username);
-                specialShot.GetComponent<Bolt>().SetType(1);
-                specialShot.GetComponent<Bolt>().SetId();
-                specialShot.GetComponent<Mover>().setSpeed(0.5f);
-
-                specialShotFired.Add(specialShot.GetComponent<Bolt>());
-
-                skillButton.setClickedState(false);
-                soundEffects[1].Play();
-
-            }
-            yield return new WaitForSeconds(0.01F);
-        }
-    }
-
-    IEnumerator CheckForDeath() {
-        while (!(this.IsDead())) {
-            yield return new WaitForSeconds(0.5F);
-        }
-
-        Instantiate(explosion,
-            this.gameObject.transform.position,
-            Quaternion.identity);
-
-        Destroy(this.gameObject);
-    }
-
-    // Switch submarine's sprited render side according to it's direction
-    public virtual void SwitchSide(string position) {
-        positionFaced = position;
-        if (position == "left") {
-            spriteRenderer.flipX = false;
-        } else {
-            spriteRenderer.flipX = true;
-        }
-    }
-
-    public bool IsDead() {
-        return this.GetHP() <= 0 || this.GetOxygen() <= 0 || this.GetFuel() <= 0;
-    }
-
-    public void increaseHP(int delta) {
-        this.health += delta;
-
-        if (this.health > this.MAX_HP){
-            this.health = this.MAX_HP;
-        }
-    }
-
-    public void decreaseHP(int delta) {
-        if (!shieldActive) {
-            this.health -= delta;
-        }
-    }
-
-    public int GetHP() {
-        return this.health;
-    }
-
-    public void SetType(int type) {
-        this.type = type;
-    }
+    /* =====================================================
+                    API methods Section
+    ===================================================== */
 
     public void Move(Vector2 direction) {
         this.gameObject.transform.Translate(direction * this.speed * Time.deltaTime);
@@ -242,30 +67,60 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void UpdatePosition(float new_pos_x, float new_pos_y) {
+    public void IncreaseHP(int delta) {
+        this.health += delta;
+
+        if (this.health > this.MAX_HP) {
+            this.health = this.MAX_HP;
+        }
+    }
+
+    public void DecreaseHP(int delta) {
+        if (!shieldActive) {
+            this.health -= delta;
+        }
+    }
+
+    /* =====================================================
+                        Helper Methods Section
+    ===================================================== */
+
+    IEnumerator CheckForDeath() {
+        while (!(this.IsDead())) {
+            yield return new WaitForSeconds(0.5F);
+        }
+
+        Instantiate(prefab.explosionPrefab,
+            this.gameObject.transform.position,
+            Quaternion.identity);
+
+        Debug.Log("notify server dead");
+        this.status = "dead";
+        Destroy(this.gameObject);
+    }
+
+    // Switch player's sprited render side according to it's direction
+    protected virtual void SwitchSide(string direction) {
+        this.faceDirection = direction;
+        if (faceDirection == "left") {
+            spriteRenderer.flipX = false;
+        } else {
+            spriteRenderer.flipX = true;
+        }
+    }
+
+    private void UpdatePosition(float new_pos_x, float new_pos_y) {
         position_x = new_pos_x;
         position_y = new_pos_y;
     }
 
-    public float GetPositionX() {
-        return position_x;
+    private bool IsDead() {
+        return this.GetHP() <= 0 || this.GetOxygen() <= 0 || this.GetFuel() <= 0;
     }
-
-    public void SetPositionX(float pos_x) {
-        position_x = pos_x;
-    }
-
-    public float GetPositionY() {
-        return position_y;
-    }
-
-    public void SetPositionY(float pos_y) {
-        position_y = pos_y;
-    }
-
-    public int GetPlayerType() {
-        return type;
-    }
+    
+    /* =====================================================
+                    Getter Setter Section
+    ===================================================== */
 
     public string GetId() {
         return id;
@@ -283,8 +138,48 @@ public class Player : MonoBehaviour {
         this.username = username;
     }
 
+    public float GetPositionX() {
+        return position_x;
+    }
+
+    public float GetPositionY() {
+        return position_y;
+    }
+
+    public void SetPositionX(float pos_x) {
+        position_x = pos_x;
+    }
+
+    public void SetPositionY(float pos_y) {
+        position_y = pos_y;
+    }
+
+    public int GetPlayerType() {
+        return type;
+    }
+
+    public void SetPlayerType(int type) {
+        this.type = type;
+    }
+
+    public int GetHP() {
+        return this.health;
+    }
+
+    public float GetSpeed() {
+        return this.speed;
+    }
+
+    public void SetSpeed(float speed) {
+        this.speed = speed;
+    }
+
     public List<Bolt> GetBoltsFired() {
-        return boltsFired;
+        return this.boltsFired;
+    }
+
+    public List<Bolt> GetSpecialShotFired() {
+        return this.specialShotFired;
     }
 
     public virtual float GetFuel() {
@@ -293,4 +188,81 @@ public class Player : MonoBehaviour {
     public virtual float GetOxygen() {
         return 99999;
     }
+
+    /* =====================================================
+                    Active Player Section
+    ===================================================== */
+
+    public void CreateDefaultShot() {
+        GameObject shot;
+        Transform spawner;
+
+        if (faceDirection == "right") {
+            spawner = shotSpawner.right;
+        } else if (faceDirection == "left") {
+            spawner = shotSpawner.left;
+        } else {
+            throw new Exception("faceDirection not defined");
+        }
+
+        shot = (GameObject) Instantiate(prefab.shotPrefab, spawner.position, spawner.rotation);
+        shot.GetComponent<Mover>().setDirection(faceDirection);
+        shot.GetComponent<Bolt>().SetUsername(username);
+        shot.GetComponent<Bolt>().SetType(1);
+        shot.GetComponent<Bolt>().SetId();
+        shot.GetComponent<Mover>().setSpeed(0.5f);
+
+        boltsFired.Add(shot.GetComponent<Bolt>());
+
+        soundEffects[1].Play();
+    }
+
+    public void ActivateShield() {
+        shieldActive = true;
+        prefab.shield.SetActive(true);
+    }
+
+    public void DeactivateShield() {
+        shieldActive = false;
+        prefab.shield.SetActive(false);
+    }
+
+    public void CreateSpecialShot() {
+        GameObject specialShot;
+        Transform spawner;
+
+        if (faceDirection == "right") {
+            spawner = shotSpawner.right;
+        } else if (faceDirection == "left") {
+            spawner = shotSpawner.left;
+        } else {
+            throw new Exception("faceDirection not defined");
+        }
+
+        specialShot = (GameObject) Instantiate(prefab.specialShotPrefab, spawner.position, spawner.rotation);
+        specialShot.GetComponent<Mover>().setDirection(faceDirection);
+        specialShot.GetComponent<Bolt>().SetUsername(username);
+        specialShot.GetComponent<Bolt>().SetType(1);
+        specialShot.GetComponent<Bolt>().SetId();
+        specialShot.GetComponent<Mover>().setSpeed(0.5f);
+
+        specialShotFired.Add(specialShot.GetComponent<Bolt>());
+
+        soundEffects[1].Play();
+    }
+
+}
+
+[System.Serializable]
+public class PlayerPrefabConfig{
+    [SerializeField] public GameObject shotPrefab = null; 
+    [SerializeField] public GameObject shield = null;
+    [SerializeField] public GameObject specialShotPrefab = null;
+    [SerializeField] public GameObject explosionPrefab = null;
+}
+
+[System.Serializable]
+public class ShotSpawner{
+    [SerializeField] public Transform right = null;
+    [SerializeField] public Transform left = null;
 }
