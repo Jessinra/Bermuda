@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombExplosion : MonoBehaviour
-{
+public class BombExplosion : MonoBehaviour {
+    
     [SerializeField] private Vector2Int damageRange = new Vector2Int(50, 75);
-    private Player damagedPlayerScript = null;
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+   
+    private void OnTriggerEnter2D(Collider2D other) {
+        
         if (other.CompareTag("Player")) {
-            
-            damagedPlayerScript = other.gameObject.GetComponent<Player>();
-            if (damagedPlayerScript) {
 
-                int damage = UnityEngine.Random.Range(damageRange.x, damageRange.y);
-                damagedPlayerScript.decreaseHP(damage);
-
-                Debug.Log("TODO : notify server");
+            Player damagedPlayer = other.gameObject.GetComponent<Player>();
+            if (damagedPlayer == null) {
+                return;
             }
+
+            int damage = UnityEngine.Random.Range(damageRange.x, damageRange.y);
+            damagedPlayer.decreaseHP(damage);
+
+            Debug.Log("TODO : notify server");
         }
     }
 }

@@ -5,11 +5,10 @@ using UnityEngine;
 public class TakeFuel : MonoBehaviour {
     [SerializeField] private Sprite fuelTopEmpty = null;
     [SerializeField] private Sprite fuelBottomEmpty = null;
+    [SerializeField] private float fuelIncreaseValue = 15.0F;
 
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite = null;
-
-    private Submarine submarine = null;
 
     [SerializeField] private Vector2Int respawnTime = new Vector2Int(6, 9);
     private bool fuelReady = true;
@@ -24,7 +23,7 @@ public class TakeFuel : MonoBehaviour {
         yield break;
     }
 
-    void Start(){
+    void Start() {
         spriteRenderer = this.transform.parent.gameObject.GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
     }
@@ -33,6 +32,11 @@ public class TakeFuel : MonoBehaviour {
 
         if (this.fuelReady && other.CompareTag("Player")) {
 
+            Submarine submarine = other.gameObject.GetComponent<Submarine>();
+            if (submarine == null) {
+                return;
+            }
+
             if (this.gameObject.CompareTag("Fuel Top")) {
                 spriteRenderer.sprite = fuelTopEmpty;
 
@@ -40,9 +44,7 @@ public class TakeFuel : MonoBehaviour {
                 spriteRenderer.sprite = fuelBottomEmpty;
             }
 
-            // Debug.Log("TODO: Increase fuel");
-            submarine = other.gameObject.GetComponent<Submarine>();
-            submarine.IncreaseFuel();
+            submarine.IncreaseFuel(fuelIncreaseValue);
             this.fuelReady = false;
             StartCoroutine(respawnFuel());
         }
