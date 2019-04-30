@@ -60,7 +60,7 @@ public class Bolt : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
-            player.decreaseHP(damage);
+            player.DecreaseHP(damage);
         }
         player.GetBoltsFired().Remove(this);
         idUsed.Remove(id);

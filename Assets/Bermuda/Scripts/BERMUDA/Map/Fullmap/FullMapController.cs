@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class FullMapController : MonoBehaviour
 {
-    private bool isMapShown;
-    public GameObject fullMapBg;
-    public GameObject fullMap;
+    [SerializeField] private Button mapButton = null;
+    [SerializeField] private GameObject fullMapBg = null;
+    [SerializeField] private GameObject fullMap = null;
 
-    public Button mapButton;
+    private bool isMapShown = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        isMapShown = false;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (mapButton.IsClicked()){
-            Debug.Log("space pressed");
 
             isMapShown = !isMapShown;
             this.fullMap.SetActive(isMapShown);
