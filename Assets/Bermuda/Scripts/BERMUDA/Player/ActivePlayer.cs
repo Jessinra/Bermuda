@@ -101,9 +101,9 @@ public class ActivePlayer : MonoBehaviour {
                 boostButton.StartCooldown();
 
                 // Execute boost
-                this.player.SetSpeed(this.player.GetSpeed() * boostMultiplier);
+                this.player.ActivateBoost(boostMultiplier);
                 yield return new WaitForSeconds(boostDuration);
-                this.player.SetSpeed(this.player.GetSpeed() / boostMultiplier);
+                this.player.DeactivateBoost(boostMultiplier);
 
             } 
             yield return new WaitForSeconds(0.01F);

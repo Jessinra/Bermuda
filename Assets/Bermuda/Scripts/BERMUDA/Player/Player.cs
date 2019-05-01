@@ -117,7 +117,7 @@ public class Player : MonoBehaviour {
     private bool IsDead() {
         return this.GetHP() <= 0 || this.GetOxygen() <= 0 || this.GetFuel() <= 0;
     }
-    
+
     /* =====================================================
                     Getter Setter Section
     ===================================================== */
@@ -227,6 +227,14 @@ public class Player : MonoBehaviour {
         prefab.shield.SetActive(false);
     }
 
+    public void ActivateBoost(float boostMultiplier) {
+        this.speed *= boostMultiplier;
+    }
+
+    public void DeactivateBoost(float boostMultiplier) {
+        this.speed /= boostMultiplier;
+    }
+
     public void CreateSpecialShot() {
         GameObject specialShot;
         Transform spawner;
@@ -254,15 +262,15 @@ public class Player : MonoBehaviour {
 }
 
 [System.Serializable]
-public class PlayerPrefabConfig{
-    [SerializeField] public GameObject shotPrefab = null; 
+public class PlayerPrefabConfig {
+    [SerializeField] public GameObject shotPrefab = null;
     [SerializeField] public GameObject shield = null;
     [SerializeField] public GameObject specialShotPrefab = null;
     [SerializeField] public GameObject explosionPrefab = null;
 }
 
 [System.Serializable]
-public class ShotSpawner{
+public class ShotSpawner {
     [SerializeField] public Transform right = null;
     [SerializeField] public Transform left = null;
 }

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum AIMoveState
-{
-    CHASING,
+enum AIMoveState {
+    ENGAGE,
+    AVOID,
     IDLE,
 }
 
 public class AIMove : MonoBehaviour {
 
-    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 6F);
+    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 3F);
 
     private Player player;
     private GameObject targetPlayer;
@@ -31,35 +31,61 @@ public class AIMove : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             this.targetPlayer = other.gameObject;
-            this.state = AIMoveState.CHASING;
-            StartCoroutine(TrackTarget());
+
+            StartCoroutine(CheckSelfCondition());
+            StartCoroutine(ExecuteScript());
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other){
+    private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             this.targetPlayer = null;
             this.state = AIMoveState.IDLE;
-            StopCoroutine(TrackTarget());
+            StopCoroutine(ExecuteScript());
         }
     }
 
     void FixedUpdate() {
-        if(this.state == AIMoveState.CHASING){
+        if (this.state != AIMoveState.IDLE) {
             player.Move(direction);
         }
     }
 
-    IEnumerator TrackTarget() {
-        while(this.targetPlayer != null){
-            
+    IEnumerator CheckSelfCondition() {
+        while (this.player != null) {
+            if (this.player.GetHP() < 25) {
+                this.state = AIMoveState.AVOID;
+            } else {
+                this.state = AIMoveState.ENGAGE;
+            }
+            yield return new WaitForSeconds(0.4F);
+        }
+        yield break;
+    }
+
+    IEnumerator ExecuteScript() {
+
+        while (this.state != AIMoveState.IDLE && targetPlayer != null) {
+
             this.targetPosition = (Vector2) this.targetPlayer.transform.position;
-            this.offset = this.targetPosition - (Vector2) this.transform.position;
-            this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+
+            if (this.state == AIMoveState.ENGAGE) {
+                this.offset = this.targetPosition - (Vector2) this.transform.position;
+                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+
+            } else if (this.state == AIMoveState.AVOID) {
+                this.offset = (Vector2) this.transform.position - this.targetPosition;
+                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+            }
 
             float changeDirectionDelay = UnityEngine.Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y);
             yield return new WaitForSeconds(changeDirectionDelay);
         }
+
+        if (targetPlayer == null){
+            this.state = AIMoveState.IDLE;
+        }
+
         yield break;
     }
 }

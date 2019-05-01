@@ -564,11 +564,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimDelay: {x: 0.1, y: 0.3}
-  cooldown:
-    shot: 0.3
-    skill: 3
-    shield: 8
-    boost: 8
+  skillConfig:
+    shotCooldown: 2.5
+    skillCooldown: 3
+    shieldCooldown: 8
+    boostCooldown: 8
+    shieldDuration: 3
+    boostDuration: 3
+    boostMultiplier: 2
 --- !u!4 &978096695
 Transform:
   m_ObjectHideFlags: 0
@@ -598,6 +601,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 707411320893487264, guid: 062011d284a6df1418a223ef0dacd4ea,
+        type: 3}
+      propertyPath: m_Name
+      value: RandSubmarine01
+      objectReference: {fileID: 0}
+    - target: {fileID: 707411320893487264, guid: 062011d284a6df1418a223ef0dacd4ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6142684417684370884, guid: 062011d284a6df1418a223ef0dacd4ea,
         type: 3}
       propertyPath: m_IsActive
@@ -617,16 +630,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 707411320893487264, guid: 062011d284a6df1418a223ef0dacd4ea,
-        type: 3}
-      propertyPath: m_Name
-      value: RandSubmarine01
-      objectReference: {fileID: 0}
-    - target: {fileID: 707411320893487264, guid: 062011d284a6df1418a223ef0dacd4ea,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 707411320862236174, guid: 062011d284a6df1418a223ef0dacd4ea,
         type: 3}
@@ -692,6 +695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269172730907761031, guid: 062011d284a6df1418a223ef0dacd4ea,
+        type: 3}
+      propertyPath: m_TagString
+      value: Undestructible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062011d284a6df1418a223ef0dacd4ea, type: 3}
@@ -9580,6 +9588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Submarine03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279597432917312679, guid: 369d687a68f77db42ac7f784da58d0be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Undestructible
       objectReference: {fileID: 0}
     - target: {fileID: 1196453501931790113, guid: 369d687a68f77db42ac7f784da58d0be,
         type: 3}

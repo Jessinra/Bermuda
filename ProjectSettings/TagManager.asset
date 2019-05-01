@@ -14,6 +14,7 @@ TagManager:
   - Fuel Top
   - Fuel Bottom
   - Sensor
+  - Undestructible
   layers:
   - Default
   - TransparentFX

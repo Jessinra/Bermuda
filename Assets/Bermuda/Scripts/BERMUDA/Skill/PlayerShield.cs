@@ -7,7 +7,7 @@ public class PlayerShield : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bolt")) {
-            Destroy(this.gameObject);
+            Destroy(other.gameObject);
             Debug.Log("TODO : notify server bolt destroyed");
         }
     }

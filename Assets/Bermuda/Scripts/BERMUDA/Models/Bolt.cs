@@ -14,8 +14,8 @@ public class Bolt : MonoBehaviour
 
     void Start()
     {
+        // TODO : fix this, not like this
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Debug.Log(player.GetUsername());
     }
 
     public void SetUsername(string username)
@@ -58,7 +58,7 @@ public class Bolt : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Sensor") || other.CompareTag("Bolt")){
+        if (other.CompareTag("Sensor") || other.CompareTag("Bolt") || other.CompareTag("Undestructible")){
 
         }
         else {
