@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,8 +19,7 @@ class TitleScreenController : MonoBehaviour
         {
             var username = usernameInputField.text;
             var password = passwordInputField.text;
-            Login(username, password);
-            SceneManager.LoadScene(nextScene);
+            Task.Run(() => Login(username, password));
         }
     }
 
@@ -31,6 +31,8 @@ class TitleScreenController : MonoBehaviour
             password
         };
         var payload = JsonUtility.ToJson(requestObject);
-        Debug.Log(payload);
+        Debug.Log("Payload: " + payload);
+        var response = Util.Post(NetworkManager.BaseUrl + "/api/auth", payload);
+        Debug.Log("Response: " + response);
     }
 }
