@@ -14,12 +14,6 @@ public class ActivePlayer : MonoBehaviour {
     [SerializeField] private ButtonCooldown shieldButton = null;
     [SerializeField] private ButtonCooldown boostButton = null;
 
-    // Cooldowns
-    [SerializeField] private float shotCooldown = 0.25F;
-    [SerializeField] private float skillCooldown = 3.0F;
-    [SerializeField] private float shieldCooldown = 8.0F;
-    [SerializeField] private float boostCooldown = 8.0F;
-
     private GameObject shotCooldownOverlay;
     private GameObject skillCooldownOverlay;
     private GameObject shieldCooldownOverlay;
@@ -61,11 +55,7 @@ public class ActivePlayer : MonoBehaviour {
             if (!(shootButton.IsCooldown()) && shootButton.IsClicked()) {
 
                 shootButton.StartCooldown();
-
                 this.player.CreateDefaultShot();
-
-                yield return new WaitForSeconds(shotCooldown);
-                
             } 
             yield return new WaitForSeconds(0.01F);
         }
@@ -78,11 +68,7 @@ public class ActivePlayer : MonoBehaviour {
             if (!(skillButton.IsCooldown()) && skillButton.IsClicked()) {
 
                 skillButton.StartCooldown();
-
                 this.player.CreateSpecialShot();
-
-                yield return new WaitForSeconds(skillCooldown);
-
             } 
             yield return new WaitForSeconds(0.01F);
         }
@@ -115,9 +101,9 @@ public class ActivePlayer : MonoBehaviour {
                 boostButton.StartCooldown();
 
                 // Execute boost
-                this.player.SetSpeed(this.player.GetSpeed() * boostMultiplier);
+                this.player.ActivateBoost(boostMultiplier);
                 yield return new WaitForSeconds(boostDuration);
-                this.player.SetSpeed(this.player.GetSpeed() / boostMultiplier);
+                this.player.DeactivateBoost(boostMultiplier);
 
             } 
             yield return new WaitForSeconds(0.01F);

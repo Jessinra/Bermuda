@@ -1,4 +1,8 @@
-﻿using System;
+﻿#pragma warning disable 1998
+#pragma warning disable 0649
+#pragma warning disable 0414
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

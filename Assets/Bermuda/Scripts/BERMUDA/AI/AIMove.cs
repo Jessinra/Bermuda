@@ -2,41 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum AIMoveState {
+    ENGAGE,
+    AVOID,
+    IDLE,
+}
+
 public class AIMove : MonoBehaviour {
 
-    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 6F);
+    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 3F);
 
     private Player player;
-    Vector2 direction = Vector2.ClampMagnitude(offset, 0.15f);
-    Vector2 offset = new Vector2(randomX, randomY);
+    private GameObject targetPlayer;
+
+    private AIMoveState state = AIMoveState.IDLE;
+
+    private Vector2 direction;
+    private Vector2 offset;
+    private Vector2 targetPosition;
 
     void Start() {
-        this.player = this.transform.parent.gameObject.GetComponent<Player>();
-        StartCoroutine(randomMove());
+        this.player = this.transform.parent.transform.parent.gameObject.GetComponent<Player>();
+        this.direction = new Vector2(0.0F, 0.0F);
+        this.offset = new Vector2(0.0F, 0.0F);
+        this.targetPosition = (Vector2) this.transform.position;
     }
 
-    void FixedUpdate(){
-        player.Move(direction);
-    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            this.targetPlayer = other.gameObject;
 
-    IEnumerator randomMove(){
-        while(true){
-            Vector2 direction = Vector2.ClampMagnitude(offset, 0.15f);
-            Vector2 offset = new Vector2(randomX, randomY);
-            
-            float changeDirectionDelay = UnityEngine.Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y);
-            yield return new WaitForSeconds(changeDirectionDelay);
+            StartCoroutine(CheckSelfCondition());
+            StartCoroutine(ExecuteScript());
         }
     }
 
-    string getRandomDirection(){
-        List<string> directions = new List<string>(){
-            "up", "down", "left", "right"
-        };
-        return directions[UnityEngine.Random.Range(0,4)];
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            this.targetPlayer = null;
+            this.state = AIMoveState.IDLE;
+            StopCoroutine(ExecuteScript());
+        }
     }
 
     void FixedUpdate() {
-        base.FixedUpdate();
+        if (this.state != AIMoveState.IDLE) {
+            player.Move(direction);
+        }
+    }
+
+    IEnumerator CheckSelfCondition() {
+        while (this.player != null) {
+            if (this.player.GetHP() < 25) {
+                this.state = AIMoveState.AVOID;
+            } else {
+                this.state = AIMoveState.ENGAGE;
+            }
+            yield return new WaitForSeconds(0.4F);
+        }
+        yield break;
+    }
+
+    IEnumerator ExecuteScript() {
+
+        while (this.state != AIMoveState.IDLE && targetPlayer != null) {
+
+            this.targetPosition = (Vector2) this.targetPlayer.transform.position;
+
+            if (this.state == AIMoveState.ENGAGE) {
+                this.offset = this.targetPosition - (Vector2) this.transform.position;
+                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+
+            } else if (this.state == AIMoveState.AVOID) {
+                this.offset = (Vector2) this.transform.position - this.targetPosition;
+                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+            }
+
+            float changeDirectionDelay = UnityEngine.Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y);
+            yield return new WaitForSeconds(changeDirectionDelay);
+        }
+
+        if (targetPlayer == null){
+            this.state = AIMoveState.IDLE;
+        }
+
+        yield break;
     }
 }
