@@ -366,26 +366,22 @@ MonoBehaviour:
   status: 
   position_x: 0
   position_y: 0
-  type: 
-  shootButton: {fileID: 0}
-  skillButton: {fileID: 0}
-  shieldButton: {fileID: 0}
-  boostButton: {fileID: 0}
-  shotPrefab: {fileID: 7298945214696333400, guid: e4967b9c9e8a0fd418d28d0726d9a3c7,
-    type: 3}
-  shotSpawnRight: {fileID: 1196453501969284117}
-  shotSpawnLeft: {fileID: 1196453501468912536}
-  fireRate: 0.25
-  boostMultiplier: 2
-  boostDuration: 3
-  shieldDuration: 3
-  shield: {fileID: 6279597432917312679}
-  specialShotPrefab: {fileID: 684349776636584826, guid: 9d9fd138cffd64947a94a0f4c11f7583,
-    type: 3}
-  explosion: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
-    type: 3}
-  bubbleParticleLeft: {fileID: 8179587763237064806}
-  bubbleParticleRight: {fileID: 8179587762752809878}
+  type: 0
+  prefab:
+    shotPrefab: {fileID: 7298945214696333400, guid: e4967b9c9e8a0fd418d28d0726d9a3c7,
+      type: 3}
+    shield: {fileID: 6279597432917312679}
+    specialShotPrefab: {fileID: 684349776636584826, guid: 9d9fd138cffd64947a94a0f4c11f7583,
+      type: 3}
+    explosionPrefab: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
+      type: 3}
+  shotSpawner:
+    right: {fileID: 1196453501969284117}
+    left: {fileID: 1196453501468912536}
+  bubbleParticle:
+    left: {fileID: 8179587763237064806}
+    right: {fileID: 8179587762752809878}
+  fuelConsumtionPerSecond: 0.5
 --- !u!1 &1196453501969284118
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,11 +492,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269172730569286812, guid: 102a64b098dc73140a394d7cf76261b5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4269172730569286811, guid: 102a64b098dc73140a394d7cf76261b5,
         type: 3}

@@ -366,26 +366,22 @@ MonoBehaviour:
   status: 
   position_x: 0
   position_y: 0
-  type: 
-  shootButton: {fileID: 0}
-  skillButton: {fileID: 0}
-  shieldButton: {fileID: 0}
-  boostButton: {fileID: 0}
-  shotPrefab: {fileID: 5172196076667839982, guid: 5a10311ea60276c4a91432a4d378a7bc,
-    type: 3}
-  shotSpawnRight: {fileID: 1622546808094984877}
-  shotSpawnLeft: {fileID: 1622546807316225312}
-  fireRate: 0.25
-  boostMultiplier: 2
-  boostDuration: 3
-  shieldDuration: 3
-  shield: {fileID: 6915470154617283536}
-  specialShotPrefab: {fileID: 684349776636584826, guid: 9d9fd138cffd64947a94a0f4c11f7583,
-    type: 3}
-  explosion: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
-    type: 3}
-  bubbleParticleLeft: {fileID: 7462137508602108561}
-  bubbleParticleRight: {fileID: 7462137509779677810}
+  type: 0
+  prefab:
+    shotPrefab: {fileID: 7298945214696333400, guid: e4967b9c9e8a0fd418d28d0726d9a3c7,
+      type: 3}
+    shield: {fileID: 0}
+    specialShotPrefab: {fileID: 684349776636584826, guid: 9d9fd138cffd64947a94a0f4c11f7583,
+      type: 3}
+    explosionPrefab: {fileID: 8001426126295539541, guid: 2f3a46df487324f4aa774de1b69268dc,
+      type: 3}
+  shotSpawner:
+    right: {fileID: 0}
+    left: {fileID: 0}
+  bubbleParticle:
+    left: {fileID: 0}
+    right: {fileID: 0}
+  fuelConsumtionPerSecond: 0.2
 --- !u!1 &1622546808094984878
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,11 +493,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
-    - target: {fileID: 4269172730569286812, guid: 102a64b098dc73140a394d7cf76261b5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4269172730569286811, guid: 102a64b098dc73140a394d7cf76261b5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -559,12 +550,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 102a64b098dc73140a394d7cf76261b5, type: 3}
---- !u!1 &6915470154617283536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4269172730569286812, guid: 102a64b098dc73140a394d7cf76261b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7261925266624776012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6915470154617283543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4269172730569286811, guid: 102a64b098dc73140a394d7cf76261b5,
@@ -664,12 +649,6 @@ PrefabInstance:
       objectReference: {fileID: 7462137508587127795}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 678d8187653e04cd8848c68572687d25, type: 3}
---- !u!1 &7462137508602108561 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 147630, guid: 678d8187653e04cd8848c68572687d25,
-    type: 3}
-  m_PrefabInstance: {fileID: 7462137508602223167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7462137508602334897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447630, guid: 678d8187653e04cd8848c68572687d25,
@@ -779,12 +758,6 @@ PrefabInstance:
       objectReference: {fileID: 7462137509764774672}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 678d8187653e04cd8848c68572687d25, type: 3}
---- !u!1 &7462137509779677810 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 147630, guid: 678d8187653e04cd8848c68572687d25,
-    type: 3}
-  m_PrefabInstance: {fileID: 7462137509779825372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7462137509779977810 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447630, guid: 678d8187653e04cd8848c68572687d25,

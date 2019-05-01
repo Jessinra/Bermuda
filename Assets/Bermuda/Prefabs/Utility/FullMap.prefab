@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a256e1abc7e90448e677d427baf97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapButton: {fileID: 0}
   fullMapBg: {fileID: 1461180727535187597}
   fullMap: {fileID: 1461180727451712721}
-  mapButton: {fileID: 0}
 --- !u!1 &1461180727386535747
 GameObject:
   m_ObjectHideFlags: 0
