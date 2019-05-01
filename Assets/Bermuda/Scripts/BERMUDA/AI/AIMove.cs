@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ enum AIMoveState {
 
 public class AIMove : MonoBehaviour {
 
-    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 3F);
+    [SerializeField] private Vector2 changeDirectionDelayRange = new Vector2(1F, 5F);
 
     private Player player;
     private GameObject targetPlayer;
@@ -41,6 +42,8 @@ public class AIMove : MonoBehaviour {
         if (other.CompareTag("Player")) {
             this.targetPlayer = null;
             this.state = AIMoveState.IDLE;
+
+            StopCoroutine(CheckSelfCondition());
             StopCoroutine(ExecuteScript());
         }
     }
@@ -53,7 +56,6 @@ public class AIMove : MonoBehaviour {
 
     IEnumerator CheckSelfCondition() {
         while (this.player != null) {
-
             int engageChance = UnityEngine.Random.Range(0, 100);
             if (engageChance < player.GetHP()){
                 this.state = AIMoveState.ENGAGE;
@@ -67,25 +69,31 @@ public class AIMove : MonoBehaviour {
 
     IEnumerator ExecuteScript() {
 
-        while (this.state != AIMoveState.IDLE && targetPlayer != null) {
-
-            this.targetPosition = (Vector2) this.targetPlayer.transform.position;
+        while (targetPlayer != null) {
 
             if (this.state == AIMoveState.ENGAGE) {
+                this.targetPosition = (Vector2) this.targetPlayer.transform.position;
                 this.offset = this.targetPosition - (Vector2) this.transform.position;
-                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
 
             } else if (this.state == AIMoveState.AVOID) {
+                this.targetPosition = (Vector2) this.targetPlayer.transform.position;
                 this.offset = (Vector2) this.transform.position - this.targetPosition;
-                this.direction = Vector2.ClampMagnitude(offset, 0.15f);
+
+            } else if (this.state == AIMoveState.IDLE){
+                float randomX = UnityEngine.Random.Range(0.0F, 1.0F);
+                float randomY = UnityEngine.Random.Range(0.0F, 1.0F);
+                this.targetPosition = new Vector2(randomX, randomY);
+                this.offset = this.targetPosition - (Vector2) this.transform.position;
             }
 
+            this.direction = Vector2.ClampMagnitude(offset, 0.15f);
             float changeDirectionDelay = UnityEngine.Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y);
             yield return new WaitForSeconds(changeDirectionDelay);
         }
 
         if (targetPlayer == null){
             this.state = AIMoveState.IDLE;
+            StopCoroutine(CheckSelfCondition());
         }
 
         yield break;

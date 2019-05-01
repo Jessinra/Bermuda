@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 5601479465752520234}
   - component: {fileID: 9086254710662137670}
   - component: {fileID: 7413067346742503085}
+  - component: {fileID: 8168233786114365168}
   m_Layer: 13
   m_Name: RandSubmarine02
   m_TagString: Player
@@ -452,6 +453,18 @@ MonoBehaviour:
     left: {fileID: 6260217968457136768}
     right: {fileID: 6260217969169914099}
   fuelConsumtionPerSecond: 0.2
+--- !u!114 &8168233786114365168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7413067346742503084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a064217c259743648849192ee1ceee31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7413067347218150586
 GameObject:
   m_ObjectHideFlags: 0

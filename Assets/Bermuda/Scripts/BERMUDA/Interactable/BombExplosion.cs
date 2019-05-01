@@ -17,8 +17,6 @@ public class BombExplosion : MonoBehaviour {
 
             int damage = UnityEngine.Random.Range(damageRange.x, damageRange.y);
             damagedPlayer.DecreaseHP(damage);
-
-            Debug.Log("TODO : notify server");
         }
     }
 }

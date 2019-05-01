@@ -127,7 +127,7 @@ public class AIBattle : MonoBehaviour {
                 this.state = AIBattleState.AVOID;
             }
             yield return new WaitForSeconds(0.2F);
-        }
+        } 
         yield break;
     }
 

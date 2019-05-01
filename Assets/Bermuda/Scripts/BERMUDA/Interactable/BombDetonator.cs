@@ -9,7 +9,6 @@ public class BombDetonator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("enter bomb");
         if(other.gameObject.tag == "Player"){
             StartCoroutine(blink());
         }
@@ -33,7 +32,6 @@ public class BombDetonator : MonoBehaviour
         Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
         Destroy(this.transform.parent.gameObject);
         
-        Debug.Log("EKUSUPUROSIONNNNNNN");
         yield break;
     }
 }
