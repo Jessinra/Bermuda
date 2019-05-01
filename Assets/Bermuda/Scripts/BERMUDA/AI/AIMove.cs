@@ -53,12 +53,14 @@ public class AIMove : MonoBehaviour {
 
     IEnumerator CheckSelfCondition() {
         while (this.player != null) {
-            if (this.player.GetHP() < 25) {
-                this.state = AIMoveState.AVOID;
-            } else {
+
+            int engageChance = UnityEngine.Random.Range(0, 100);
+            if (engageChance < player.GetHP()){
                 this.state = AIMoveState.ENGAGE;
+            }else{
+                this.state = AIMoveState.AVOID;
             }
-            yield return new WaitForSeconds(0.4F);
+            yield return new WaitForSeconds(0.2F);
         }
         yield break;
     }

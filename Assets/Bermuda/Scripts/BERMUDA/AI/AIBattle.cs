@@ -119,12 +119,14 @@ public class AIBattle : MonoBehaviour {
 
     IEnumerator CheckSelfCondition() {
         while (this.player != null) {
-            if (this.player.GetHP() < 25) {
-                this.state = AIBattleState.AVOID;
-            } else {
+
+            int engageChance = UnityEngine.Random.Range(0, 100);
+            if (engageChance < player.GetHP()){
                 this.state = AIBattleState.ENGAGE;
+            }else{
+                this.state = AIBattleState.AVOID;
             }
-            yield return new WaitForSeconds(0.4F);
+            yield return new WaitForSeconds(0.2F);
         }
         yield break;
     }
