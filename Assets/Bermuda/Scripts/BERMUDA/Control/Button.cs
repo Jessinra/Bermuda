@@ -4,24 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Button : MonoBehaviour
-{
-    private bool Clicked = false;
+public class Button : MonoBehaviour {
+
+    protected bool Clicked = false;
 
     // Detect if click occurs
-    private void OnMouseDown()
-    {
+    protected void OnMouseDown() {
         Clicked = true;
     }
 
-    public bool IsClicked()
-    {
+    public bool IsClicked() {
         return Clicked;
     }
 
-    public void setClickedState(bool state)
-    {
+    public void setClickedState(bool state) {
         Clicked = state;
     }
-
 }
