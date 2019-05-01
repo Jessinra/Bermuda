@@ -7,6 +7,7 @@ public class WeaponDamage : MonoBehaviour {
     [SerializeField] private Vector2Int damageRange = new Vector2Int(15, 25);
 
     private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(other.tag);
 
         if (other.CompareTag("Player")) {
 
@@ -17,12 +18,6 @@ public class WeaponDamage : MonoBehaviour {
 
             int damage = UnityEngine.Random.Range(damageRange.x, damageRange.y);
             damagedPlayer.DecreaseHP(damage);
-            
-            Debug.Log("TODO : notify server");
-        }
-
-        if (!(other.CompareTag("Bolt"))) {
-            Destroy(this.gameObject);
         }
     }
 }

@@ -33,7 +33,8 @@ public class RandomTileMapGenerator : MonoBehaviour {
 
     private void SetupBlueprint() {
         try {
-            this.mazeBlueprint = FetchBluePrint();
+            throw new Exception("ehehehe");
+            // this.mazeBlueprint = FetchBluePrint();
         } catch (Exception e) {
             this.mazeBlueprint = GenerateBlueprint();
             Debug.Log(e);

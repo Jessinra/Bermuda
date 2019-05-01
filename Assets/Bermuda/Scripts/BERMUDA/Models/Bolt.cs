@@ -15,6 +15,7 @@ public class Bolt : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        Debug.Log(player.GetUsername());
     }
 
     public void SetUsername(string username)
@@ -57,13 +58,13 @@ public class Bolt : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Player player = other.GetComponent<Player>();
-            player.DecreaseHP(damage);
+        if (other.CompareTag("Sensor") || other.CompareTag("Bolt")){
+
         }
-        player.GetBoltsFired().Remove(this);
-        idUsed.Remove(id);
-        Destroy(gameObject);
+        else {
+            player.GetBoltsFired().Remove(this);
+            Destroy(this.gameObject);
+            idUsed.Remove(id);
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿#pragma warning disable 0618
+#pragma warning disable 0649
+#pragma warning disable 0414
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NetMQ;
