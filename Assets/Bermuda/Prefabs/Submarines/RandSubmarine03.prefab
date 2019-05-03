@@ -361,7 +361,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2289053878391628115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a064217c259743648849192ee1ceee31, type: 3}
   m_Name: 
@@ -873,6 +873,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133078, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133078, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133079, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: changeDirectionDelayRange.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133079, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: changeDirectionDelayRange.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 558beb8f563f1de43899a5c02f6e05c7, type: 3}

@@ -49,4 +49,9 @@ public class TakeFuel : MonoBehaviour {
             StartCoroutine(respawnFuel());
         }
     }
+
+    public bool IsFuelReady()
+    {
+        return fuelReady;
+    }
 }

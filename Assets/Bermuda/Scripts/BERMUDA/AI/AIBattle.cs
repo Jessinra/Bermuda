@@ -32,6 +32,7 @@ public class AIBattle : MonoBehaviour {
         this.targetPosition = (Vector2) this.transform.position;
     }
 
+  
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             this.targetPlayer = other.gameObject;
@@ -154,6 +155,7 @@ public class AIBattle : MonoBehaviour {
         yield return new WaitForSeconds(this.skillConfig.boostCooldown);
         this.boostReady = true;
     }
+
 }
 
 [System.Serializable]
