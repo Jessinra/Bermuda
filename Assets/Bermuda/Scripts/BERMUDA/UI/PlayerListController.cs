@@ -20,7 +20,7 @@ public class PlayerListController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startingPosition = new Vector2(80, 80);
+        startingPosition = new Vector2(400, 160);
         for(int i = 0; i < 5; i++) //foreach (data in playerlists)
         {
         	// instantiate if no submarine/diver
@@ -39,7 +39,7 @@ public class PlayerListController : MonoBehaviour
         	}
         	playerName.text = "Your name"; //playerName.text = data.name;
         	status.text = "has a submarine"; //changes depending the lack of submarine/diver
-        	startingPosition = new Vector2(startingPosition.x, startingPosition.y-85);
+        	startingPosition = new Vector2(startingPosition.x, startingPosition.y-170);
         }
     }
 

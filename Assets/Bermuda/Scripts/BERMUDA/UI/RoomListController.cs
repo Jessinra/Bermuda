@@ -16,7 +16,7 @@ public class RoomListController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	startingPosition = new Vector2(0, 105);
+    	startingPosition = new Vector2(250, 210);
         for(int i = 0; i < 5; i++) //foreach (data in roomlists)
         {
         	//if (!data.isFull) {
@@ -26,7 +26,7 @@ public class RoomListController : MonoBehaviour
         	roomName.text = "Your name"; //roomName.text = data.name;
         	playerCount = 0; //playerCount = data.players.Count();
         	players.text = playerCount + " / 16 joined";
-        	startingPosition = new Vector2(startingPosition.x, startingPosition.y-105);
+        	startingPosition = new Vector2(startingPosition.x, startingPosition.y-210);
         }
     }
 
