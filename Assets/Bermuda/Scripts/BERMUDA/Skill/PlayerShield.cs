@@ -8,7 +8,6 @@ public class PlayerShield : MonoBehaviour
     {
         if (other.CompareTag("Bolt")) {
             Destroy(other.gameObject);
-            Debug.Log("TODO : notify server bolt destroyed");
         }
     }
 }

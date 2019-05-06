@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707411320284932790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: -2.2, z: 0}
+  m_LocalPosition: {x: -10, y: -2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 707411320862236174}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707411320858311993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: -2.2, z: 0}
+  m_LocalPosition: {x: 10, y: -2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 707411320862236174}
@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 2489866370058205222}
   - component: {fileID: 1236632978330540362}
   - component: {fileID: 707411320893487265}
+  - component: {fileID: 2914224276917973902}
   m_Layer: 13
   m_Name: RandSubmarine01
   m_TagString: Player
@@ -413,6 +414,18 @@ MonoBehaviour:
     left: {fileID: 8673728699275734716}
     right: {fileID: 3432979090549687020}
   fuelConsumtionPerSecond: 0.2
+--- !u!114 &2914224276917973902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707411320893487264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a064217c259743648849192ee1ceee31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7257318638160931868
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIController
       objectReference: {fileID: 0}
+    - target: {fileID: 3341840357412041705, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3341840357412041710, guid: 558beb8f563f1de43899a5c02f6e05c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -865,6 +883,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133078, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133078, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341840356547133079, guid: 558beb8f563f1de43899a5c02f6e05c7,
+        type: 3}
+      propertyPath: changeDirectionDelayRange.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 558beb8f563f1de43899a5c02f6e05c7, type: 3}

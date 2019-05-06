@@ -32,7 +32,7 @@ public class Bolt : MonoBehaviour
             int id_num = util.GenerateRandomInt(0, 999);
             temp_id = username + "_bolt_" + type.ToString() + "_" + id_num.ToString();
 
-            Debug.Log("temp_id = " + temp_id);
+            // Debug.Log("temp_id = " + temp_id);
 
             if (idUsed.Contains(temp_id) == false)
             {

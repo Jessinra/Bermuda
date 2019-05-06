@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2058532054406656698}
   - component: {fileID: 2058532054406656700}
   - component: {fileID: 2058532054406656701}
-  m_Layer: 13
+  m_Layer: 22
   m_Name: Mover
-  m_TagString: Untagged
+  m_TagString: Sensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e2426e5acec9d448ed4cc9e8b10840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeDirectionDelayRange: {x: 1, y: 3}
+  changeDirectionDelayRange: {x: 1, y: 5}
 --- !u!61 &2058532054406656701
 BoxCollider2D:
   m_ObjectHideFlags: 0
