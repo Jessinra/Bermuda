@@ -9,6 +9,12 @@ public class ActivePlayer : MonoBehaviour {
 
     private Player player;
 
+    // Keyboard Inputs
+    private String KEY_SHOOT = "s";
+    private String KEY_SKILL = "a";
+    private String KEY_BOOST = "w";
+    private String KEY_SHIELD = "d";
+
     // Buttons
     [SerializeField] private ButtonCooldown shootButton = null;
     [SerializeField] private ButtonCooldown skillButton = null;
@@ -55,7 +61,7 @@ public class ActivePlayer : MonoBehaviour {
     IEnumerator CheckForShot() {
 
         while (shootButton != null) {
-            if (!(shootButton.IsCooldown()) && shootButton.IsClicked()) {
+            if (!(shootButton.IsCooldown()) && (shootButton.IsClicked() || Input.GetKeyDown(KEY_SHOOT)) ) {
 
                 shootButton.StartCooldown();
                 this.player.CreateDefaultShot();
@@ -68,7 +74,7 @@ public class ActivePlayer : MonoBehaviour {
     IEnumerator checkForSkill() {
 
         while (skillButton != null) {
-            if (!(skillButton.IsCooldown()) && skillButton.IsClicked()) {
+            if (!(skillButton.IsCooldown()) && (skillButton.IsClicked() || Input.GetKeyDown(KEY_SKILL)) ) {
 
                 skillButton.StartCooldown();
                 this.player.CreateSpecialShot();
@@ -81,7 +87,7 @@ public class ActivePlayer : MonoBehaviour {
     IEnumerator checkForShield() {
 
         while (shieldButton != null) {
-            if (!(shieldButton.IsCooldown()) && shieldButton.IsClicked()) {
+            if (!(shieldButton.IsCooldown()) && (shieldButton.IsClicked() || Input.GetKeyDown(KEY_SHIELD)) ) {
 
                 shieldButton.StartCooldown();
 
@@ -99,7 +105,7 @@ public class ActivePlayer : MonoBehaviour {
     IEnumerator CheckForBoost() {
 
         while (boostButton != null) {
-            if (!(boostButton.IsCooldown()) && boostButton.IsClicked()) {
+            if (!(boostButton.IsCooldown()) && (boostButton.IsClicked() || Input.GetKeyDown(KEY_BOOST)) ) {
 
                 boostButton.StartCooldown();
 
