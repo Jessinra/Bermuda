@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelTopEmpty: {fileID: 21300000, guid: fa27338dc77bc144c9a50b142c8fc513, type: 3}
   fuelBottomEmpty: {fileID: 21300000, guid: a3eae8e4a378cb54282884e0d0a91520, type: 3}
+  fuelIncreaseValue: 15
   respawnTime: {x: 60, y: 90}
 --- !u!1 &4924418921658251755
 GameObject:
@@ -80,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4924418921658251754
 Transform:
   m_ObjectHideFlags: 0
