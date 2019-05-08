@@ -82,7 +82,7 @@ public class AIMove : MonoBehaviour {
         else if(this.targetObject != null && this.targetPlayer == null)
         {
             TakeFuel fuel_condition = targetObject.GetComponent<TakeFuel>();
-            if (fuel_condition.IsFuelReady())
+            if (fuel_condition != null && fuel_condition.IsFuelReady())
             {
                 this.state = AIMoveState.CATCH;
                 yield return new WaitForSeconds(0.2F);

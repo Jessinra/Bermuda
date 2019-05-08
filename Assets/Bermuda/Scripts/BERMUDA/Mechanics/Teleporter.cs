@@ -19,7 +19,8 @@ public class Teleporter : MonoBehaviour{
             int randomIdx = UnityEngine.Random.Range(0, possiblePos.Count);
             Tuple<float, float> randomPosition = possiblePos[randomIdx];
 
-            this.player.transform.position = new Vector3(randomPosition.Item1, randomPosition.Item2);
+            // TODO :: check this
+            // this.player.transform.position = new Vector3(randomPosition.Item1, randomPosition.Item2);
         }
     }
 }

@@ -91,12 +91,17 @@ public class Player : MonoBehaviour {
             yield return new WaitForSeconds(0.5F);
         }
 
+        Debug.Log(this.IsDead());
         Instantiate(prefab.explosionPrefab,
             this.gameObject.transform.position,
             Quaternion.identity);
 
-        yield return new WaitForSeconds(4F);
-        SceneManager.LoadScene("EndScene");
+        /* if (this.IsDead())
+        {
+            yield return new WaitForSeconds(4F);
+            SceneManager.LoadScene("EndScene");
+        } */
+       
         
         Debug.Log("notify server dead");
         this.status = "dead";
