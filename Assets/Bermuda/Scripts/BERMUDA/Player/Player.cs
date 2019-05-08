@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -94,6 +95,9 @@ public class Player : MonoBehaviour {
             this.gameObject.transform.position,
             Quaternion.identity);
 
+        yield return new WaitForSeconds(4F);
+        SceneManager.LoadScene("EndScene");
+        
         Debug.Log("notify server dead");
         this.status = "dead";
         Destroy(this.gameObject);
@@ -108,6 +112,7 @@ public class Player : MonoBehaviour {
             spriteRenderer.flipX = true;
         }
     }
+    
 
     private void UpdatePosition(float new_pos_x, float new_pos_y) {
         position_x = new_pos_x;

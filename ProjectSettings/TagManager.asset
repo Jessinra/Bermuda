@@ -15,6 +15,7 @@ TagManager:
   - Fuel Bottom
   - Sensor
   - Undestructible
+  - Chest
   layers:
   - Default
   - TransparentFX

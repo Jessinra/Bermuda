@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5dc6405c-1937-4bf5-86b6-4767a589274d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Bermuda/Art/Environtment/TilesBermuda/Wall.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Bermuda/Prefabs/Interactables/Chest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Bermuda/Prefabs/Interactables/Chest.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/TitleScreenController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#0#179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="580">
+              <caret line="116" column="51" lean-forward="true" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+              <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+              <folding>
+                <marker date="1557292484313" expanded="true" signature="6:159" ph="..." />
+                <marker date="1557292484313" expanded="true" signature="203:3734" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="944:1361" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="1387:1764" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="1426:1571" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="1797:2110" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="1836:2083" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="1910:2020" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2144:2457" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2183:2430" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2257:2367" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2492:2955" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2532:2928" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2608:2865" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="2989:3474" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="3028:3447" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="3102:3384" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="3527:3732" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="3583:3629" ph="{...}" />
+                <marker date="1557292484313" expanded="true" signature="3658:3726" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="102" column="33" lean-forward="true" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
+              <folding>
+                <marker date="1557292910802" expanded="false" signature="6:159" ph="..." />
+                <marker date="1557292910802" expanded="true" signature="197:7380" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="1233:1692" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="1698:1855" ph="/* ===================================================== ... */" />
+                <marker date="1557292910802" expanded="true" signature="1897:2240" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2110:2159" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2186:2234" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2280:2408" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2352:2402" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2448:2528" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2477:2522" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2534:2698" ph="/* ===================================================== ... */" />
+                <marker date="1557292910802" expanded="true" signature="2732:3166" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="2767:2829" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="3295:3491" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="3374:3427" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="3564:3635" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="3663:3752" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="3758:3917" ph="/* ===================================================== ... */" />
+                <marker date="1557292910802" expanded="true" signature="3945:3971" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4006:4035" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4069:4101" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4148:4189" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4223:4257" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4291:4325" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4369:4404" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4448:4483" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4516:4544" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4586:4619" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4644:4679" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4709:4743" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4783:4818" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4858:4897" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="4943:4988" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="5025:5054" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="5092:5121" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="5127:5286" ph="/* ===================================================== ... */" />
+                <marker date="1557292910802" expanded="true" signature="5324:6083" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="5417:5469" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="5504:5555" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6118:6193" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6230:6307" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6362:6408" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6465:6511" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6549:7377" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6649:6701" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="6736:6787" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="7436:7679" ph="{...}" />
+                <marker date="1557292910802" expanded="true" signature="7728:7834" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+              <folding>
+                <marker date="1557292674555" expanded="true" signature="6:53" ph="..." />
+                <marker date="1557292674555" expanded="true" signature="101:280" ph="{...}" />
+                <marker date="1557292674555" expanded="true" signature="176:278" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/GameController/ChestSpawner.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
+              <folding>
+                <marker date="1556011956000" expanded="false" signature="6:92" ph="..." />
+                <marker date="1556011956000" expanded="true" signature="136:2405" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="507:584" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="620:953" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="659:721" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="773:887" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="1010:1178" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="1209:1800" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="1267:1772" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="1320:1415" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="1854:2119" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="2170:2259" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="2359:2403" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="2438:2605" ph="{...}" />
+                <marker date="1556011956000" expanded="true" signature="2566:2603" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/WaitingRoomController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding>
+                <marker date="1556017446000" expanded="true" signature="70:124" ph="{...}" />
+                <marker date="1556017446000" expanded="true" signature="101:122" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/UserInfoController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <marker date="1556638862000" expanded="false" signature="6:100" ph="..." />
+                <marker date="1556638862000" expanded="true" signature="150:1144" ph="{...}" />
+                <marker date="1556638862000" expanded="true" signature="500:542" ph="{...}" />
+                <marker date="1556638862000" expanded="true" signature="576:922" ph="{...}" />
+                <marker date="1556638862000" expanded="true" signature="610:732" ph="{...}" />
+                <marker date="1556638862000" expanded="true" signature="953:1142" ph="{...}" />
+                <marker date="1556638862000" expanded="true" signature="987:1123" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding>
+                <marker date="1555923422000" expanded="false" signature="6:100" ph="..." />
+                <marker date="1555923422000" expanded="true" signature="145:965" ph="{...}" />
+                <marker date="1555923422000" expanded="true" signature="320:419" ph="{...}" />
+                <marker date="1555923422000" expanded="true" signature="457:736" ph="{...}" />
+                <marker date="1555923422000" expanded="true" signature="777:841" ph="{...}" />
+                <marker date="1555923422000" expanded="true" signature="876:962" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PlayerWaitingListController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding>
+                <marker date="1556009018000" expanded="false" signature="6:100" ph="..." />
+                <marker date="1556009018000" expanded="true" signature="159:580" ph="{...}" />
+                <marker date="1556009018000" expanded="true" signature="277:499" ph="{...}" />
+                <marker date="1556009018000" expanded="true" signature="397:493" ph="{...}" />
+                <marker date="1556009018000" expanded="true" signature="557:578" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PopUpController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <marker date="1556009026000" expanded="false" signature="6:100" ph="..." />
+                <marker date="1556009026000" expanded="true" signature="146:414" ph="{...}" />
+                <marker date="1556009026000" expanded="true" signature="265:333" ph="{...}" />
+                <marker date="1556009026000" expanded="true" signature="391:412" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Room.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomListController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/TitleScreenController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PopUpController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/WaitingRoomController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PlayerWaitingListController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/PlayerJson.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/JsonHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Utilities/Util.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/GameController/ChestSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/UserInfoController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Utilities/Util.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Request/LoginRequest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/LoginResponse.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/TitleScreenController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/GetMatchResponse.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/NetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/JsonHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomListController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Match.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/CreateMatchResponse.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Request/CreateMatchRequest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/SelectRoomController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/GameController/ChestController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/.idea.Bermuda/.idea/indexLayout.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="UnityExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AssemblyExplorer" />
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="UnityExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="API" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="API" type="1045f7f1:UnityExplorerNode" />
+              <item name="Server" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="API" type="1045f7f1:UnityExplorerNode" />
+              <item name="System" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Battle" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Control" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Destroyed" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="GameController" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Interactable" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Map" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Mechanics" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Models" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Player" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Skill" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="UI" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+              <item name="Bermuda" type="1045f7f1:UnityExplorerNode" />
+              <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
+              <item name="BERMUDA" type="1045f7f1:UnityExplorerNode" />
+              <item name="Utilities" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Packages" type="4e2708dd:PackagesRoot" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-hidden-items" value="false" />
+        <option name="show-project-names" value="true" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="userSelectedPid" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="userSelectedPid" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5dc6405c-1937-4bf5-86b6-4767a589274d" name="Default Changelist" comment="" />
+      <created>1557147670779</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557147670779</updated>
+      <workItem from="1557147674103" duration="356000" />
+      <workItem from="1557148387391" duration="2126000" />
+      <workItem from="1557230183425" duration="17089000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="19571000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="68" y="20" width="1400" height="784" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32986626" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Unit Tests" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="13" />
+      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
+      <window_info anchor="bottom" id="Unity" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Utilities/Util.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <marker date="1557291145221" expanded="false" signature="65:230" ph="..." />
+            <marker date="1557291145221" expanded="true" signature="265:1131" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="318:417" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="476:869" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="717:750" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="782:837" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="911:1129" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="977:1010" ph="{...}" />
+            <marker date="1557291145221" expanded="true" signature="1042:1097" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/LoginResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/PlayerJson.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding>
+            <marker date="1556633874000" expanded="true" signature="53:247" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/NetworkManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="140" column="5" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
+          <folding>
+            <marker date="1557291144969" expanded="false" signature="94:239" ph="..." />
+            <marker date="1557291144969" expanded="true" signature="284:4522" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="885:1063" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="1101:1135" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="1166:1202" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="1240:1680" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="1474:1593" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="1715:2684" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="2014:2678" ph="/* form.AddField(&quot;id&quot;, player.GetId()); ... */" />
+            <marker date="1557291144969" expanded="true" signature="2723:4378" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="2888:4372" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="3135:4362" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="3482:4348" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="3612:3919" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="3680:3897" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="3988:4330" ph="{...}" />
+            <marker date="1557291144969" expanded="true" signature="4074:4308" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/API/Server/JsonHelper.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/GetMatchResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Room.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <marker date="1556017446000" expanded="true" signature="75:199" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Request/LoginRequest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="16" selection-start-line="7" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomListController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+          <folding>
+            <marker date="1557291144974" expanded="true" signature="6:100" ph="..." />
+            <marker date="1557291144974" expanded="true" signature="150:1108" ph="{...}" />
+            <marker date="1557291144974" expanded="true" signature="349:1035" ph="{...}" />
+            <marker date="1557291144974" expanded="true" signature="467:1029" ph="{...}" />
+            <marker date="1557291144974" expanded="true" signature="1093:1106" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Match.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Response/CreateMatchResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Models/Request/CreateMatchRequest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/SelectRoomController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="71" column="38" lean-forward="true" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/GameController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/WaitingRoomController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <marker date="1556017446000" expanded="true" signature="70:124" ph="{...}" />
+            <marker date="1556017446000" expanded="true" signature="101:122" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/UserInfoController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <marker date="1556638862000" expanded="false" signature="6:100" ph="..." />
+            <marker date="1556638862000" expanded="true" signature="150:1144" ph="{...}" />
+            <marker date="1556638862000" expanded="true" signature="500:542" ph="{...}" />
+            <marker date="1556638862000" expanded="true" signature="576:922" ph="{...}" />
+            <marker date="1556638862000" expanded="true" signature="610:732" ph="{...}" />
+            <marker date="1556638862000" expanded="true" signature="953:1142" ph="{...}" />
+            <marker date="1556638862000" expanded="true" signature="987:1123" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/RoomController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <marker date="1555923422000" expanded="false" signature="6:100" ph="..." />
+            <marker date="1555923422000" expanded="true" signature="145:965" ph="{...}" />
+            <marker date="1555923422000" expanded="true" signature="320:419" ph="{...}" />
+            <marker date="1555923422000" expanded="true" signature="457:736" ph="{...}" />
+            <marker date="1555923422000" expanded="true" signature="777:841" ph="{...}" />
+            <marker date="1555923422000" expanded="true" signature="876:962" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PlayerWaitingListController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <marker date="1556009018000" expanded="false" signature="6:100" ph="..." />
+            <marker date="1556009018000" expanded="true" signature="159:580" ph="{...}" />
+            <marker date="1556009018000" expanded="true" signature="277:499" ph="{...}" />
+            <marker date="1556009018000" expanded="true" signature="397:493" ph="{...}" />
+            <marker date="1556009018000" expanded="true" signature="557:578" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/PopUpController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <marker date="1556009026000" expanded="false" signature="6:100" ph="..." />
+            <marker date="1556009026000" expanded="true" signature="146:414" ph="{...}" />
+            <marker date="1556009026000" expanded="true" signature="265:333" ph="{...}" />
+            <marker date="1556009026000" expanded="true" signature="391:412" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/TitleScreenController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/GameController/ChestController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/GameController/ChestSpawner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <marker date="1556011956000" expanded="false" signature="6:92" ph="..." />
+            <marker date="1556011956000" expanded="true" signature="136:2405" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="507:584" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="620:953" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="659:721" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="773:887" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="1010:1178" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="1209:1800" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="1267:1772" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="1320:1415" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="1854:2119" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="2170:2259" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="2359:2403" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="2438:2605" ph="{...}" />
+            <marker date="1556011956000" expanded="true" signature="2566:2603" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/UI/EndGameController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <folding>
+            <marker date="1557292674555" expanded="true" signature="6:53" ph="..." />
+            <marker date="1557292674555" expanded="true" signature="101:280" ph="{...}" />
+            <marker date="1557292674555" expanded="true" signature="176:278" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/ActivePlayer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="116" column="51" lean-forward="true" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+          <folding>
+            <marker date="1557292484313" expanded="true" signature="6:159" ph="..." />
+            <marker date="1557292484313" expanded="true" signature="203:3734" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="944:1361" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="1387:1764" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="1426:1571" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="1797:2110" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="1836:2083" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="1910:2020" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2144:2457" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2183:2430" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2257:2367" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2492:2955" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2532:2928" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2608:2865" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="2989:3474" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="3028:3447" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="3102:3384" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="3527:3732" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="3583:3629" ph="{...}" />
+            <marker date="1557292484313" expanded="true" signature="3658:3726" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bermuda/Scripts/BERMUDA/Player/Player.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="102" column="33" lean-forward="true" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
+          <folding>
+            <marker date="1557292910802" expanded="false" signature="6:159" ph="..." />
+            <marker date="1557292910802" expanded="true" signature="197:7380" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="1233:1692" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="1698:1855" ph="/* ===================================================== ... */" />
+            <marker date="1557292910802" expanded="true" signature="1897:2240" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2110:2159" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2186:2234" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2280:2408" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2352:2402" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2448:2528" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2477:2522" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2534:2698" ph="/* ===================================================== ... */" />
+            <marker date="1557292910802" expanded="true" signature="2732:3166" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="2767:2829" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="3295:3491" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="3374:3427" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="3564:3635" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="3663:3752" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="3758:3917" ph="/* ===================================================== ... */" />
+            <marker date="1557292910802" expanded="true" signature="3945:3971" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4006:4035" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4069:4101" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4148:4189" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4223:4257" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4291:4325" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4369:4404" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4448:4483" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4516:4544" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4586:4619" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4644:4679" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4709:4743" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4783:4818" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4858:4897" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="4943:4988" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="5025:5054" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="5092:5121" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="5127:5286" ph="/* ===================================================== ... */" />
+            <marker date="1557292910802" expanded="true" signature="5324:6083" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="5417:5469" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="5504:5555" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6118:6193" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6230:6307" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6362:6408" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6465:6511" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6549:7377" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6649:6701" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="6736:6787" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="7436:7679" ph="{...}" />
+            <marker date="1557292910802" expanded="true" signature="7728:7834" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

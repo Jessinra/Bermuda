@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ActivePlayer : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class ActivePlayer : MonoBehaviour {
     private GameObject skillCooldownOverlay;
     private GameObject shieldCooldownOverlay;
     private GameObject boostCooldownOverlay;
+
+    private int numOfChest;
 
     // Boosting
     [SerializeField] private float boostMultiplier = 2F;
@@ -109,5 +112,18 @@ public class ActivePlayer : MonoBehaviour {
             yield return new WaitForSeconds(0.01F);
         }
         yield break;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Chest"))
+        {
+            numOfChest++;
+        }
+
+        if (numOfChest > 0)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 }
